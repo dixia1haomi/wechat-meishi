@@ -1,0 +1,19 @@
+
+
+<view>
+
+  <!-- 餐厅列表 -->
+  <block wx:for="{{cantinglistRes}}" wx:key="">
+    <view class='aa' catchtap='detailcanting' id='{{item.id}}'>
+      <image src='{{item.img}}' style='height: 80px;width: 80px;'></image>
+      <view>
+        <view>餐厅ID：{{item.id}}</view>
+        <view>餐厅名：{{item.name}}</view>
+        <view>电话：{{item.phone}}</view>
+      </view>
+    </view>
+  </block>
+
+</view>
+
+<button catchtap='login'>登陆</button>

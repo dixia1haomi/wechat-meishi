@@ -1,0 +1,13 @@
+<view>
+  <view>ID:{{detailRes.id}}</view>
+  <view>ID:{{detailRes.name}}</view>
+  <view>ID:{{detailRes.phone}}</view>
+  <view wx:if="{{xingping}}">
+    <view class='xing' catchtap='xingping' data-xingping='1'>1星:{{detailRes.xing1}}</view>
+    <view class='xing' catchtap='xingping' data-xingping='2'>2星:{{detailRes.xing2}}</view>
+    <view class='xing' catchtap='xingping' data-xingping='3'>3星:{{detailRes.xing3}}</view>
+  </view>
+  <view wx:else>
+    已经投过了
+  </view>
+</view>
