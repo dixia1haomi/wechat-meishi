@@ -1,0 +1,25 @@
+<!-- **复用列表展示的样式 -->
+<view wx:if="{{is_Shoucang}}">
+  <view class='list-body'>
+    <block wx:for="{{Res}}" wx:key="">
+      <!-- 点击去canting/detail页 -->
+      <view class='cell' catchtap='go_Detail' id="{{item.id}}">
+        <image class='list-img' src='{{item.img}}'></image>
+
+        <view class='list-detail'>
+          <!-- 名字 -->
+          <view>{{item.name}}
+            <text catchtap='quxiaoshoucang' id="{{item.id}}">*取消收藏</text> </view>
+          <!-- 区域 | 距离 | 星级 -->
+          <view>{{quyuList[item.quyu].name}} | 距离 | 点赞</view>
+          <view>人均:{{item.renjun}}元</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 没有收藏 -->
+<view wx:else>
+  <view>你还没有收藏过餐厅</view>
+</view>

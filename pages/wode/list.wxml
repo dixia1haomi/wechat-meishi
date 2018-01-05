@@ -1,0 +1,19 @@
+<!--pages/wode/list.wxml-->
+<text>pages/wode/list.wxml</text>
+
+<view>
+  <view style='text-align: center;'>
+    <image class='avatarImg' src='{{userInfo.avatar_url}}'></image>
+  </view>
+  <view style='text-align: center;'>{{userInfo.nick_name}}</view>
+  <view wx:if="{{loginState == false}}" catchtap='login' style='text-align: center;'>登陆</view>
+
+</view>
+
+<view>
+  <view class='myhuati' catchtap='go_huati'>我的话题</view>
+
+  <view class='myhuati' catchtap='go_shoucang'>我的收藏</view>
+
+  <view class='myhuati' catchtap='go_shoucang'>关于我(待办)</view>
+</view>

@@ -1,0 +1,18 @@
+<!-- 参与过话题 -->
+<view wx:if="{{Res.user_to_userhuati.length != 0}}">
+  <block wx:for="{{Res.user_to_userhuati}}" wx:key="">
+    <view class='cell'>
+      <!-- 参与时间 -->
+      <view>话题参与时间：{{item.create_time}}</view>
+      <!-- 话题名 -->
+      <view>话题名：{{item.userhuati_to_huati.title}}</view>
+      <!-- 话题内容 -->
+      <view>参与的内容：{{item.neirong}}</view>
+    </view>
+  </block>
+</view>
+
+<!-- 没有参与过话题 -->
+<view wx:else>
+  <view>你还没有参与过话题</view>
+</view>

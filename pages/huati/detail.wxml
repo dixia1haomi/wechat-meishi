@@ -1,0 +1,35 @@
+<!--pages/huati/detail.wxml-->
+<!-- <text>tips:用户发表话题时调用登陆接口</text> -->
+
+<view class='page'>
+  <view>话题ID:{{Res.id}}</view>
+  <view>话题TITLE:{{Res.title}}</view>
+  <view>话题描述:{{Res.miaoshu}}</view>
+  <view>
+    话题下的参与数据-----------------
+    <block wx:for="{{Res.userhuati}}" wx:key="">
+      <view>
+        <!-- 用户信息 -->
+        <image src='{{item.userinfo.avatar_url}}' style='height: 20px;width: 20px;'></image>
+        <view>{{item.userinfo.nick_name}}</view>
+        <!-- 话题内容 -->
+        <view>id:{{item.id}}</view>
+        <view>内容:{{item.neirong}}</view>
+
+      </view>
+    </block>
+  </view>
+
+  <view class='foot' catchtap='createHuati'>参与话题</view>
+
+</view>
+
+<!-- showForm -->
+<view class='show-form' wx:if="{{showForm}}">
+  <view>
+    <view>内容：</view>
+    <input bindblur='neirongInput'></input>
+  </view>
+
+  <view catchtap='tijiao'>提交</view>
+</view>

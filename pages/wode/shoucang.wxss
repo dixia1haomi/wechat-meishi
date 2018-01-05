@@ -1,0 +1,24 @@
+/* 列表 */
+.list-body {
+  margin-bottom: 35px;
+}
+
+.cell {
+  display: flex;
+  padding: 10px;
+  background-color: #fff;
+  border-top: 1px solid #808080;
+}
+
+.list-img {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.list-detail {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}

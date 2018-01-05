@@ -1,0 +1,45 @@
+<view>
+  <view>
+    <view class='title'>场景</view>
+    <view class='body'>
+      <block wx:for="{{changjingList}}" wx:key="">
+        <view class="item {{item.open && 'xuanzhong'}}" catchtap='changjingTap' id='{{item.id}}'>{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view>
+    <view class='title'>区域</view>
+    <view class='body'>
+      <block wx:for="{{quyuList}}" wx:key="">
+        <view class="item {{item.open && 'xuanzhong'}}" catchtap='quyuTap' id='{{item.id}}'>{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+
+  <view>
+    <view class='title'>菜系</view>
+    <view class='body'>
+      <block wx:for="{{caixiList}}" wx:key="">
+        <view class="item {{item.open && 'xuanzhong'}}" catchtap='caixiTap' id='{{item.id}}'>{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+
+  <!-- <view>
+    <view class='title'>星级</view>
+    <view class='body'>
+      <block wx:for="{{xingjiList}}" wx:key="">
+        <view class="item {{item.open && 'xuanzhong'}}" catchtap='xingjiTap' id='{{item.id}}'>{{item.name}}</view>
+      </block>
+    </view>
+  </view> -->
+
+  <view class='foot'>
+    <view class='flex'>
+      <view class='flex1' catchtap='chongzhi'>重置</view>
+      <view class='flex2' catchtap='queding'>确定</view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,14 @@
+<!--pages/huati/list.wxml-->
+<!-- <text>tips:用户发表话题时调用登陆接口</text> -->
+
+<view>
+  <block wx:for="{{Res}}" wx:key="">
+    <view catchtap='go_Detail' id='{{item.id}}'>
+      <view>话题ID：{{item.id}}</view>
+      <view>话题title：{{item.title}}</view>
+      <view>话题miaoshu：{{item.miaoshu}}</view>
+      <view>话题参与数：{{item.userhuati.length}}</view>
+      <view>--------------------------------------</view>
+    </view>
+  </block>
+</view>
