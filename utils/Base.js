@@ -22,10 +22,18 @@ class Base {
           params.sCallback && params.sCallback(res.data)
         } else {
           console.log('Base基类请求失败，statusCode不等于200', res)
+          // 如果code是500,就不是自己定义的错误码,处理待续*
           // *看服务器返回的code是多少，在处理
-          // *
-          // 请求接口失败重试
-          if (!noRefetch) { that._refetch(params) }
+          if (res.statusCode === 500) {
+            console.log('不是自己定义的错误码, 处理待续,res.statusCode==500', res.statusCode)
+            wx.navigateTo({ url: '/pages/exception/exception?code=' + 500 })
+          } else {
+            // 查询数据失败（数据库操作失败）
+            if (res.data.errorCode === 20000) { params.sCallback && params.sCallback(res.data) }
+            // 请求接口失败重试(40000,Token类错误,Token失效)
+            if (res.data.errorCode === 40000 && !noRefetch) { that._refetch(params) }
+          }
+
         }
       },
       fail(err) { console.log('Base基类请求失败,进入fail') }

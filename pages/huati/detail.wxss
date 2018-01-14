@@ -1,8 +1,61 @@
-.page {
+.base {
+  border-top: 1rpx solid #808080;
   margin-bottom: 45px;
 }
 
-.foot {
+.base1 {
+  font-size: 28rpx;
+  padding: 20rpx;
+  background-color: #fff;
+}
+
+.base1-1 {
+  font-size: 36rpx;
+  margin-bottom: 10rpx;
+}
+
+.base1-2 {
+  font-size: 22rpx;
+  margin-bottom: 10rpx;
+  color: #808080;
+}
+
+.base1-3 {
+  color: #808080;
+}
+
+.base2 {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+}
+
+.base2-1 {
+  display: flex;
+  padding: 20rpx;
+}
+
+.base2-1-1 {
+  height: 60rpx;
+  width: 60rpx;
+  margin-right: 20rpx;
+}
+
+.base2-1-2 {
+  font-size: 24rpx;
+}
+
+.base2-1-3 {
+  font-size: 24rpx;
+}
+
+.base2-2 {
+  margin-left: 100rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.fixed {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -11,11 +64,30 @@
   background-color: tomato;
 }
 
-.show-form {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: aquamarine;
-  z-index: 11;
+.form {
+}
+
+.form1 {
+  margin: 70rpx;
+  font-size: 32rpx;
+}
+
+.form1-1 {
+  background-color: aliceblue;
+  margin-bottom: 40rpx;
+}
+
+.form2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 100rpx;
+  padding: 15rpx 30rpx;
+}
+
+.form2-tijiao {
+  font-size: 32rpx;
+  background-color: #fff;
+  padding: 15rpx 30rpx;
+  border-radius: 10rpx;
+  box-shadow:0 0 20rpx #808080;
 }

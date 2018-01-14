@@ -1,19 +1,30 @@
+<view wx:if="{{loading}}">
 
-
-<view>
-
-  <!-- 餐厅列表 -->
-  <block wx:for="{{cantinglistRes}}" wx:key="">
-    <view class='aa' catchtap='detailcanting' id='{{item.id}}'>
-      <image src='{{item.img}}' style='height: 80px;width: 80px;'></image>
-      <view>
-        <view>餐厅ID：{{item.id}}</view>
-        <view>餐厅名：{{item.name}}</view>
-        <view>电话：{{item.phone}}</view>
+  <view class='top' catchtap='topTap'>
+    <view class='title'>今日推荐</view>
+    <view>
+      <image src='{{Res.img}}' class='img'></image>
+      <view class='body'>
+        <view>{{Res.miaoshu}}</view>
+        <view class='name'>
+          <text class="font28">{{Res.name}}</text>
+          <text class="iconfont icon-xin font24"> {{Res.zan}}</text>
+        </view>
       </view>
     </view>
-  </block>
+  </view>
 
+  <view class='go' catchtap='go'>
+    <view>查看全部餐厅列表</view>
+    <view class='youjiantou7 go-jiantou'></view>
+  </view>
+
+  <!-- <view class='youjiantou7'></view>   -->
+  <view class='buttom'>
+    <zy-hengxian text="曲靖美食推荐"></zy-hengxian>
+  </view>
 </view>
 
-<button catchtap='login'>登陆</button>
+<view wx:else>
+  正在加载,请稍候...
+</view>

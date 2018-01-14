@@ -1,3 +1,58 @@
-.aa {
-   display: flex; 
+
+
+.top {
+  background-color: #fff;
+  margin: 60rpx 60rpx 0 60rpx;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+}
+
+.title {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  text-align: center;
+}
+
+.img {
+  height: 480rpx;
+  width: 640rpx;
+  max-width: 100%;
+}
+
+.img {
+  height: 480rpx;
+  width: 640rpx;
+  max-width: 100%;
+}
+
+.body {
+  padding: 20rpx;
+}
+
+.name {
+  color: #8a8a8a;
+  padding-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.go {
+  background-color: #fff;
+  color: #ea9518;
+  text-align: center;
+  margin: 30rpx 60rpx 0 60rpx;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.go-jiantou {
+  position: absolute;
+  right: 30rpx;
+  top: 32rpx;
+}
+
+.buttom {
+  margin-top: 100rpx;
 }

@@ -3,7 +3,10 @@
     <view class='title'>场景</view>
     <view class='body'>
       <block wx:for="{{changjingList}}" wx:key="">
-        <view class="item {{item.open && 'xuanzhong'}}" catchtap='changjingTap' id='{{item.id}}'>{{item.name}}</view>
+        <view class="item {{item.open && 'xuanzhong'}}" catchtap='changjingTap' id='{{item.id}}'>
+          <image class='img' src='{{item.img}}'></image>
+          <view>{{item.name}}</view>
+        </view>
       </block>
     </view>
   </view>
@@ -12,7 +15,10 @@
     <view class='title'>区域</view>
     <view class='body'>
       <block wx:for="{{quyuList}}" wx:key="">
-        <view class="item {{item.open && 'xuanzhong'}}" catchtap='quyuTap' id='{{item.id}}'>{{item.name}}</view>
+        <view class="item {{item.open && 'xuanzhong'}}" catchtap='quyuTap' id='{{item.id}}'>
+          <image class='img' src='{{item.img}}'></image>
+          <view>{{item.name}}</view>
+        </view>
       </block>
     </view>
   </view>
@@ -21,7 +27,10 @@
     <view class='title'>菜系</view>
     <view class='body'>
       <block wx:for="{{caixiList}}" wx:key="">
-        <view class="item {{item.open && 'xuanzhong'}}" catchtap='caixiTap' id='{{item.id}}'>{{item.name}}</view>
+        <view class="item {{item.open && 'xuanzhong'}}" catchtap='caixiTap' id='{{item.id}}'>
+          <image class='img' src='{{item.img}}'></image>
+          <view>{{item.name}}</view>
+        </view>
       </block>
     </view>
   </view>

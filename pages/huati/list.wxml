@@ -3,12 +3,19 @@
 
 <view>
   <block wx:for="{{Res}}" wx:key="">
-    <view catchtap='go_Detail' id='{{item.id}}'>
-      <view>话题ID：{{item.id}}</view>
-      <view>话题title：{{item.title}}</view>
-      <view>话题miaoshu：{{item.miaoshu}}</view>
-      <view>话题参与数：{{item.userhuati.length}}</view>
-      <view>--------------------------------------</view>
+    <view class='base' catchtap='go_Detail' id='{{item.id}}'>
+
+      <image class='base1' src='{{item.img}}'></image>
+
+      <view class='base2'>
+        <view class='base2-1'>{{item.title}}</view>
+        <view class='base2-2'>
+          <text class='base2-2-1'>{{item.miaoshu}}</text>
+          <text class='base2-2-2'>去参与</text>
+        </view>
+        <view class='base2-3'>{{item.userhuati.length}}</view>
+      </view>
+
     </view>
   </block>
 </view>

@@ -1,1 +1,56 @@
-/* pages/huati/list.wxss */
+.base {
+  margin-top: 30rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  font-size: 32rpx;
+  display: flex;
+}
+
+.base1 {
+  height: 200rpx;
+  width: 200rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+}
+
+.base2 {
+  flex: 1;
+  padding: 20rpx 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  color: #808080;
+}
+
+.base2-1 {
+  font-size: 36rpx;
+}
+
+.base2-2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.base2-2-1 {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.base2-2-2 {
+  padding: 20rpx 20rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  /* margin-right: 10rpx; *//* background-color: #ea9518; */
+  background-color: tomato;
+}
+
+.base2-3 {
+  font-size: 26rpx;
+}
+
+.base2-3::after {
+  content: '人参与';
+}

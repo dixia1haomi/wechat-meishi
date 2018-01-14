@@ -1,0 +1,27 @@
+.form {
+}
+
+.form1 {
+  margin: 70rpx;
+  font-size: 32rpx;
+}
+
+.form1-1 {
+  background-color: aliceblue;
+  margin-bottom: 40rpx;
+}
+
+.form2 {
+  display: flex;
+  justify-content: center;
+  margin-top: 100rpx;
+  padding: 15rpx 30rpx;
+}
+
+.form2-tijiao {
+  font-size: 32rpx;
+  background-color: #fff;
+  padding: 15rpx 30rpx;
+  border-radius: 10rpx;
+  box-shadow:0 0 20rpx #808080;
+}

@@ -54,4 +54,11 @@ Page({
     wx.setStorageSync('shoucang', shoucang)
   },
 
+
+  // go_Detail
+  go_Detail(e) {
+    let id = e.currentTarget.id
+    wx.navigateTo({ url: '/pages/canting/detail?id=' + id })
+  },
+
 })

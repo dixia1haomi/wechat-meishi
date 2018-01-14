@@ -1,0 +1,20 @@
+<!-- 参与过话题 -->
+<view wx:if="{{!noLiuyanState}}">
+  <block wx:for="{{Res}}" wx:key="">
+    <view class='cell'>
+      <!-- 参与时间 -->
+      <view>参与时间：{{item.create_time}}</view>
+      <!-- 餐厅名 -->
+      <view>餐厅名：{{item.name}}</view>
+      <!-- 留言内容 -->
+      <view>留言的内容：{{item.neirong}}</view>
+    </view>
+  </block>
+  <view wx:if="{{noData}}" class='nodata'>没有更多了..</view>
+</view>
+
+<!-- 没有参与过话题 -->
+<view wx:else>
+  <view>你还没有参与过留言..</view>
+  <view catchtap='back'>返回</view>
+</view>

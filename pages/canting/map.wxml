@@ -1,0 +1,6 @@
+<view class="map_box">
+  <map id="navi_map" longitude="{{canting_longitude}}" latitude="{{canting_latitude}}" scale="14" markers="{{markers}}" polyline="{{map.polyline}}"></map>
+</view>
+
+
+<view class="text">相距{{map.distance}}</view>

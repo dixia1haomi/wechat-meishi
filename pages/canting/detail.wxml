@@ -1,13 +1,107 @@
-<view>
-  <view>ID:{{detailRes.id}}</view>
-  <view>ID:{{detailRes.name}}</view>
-  <view>ID:{{detailRes.phone}}</view>
-  <view wx:if="{{xingping}}">
-    <view class='xing' catchtap='xingping' data-xingping='1'>1星:{{detailRes.xing1}}</view>
-    <view class='xing' catchtap='xingping' data-xingping='2'>2星:{{detailRes.xing2}}</view>
-    <view class='xing' catchtap='xingping' data-xingping='3'>3星:{{detailRes.xing3}}</view>
+<!-- // 引入HTML解析模板 -->
+<import src="/wxParse/wxParse.wxml" />
+
+<!-- 兼容直接进入detail页的情况，需要请求数据，所以有loading -->
+<!-- <view wx:if="{{loading}}"> -->
+<view wx:if="{{ResState}}" class='base'>
+  <!-- 头图 -->
+  <view class='base1'>
+    <image src='{{Res.img}}' class='base1-img'></image>
   </view>
-  <view wx:else>
-    已经投过了
+
+  <view class='base2'>
+    <view class='base2-1'>
+      <view class='base2-1-1'>
+        <view class='base2-1-1-name'>{{Res.name}}</view>
+        <view class='base2-1-1-renjun'>{{Res.renjun}}</view>
+      </view>
+      <view>
+        <text style='color:#808080;font-size:28rpx;margin-right:6rpx;'>{{Res.zan}}</text>
+        <text class="iconfont icon-xin {{zanState && 'liang'}}" catchtap='dianzan'></text>
+      </view>
+    </view>
+
+    <view class='base2-2'>{{Res.miaoshu}}</view>
+    <!-- <view>
+      <text class="iconfont icon-xin {{zanState && 'desc'}}" catchtap='dianzan'>点赞{{Res.zan}}</text>
+      <text class="iconfont icon-shoucang {{shoucangState && 'desc'}}" catchtap='shoucang'>收藏</text>
+      <text> | 说明</text>
+    </view> -->
+    <view class='base2-3' catchtap='go_Map'>
+      <view>
+        <text style='margin-right:6rpx;'>地址:{{Res.address}}</text>
+        <text class='iconfont icon-daohang'></text>
+      </view>
+      <view>{{map.distance}}</view>
+    </view>
+
+    <view class='base2-4'>电话:{{Res.phone}}</view>
+
+    <view class='base2-5'>
+      <view>
+        <text class='base2-5-biaoqian'>{{quyuList[Res.quyu-1].name}}</text>
+        <text class='base2-5-biaoqian'>{{caixiList[Res.caixi-1].name}}</text>
+        <text class='base2-5-biaoqian'>{{changjingList[Res.changjing-1].name}}</text>
+        <text class='base2-5-biaoqian'>{{Res.biaoqian}}</text>
+      </view>
+      <view class="iconfont icon-shoucang {{shoucangState && 'liang'}}" catchtap='shoucang'></view>
+    </view>
+
+    <view class='gaode'>
+      <image class='gaodemap' src="{{src}}" catchtap='go_Map'></image>
+    </view>
+  </view>
+
+  <view class='base3'>
+    <!-- tar栏 -->
+    <view class='base3-tar'>
+      <view class="base3-tar-item" catchtap=''>攻略</view>
+    </view>
+
+    <!-- 文章 -->
+    <view>
+      <template is="wxParse" data="{{wxParseData:wenzhang.nodes}}" />
+    </view>
+  </view>
+
+  <!-- ------------------------------------------留言----------------------------------------------- -->
+  <view class='base4'>
+
+    <view class='base4-1'>
+      <view>------ 精选留言 ------</view>
+      <view class='createLiuyan' catchtap='go_createLiuyan'>写留言 ></view>
+    </view>
+
+    <!-- 没有留言 -->
+    <view wx:if="{{noLiuyanState}}" class='noLiuyan'>
+      <view class=''>还没有留言,赶快留下你的足迹..</view>
+    </view>
+
+    <!-- 有留言 -->
+    <view wx:else>
+
+      <block wx:for="{{Res.liuyan}}" wx:key="">
+        <view class='base4-2'>
+
+          <view class='base4-2-1'>
+            <image class='base4-2-1-1' src='{{item.avatar_url}}'></image>
+            <view class='base4-2-1-2'>
+              <view>{{item.nick_name}}</view>
+              <view>{{item.create_time}}</view>
+            </view>
+          </view>
+          <view class='base4-2-2'>{{item.neirong}}</view>
+
+        </view>
+      </block>
+
+      <view wx:if="{{getAllLiuyanState}}" class='base4-3' hover-class='hover' catchtap='go_Liuyan'>查看全部留言-共{{liuyanRes.count}}条</view>
+    </view>
   </view>
 </view>
+
+<!-- </view> -->
+
+<!-- <view wx:else>
+  正在加载...
+</view> -->

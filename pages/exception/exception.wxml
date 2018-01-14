@@ -1,6 +1,11 @@
 <view>
+  <view wx:if="{{code == 500}}">
+    <view>500</view>
+    <view catchtap='back'>返回</view>
+  </view>
+
   <view wx:if="{{code == 20000}}">
-    <view>查询数据库失败</view>
+    <view>查询数据库失败/还没有数据..</view>
     <view catchtap='back'>返回</view>
   </view>
 

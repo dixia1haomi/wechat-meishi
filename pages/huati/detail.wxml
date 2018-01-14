@@ -1,35 +1,51 @@
 <!--pages/huati/detail.wxml-->
 <!-- <text>tips:用户发表话题时调用登陆接口</text> -->
 
-<view class='page'>
-  <view>话题ID:{{Res.id}}</view>
-  <view>话题TITLE:{{Res.title}}</view>
-  <view>话题描述:{{Res.miaoshu}}</view>
-  <view>
-    话题下的参与数据-----------------
+<view class='base' wx:if="{{showForm == false}}">
+
+  <view class='base1'>
+    <view class='base1-1'>{{Res.title}}</view>
+    <view class='base1-2'>{{Res.create_time}}</view>
+    <view class='base1-3'>{{Res.miaoshu}}</view>
+  </view>
+
+  <view class='base2'>
     <block wx:for="{{Res.userhuati}}" wx:key="">
       <view>
-        <!-- 用户信息 -->
-        <image src='{{item.userinfo.avatar_url}}' style='height: 20px;width: 20px;'></image>
-        <view>{{item.userinfo.nick_name}}</view>
-        <!-- 话题内容 -->
-        <view>id:{{item.id}}</view>
-        <view>内容:{{item.neirong}}</view>
+        <view class='base2-1'>
+          <!-- 用户信息 -->
+          <image class='base2-1-1' src='{{item.userinfo.avatar_url}}'></image>
+          <view class='base2-1-2'>
+            <view>{{item.userinfo.nick_name}}</view>
+            <view>{{item.create_time}}</view>
+          </view>
+        </view>
+
+        <view class='base2-2'>
+          <!-- 话题内容 -->
+          <view class='base2-2-1'>内容:{{item.neirong}}</view>
+        </view>
 
       </view>
     </block>
   </view>
 
-  <view class='foot' catchtap='createHuati'>参与话题</view>
+  <!-- <view>话题ID:{{Res.id}}</view> -->
+  <!-- <view>
+    话题下的参与数据-----------------
+  </view> -->
 
+  <view class='fixed' catchtap='createHuati'>参与话题</view>
 </view>
 
 <!-- showForm -->
-<view class='show-form' wx:if="{{showForm}}">
-  <view>
-    <view>内容：</view>
-    <input bindblur='neirongInput'></input>
+<view class='form' wx:else>
+  <view class='form1'>
+    <textarea class='form1-1' bindinput="neirongInput" fixed auto-focus maxlength='200' placeholder="我也来说说.."></textarea>
+    <input bindblur='nameInput' placeholder="#此处可填写餐厅名称#"></input>
+    <view>*上传1张图片（*压缩中...）</view>
   </view>
-
-  <view catchtap='tijiao'>提交</view>
+  <view class='form2'>
+    <view class='form2-tijiao' catchtap='tijiao'>确认发送</view>
+  </view>
 </view>

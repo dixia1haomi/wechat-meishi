@@ -12,7 +12,12 @@ class Token {
           method: 'POST',
           data: { code: res.code },
           success(res) {
-            if (res.statusCode === 200) { callback && callback(res) } else { console.log('请求Code不等于200,Token类.gettoken',res) }
+            if (res.statusCode === 200) {
+              wx.setStorageSync('token_key', res.data.token_key)
+              callback && callback(res)
+            } else {
+              console.log('请求Code不等于200,Token类.gettoken', res)
+            }
           }
         })
       }
@@ -26,7 +31,7 @@ class Token {
       method: 'POST',
       data: { token: token_key },
       success(res) {
-        if (res.statusCode === 200) { callback && callback(res) } else { console.log('请求Code不等于200,Token类.checkToken',res) }
+        if (res.statusCode === 200) { callback && callback(res) } else { console.log('请求Code不等于200,Token类.checkToken', res) }
       }
     })
   }

@@ -1,0 +1,3 @@
+<view>
+  <button catchtap='xuanzedizhi'>选择地址</button>
+</view>

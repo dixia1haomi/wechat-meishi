@@ -1,0 +1,12 @@
+.cell{
+  margin-top: 30px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+}
+
+.nodata{
+  text-align: center;
+  font-size: 28rpx;
+  padding: 10rpx 0;
+  color: #808080;
+}

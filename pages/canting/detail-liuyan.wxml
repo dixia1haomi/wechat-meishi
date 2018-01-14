@@ -1,0 +1,22 @@
+<!-- 留言 -->
+<view class='base4'>
+  <view class='base4-1'>精选留言</view>
+  <!-- <view> -->
+  <block wx:for="{{Res}}" wx:key="">
+    <view class='base4-2'>
+
+      <view class='base4-2-1'>
+        <image class='base4-2-1-1' src='{{item.avatar_url}}'></image>
+        <view class='base4-2-1-2'>
+          <view>{{item.nick_name}}</view>
+          <view>{{item.create_time}}</view>
+        </view>
+      </view>
+      <view class='base4-2-2'>{{item.neirong}}</view>
+
+    </view>
+  </block>
+  <view class='nodata' hidden='{{!noData}}'>----没有更多了----</view>
+  <!-- </view> -->
+  <!-- <view class='base4-3' catchtap='go_Liuyan'>查看全部留言</view> -->
+</view>

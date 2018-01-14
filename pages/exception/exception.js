@@ -7,8 +7,9 @@ Page({
 
 
   onLoad: function (op) {
-    // 数据库查询失败
-    op.code == 20000 && this.setData({ code: op.code })
+    // 数据库查询失败           20000
+    // 服务器错误statusCode     500
+    op.code && this.setData({ code: op.code })
 
   },
 
