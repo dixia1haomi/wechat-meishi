@@ -31,8 +31,18 @@ Page({
 
   // 获取今日推荐
   _load() {
+    // base.authorize_userLocation(res => {
+    //   console.log('bb', res)
+    //   console.log('appData', app.appData)
+    // })
 
-    // ------------
+    // base.zuobiao(res => {
+    //   console.log('index-app', app.appData)
+    // })
+    // console.log('aasd',app.appData.userLocation)
+
+
+    // ------ 取所有List数据，餐厅List要用------
     api.listCanting({}, res => {
       console.log('a', res)
       this._for_List(res)                            // 遍历餐厅list获取推荐数据并设置Res

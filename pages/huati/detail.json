@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "话题"
+  "navigationBarTitleText": "话题",
+  "usingComponents": {
+    "my-toptips": "/component/toptips/toptips"
+  }
 }

@@ -18,6 +18,9 @@ class Token {
             } else {
               console.log('请求Code不等于200,Token类.gettoken', res)
             }
+          },
+          fail: (err) => {
+            console.log('Token类.gettoken进入fail', err)
           }
         })
       }
@@ -32,6 +35,9 @@ class Token {
       data: { token: token_key },
       success(res) {
         if (res.statusCode === 200) { callback && callback(res) } else { console.log('请求Code不等于200,Token类.checkToken', res) }
+      },
+      fail: (err) => {
+        console.log('Token类.检查token是否有效进入fail', err)
       }
     })
   }

@@ -39,9 +39,8 @@
 .base2-1-1-renjun {
   background-color: tomato;
   border-radius: 10rpx;
-  font-size: 22rpx;
+  font-size: 26rpx;
   margin-left: 30rpx;
-  height: 38rpx;
 }
 
 .base2-1-1-renjun::before {
@@ -52,11 +51,15 @@
   content: '元';
 }
 
+.base2-1-2 {
+  display: flex;
+  align-items: center;
+}
+
 .base2-2 {
-  /* font-size: 32rpx; */
+  font-size: 28rpx;
   color: #8a8a8a;
   margin-bottom: 10rpx;
-  height: 42rpx;
 }
 
 .base2-3 {
@@ -64,11 +67,13 @@
   margin-bottom: 10rpx;
   display: flex;
   justify-content: space-between;
+  /* font-size: 30rpx; */
 }
 
 .base2-4 {
   color: #8a8a8a;
   margin-bottom: 20rpx;
+  /* font-size: 30rpx; */
 }
 
 .base2-5 {
@@ -88,13 +93,12 @@
   background-color: #e5e5e5;
 }
 
-.liang {
-  color: #ea9518;
-}
-
 /* ----base3---- */
 
 .base3 {
+}
+
+.base3-1 {
 }
 
 .base3-tar {
@@ -108,7 +112,7 @@
   background-color: #fff;
   padding: 20rpx 0;
   font-size: 32rpx;
-  border-bottom: 2px solid #1296db;
+  border-bottom: 4rpx solid #1296db;
   color: #1296db;
 }
 
@@ -165,13 +169,14 @@
 
 .base4-2-1-2 {
   font-size: 24rpx;
+  color: #8a8a8a;
 }
 
 .base4-2-2 {
   margin-left: 100rpx;
   padding-bottom: 20rpx;
   /* border-bottom: 1rpx solid #e5e5e5; */
-  font-size: 32rpx;
+  font-size: 30rpx;
 }
 
 .base4-3 {
@@ -184,6 +189,8 @@
 .gaode {
   text-align: center;
   margin-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx solid #e5e5e5;
 }
 
 .gaodemap {
@@ -201,9 +208,19 @@
   color: steelblue;
 }
 
-.noLiuyan{
+.noLiuyan {
   background-color: #efefef;
   padding: 40rpx 0 80rpx 40rpx;
   font-size: 28rpx;
   color: #8a8a8a;
+}
+
+.weixuanzhong {
+  color: #8a8a8a;
+  font-size: 42rpx;
+}
+
+.xuanzhong {
+  color: #ea9518;
+  font-size: 42rpx;
 }

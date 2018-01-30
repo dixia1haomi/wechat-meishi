@@ -1,18 +1,26 @@
 <!-- 参与过话题 -->
- <view wx:if="{{Res.user_to_userhuati.length != 0}}">
-  <block wx:for="{{Res.user_to_userhuati}}" wx:key="">
-    <view class='cell'>
+<view wx:if="{{!noMyHuatiState}}">
+  <block wx:for="{{Res}}" wx:key="">
+    <view class='base'>
       <!-- 参与时间 -->
-      <view>话题参与时间：{{item.create_time}}</view>
+      <view class='base1'>{{item.create_time}}--{{item.id}}--{{item.user_id}}</view>
       <!-- 话题名 -->
-      <view>话题名：{{item.userhuati_to_huati.title}}</view>
+      <view class='base2' catchtap='go_Huati' id='{{item.huati_id}}'>
+        <view>{{'#'+item.title+'#'}}</view>
+        <view class='youjiantou7'></view>
+      </view>
       <!-- 话题内容 -->
-      <view>参与的内容：{{item.neirong}}</view>
+      <view class='base3'>{{'「'+item.new_neirong[0]+'」'+item.new_neirong[1]}}</view>
+
+      <!-- 删除我的话题（待开放） -->
+      <!-- <view class='base4' catchtap='deleteMyHuati' id='{{item.id}}'>删除</view> -->
     </view>
   </block>
-</view> 
+  <view wx:if="{{noData}}" class='nodata'>没有更多了..</view>
+</view>
 
 <!-- 没有参与过话题 -->
- <view wx:else>
+<view wx:else>
   <view>你还没有参与过话题</view>
-</view> 
+  <view catchtap='back'>返回</view>
+</view>

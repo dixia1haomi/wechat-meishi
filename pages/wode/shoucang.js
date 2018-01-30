@@ -1,4 +1,5 @@
 import { Api } from '../../utils/Api.js'
+import { Config } from '../../utils/Config.js'
 
 const api = new Api()
 
@@ -8,6 +9,10 @@ Page({
     Res: {},
     // 是否有收藏,默认没有显示默认页
     is_Shoucang: false,
+
+    // Config
+    quyuList: Config.quyu,
+    caixiList: Config.caixi,
   },
 
 

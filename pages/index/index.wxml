@@ -5,23 +5,30 @@
     <view>
       <image src='{{Res.img}}' class='img'></image>
       <view class='body'>
-        <view>{{Res.miaoshu}}</view>
+        <view style='font-size:34rpx;'>{{Res.miaoshu}}</view>
         <view class='name'>
           <text class="font28">{{Res.name}}</text>
-          <text class="iconfont icon-xin font24"> {{Res.zan}}</text>
+          <!-- <text class="iconfont icon-xin1"> {{Res.zan}}</text> -->
+          <view class='xin'>
+            <text style='font-size:26rpx;margin-right:6rpx;'>{{Res.zan}}</text>
+            <text class="iconfont icon-xin1" style='color: #ea9518;font-size:36rpx;'></text>
+          </view>
         </view>
       </view>
     </view>
   </view>
 
   <view class='go' catchtap='go'>
-    <view>查看全部餐厅列表</view>
+    <view style='font-size:36rpx;'>查看全部餐厅列表</view>
     <view class='youjiantou7 go-jiantou'></view>
   </view>
 
   <!-- <view class='youjiantou7'></view>   -->
+  <!-- <view class='buttom'> -->
+  <!-- <zy-hengxian text="曲靖美食推荐"></zy-hengxian> -->
+  <!-- </view> -->
   <view class='buttom'>
-    <zy-hengxian text="曲靖美食推荐"></zy-hengxian>
+    <view class='buttom1'>————— 曲靖美食推荐 —————</view>
   </view>
 </view>
 

@@ -6,10 +6,12 @@ const token = new Token()
 App({
 
   appData: {
+    // 地理位置是否授权标识位
+    userLocation: false,
     longitude: null,   // 用户经度
     latitude: null,    // 用户纬度
-    St: false,          // app.js的load缓存标志位,成功为true
-    list: [],
+    // St: false,          // app.js的load缓存标志位,成功为true
+    // list: [],
   },
 
   onLaunch: function () {
@@ -18,7 +20,8 @@ App({
     // 小程序初始化检查token
     this.wx_checkToken()
     // 获取地理位置
-    this.zuobiao()
+    // this.zuobiao()
+    this._check_userLocation()
   },
 
   onError: function (msg) {
@@ -65,17 +68,44 @@ App({
   },
 
 
-  // --------------------------------------------------用户坐标-----------------------------------------------------
-  // 获取地理位置
-  zuobiao() {
-    wx.getLocation({
-      type: 'wgs84',
+  // -------------------------------------------------- 检查地理位置授权 -----------------------------------------------------
+
+  _check_userLocation() {
+    wx.getSetting({
       success: (res) => {
-        this.appData.longitude = res.longitude
-        this.appData.latitude = res.latitude
-      }
+        if (res.authSetting['scope.userLocation']) {
+          console.log('检查地理位置-已授权', res)
+          // 获取坐标
+          wx.getLocation({
+            type: 'gcj02',
+            success: (res) => {
+              console.log('app-获取用户坐标', res)
+              this.appData.longitude = res.longitude
+              this.appData.latitude = res.latitude
+              this.appData.userLocation = true
+            },
+            fail: (err) => { console.log('app-获取用户坐标进入fail', err) }
+          })
+
+        } else {
+          console.log('检查地理位置-未授权', res)
+          this.appData.userLocation = false
+        }
+      },
+      fail: (err) => { console.log('base-授权地理位置进入fail', err) }
     })
   },
+  // 获取地理位置
+  // zuobiao() {
+  //   wx.getLocation({
+  //     // type: 'wgs84',
+  //     success: (res) => {
+  //       console.log('app-获取地理位置',res)
+  //       this.appData.longitude = res.longitude
+  //       this.appData.latitude = res.latitude
+  //     }
+  //   })
+  // },
 
   // ---------------------------------------------------Token-----------------------------------------------------
   // 小程序初始化检查token

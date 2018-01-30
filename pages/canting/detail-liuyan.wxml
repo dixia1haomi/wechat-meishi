@@ -16,7 +16,7 @@
 
     </view>
   </block>
-  <view class='nodata' hidden='{{!noData}}'>----没有更多了----</view>
   <!-- </view> -->
   <!-- <view class='base4-3' catchtap='go_Liuyan'>查看全部留言</view> -->
 </view>
+<view class='nodata' hidden='{{!noData}}'>---- 没有更多了 ----</view>

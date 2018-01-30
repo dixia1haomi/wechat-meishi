@@ -9,39 +9,27 @@ Page({
   data: {
     // 登陆按钮状态
     loginState: false,
+    // 用户信息
+    userInfo: null,
   },
 
 
   onLoad: function (op) {
-    this._loginState()
+    this._login()
+    // 进入我的页
   },
 
   // 判断是否有登陆状态
-  _loginState() {
-    let userInfo = wx.getStorageSync('userInfo')
-    console.log('Info', userInfo)
-    if (userInfo) { this.setData({ loginState: true, userInfo: userInfo }) }
-  },
+  // _loginState() {
+  //   let userInfo = wx.getStorageSync('userInfo')
+  //   console.log('Info', userInfo)
+  //   if (userInfo) { this.setData({ loginState: true, userInfo: userInfo }) }
+  // },
 
   // 登陆
-  login() {
-    base.authorize_userinfo(res => {
-      console.log('auth', res)
-      if (res) {
-        wx.getUserInfo({
-          withCredentials: false,
-          success: (res) => {
-            console.log('success', res)
-            api.userLogin(res.userInfo, (res) => {
-              console.log('登陆数据写入成功', res)
-              // 登陆成功 -》 设置缓存
-              wx.setStorageSync('userInfo', res)
-              // 登陆状态处理
-              this._loginState()
-            })
-          }
-        })
-      }
+  _login() {
+    base.login(back => {
+      this.setData({ loginState: true, userInfo: wx.getStorageSync('userInfo') })
     })
   },
 
@@ -51,7 +39,7 @@ Page({
     if (loginState) {
       wx.navigateTo({ url: '/pages/wode/huati' })
     } else {
-      this.login()
+      this._login()
     }
   },
 
@@ -63,7 +51,17 @@ Page({
 
   // 我的留言
   go_liuyan() {
-    // 跳转到留言页 ->  查询数据库
-    wx.navigateTo({ url: '/pages/wode/liuyan' })
+    let loginState = this.data.loginState
+    if (loginState) {
+      // 跳转到留言页 ->  查询数据库
+      wx.navigateTo({ url: '/pages/wode/liuyan' })
+    } else {
+      this._login()
+    }
   },
+
+  // 关于我
+  go_guanyuwo() {
+    wx.navigateTo({ url: '/pages/wode/guanyuwo' })
+  }
 })

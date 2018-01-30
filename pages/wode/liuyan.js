@@ -13,7 +13,7 @@ Page({
     // 没有留言
     noLiuyanState: false,
     // 分页加载没有更多了
-    noData:false
+    noData: false
   },
 
 
@@ -49,17 +49,6 @@ Page({
         this.setData({ Res: this.data.Res.concat(res.data) })
       })
     }
-
-    // 如果全部数据都取出来了，显示没有更多了，否则请求下一页数据（每页20条）
-    // if (resLength == count) {
-    //   console.log('没有更多了')
-    //   // this.setData({ noData: true })
-    // } else {
-    //   api.listLiuyan({ canting_id: id, page: ++page }, res => {
-    //     console.log('liuyan上拉触底', res, page)
-    //     this.setData({ Res: this.data.Res.concat(res.data) })
-    //   })
-    // }
   },
 
   // 页面卸载
@@ -68,11 +57,44 @@ Page({
     console.log('xiezai', page)
   },
 
-
-  // 删除留言（*暂不支持,）
-
-
   // 返回
   back() { wx.navigateBack({ delta: 1 }) },
+
+
+
+  // 删除留言（*预留,以后用的时候取消注释）
+  deleteLiuyan(e) {
+    // 提示确定要删除?
+    wx.showModal({
+      content: '确认要删除这条留言?',
+      success: (res) => {
+        if (res.confirm) {
+          console.log('用户点击确定')
+
+          let id = e.currentTarget.id
+          api.deleteLiuyan({ id: id }, res => {
+            console.log('删除留言，id=' + id, res)
+
+            // 删除成功后删除Res相应数据刷新显示
+            let Res = this.data.Res
+            for (let i in Res) {
+              if (Res[i].id == id) {
+                Res.splice(i, 1)
+              }
+            }
+            this.setData({ Res: Res })
+          })
+        }
+      }
+    })
+  },
+
+
+  // --------------------------------------------------------------------------------------------------------------
+  // 根据canting_id转到餐厅详情页
+  go_Canting(e) {
+    let id = e.currentTarget.id
+    wx.navigateTo({ url: '/pages/canting/detail?id=' + id })
+  },
 
 })

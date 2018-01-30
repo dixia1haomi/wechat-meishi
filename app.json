@@ -15,6 +15,7 @@
     "pages/wode/huati",
     "pages/wode/shoucang",
     "pages/wode/liuyan",
+    "pages/wode/guanyuwo",
     "pages/exception/exception"
   ],
   "window":{
@@ -26,26 +27,26 @@
   "tabBar": {
     "color": "#bfbfbf",
     "selectedColor": "#515151",
-    "borderStyle": "black",
+    "borderStyle": "white",
     "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "/img/shouye.png",
-        "selectedIconPath": "/img/shouye1.png"
+        "iconPath": "/img/zhuye1.png",
+        "selectedIconPath": "/img/zhuye2.png"
       },
       {
         "pagePath": "pages/huati/list",
         "text": "话题",
-        "iconPath": "/img/huati.png",
-        "selectedIconPath": "/img/huati1.png"
+        "iconPath": "/img/huati1.png",
+        "selectedIconPath": "/img/huati2.png"
       },
       {
         "pagePath": "pages/wode/list",
         "text": "我的",
-        "iconPath": "/img/wode.png",
-        "selectedIconPath": "/img/wode1.png"
+        "iconPath": "/img/wode1.png",
+        "selectedIconPath": "/img/wode2.png"
       }
     ]
   }

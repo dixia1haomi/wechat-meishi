@@ -1,0 +1,9 @@
+<view class='base'>
+  <view>袋鼠美食</view>
+  <view>曲靖美食精选</view>
+  <image src='https://mmbiz.qpic.cn/mmbiz_jpg/7nqejTwzfIdQ4cKD9FSgcbFYxD2WMb1k7Wy50QQliarMMkAvNyHibSGkKkhvzy53kiaSoS1HkQEPPZepDlhELqnBg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1' catchtap='img'></image>
+
+  <!-- 指向微信公众平台首页的web-view -->
+<!-- <web-view src="https://mp.weixin.qq.com/s?timestamp=1517346019&src=3&ver=1&signature=jQienyIRdc2ywOIMicfa1AGM-0NLKulOHtCedjFkYBQvI2tUV3qORTPozubje0Gp9BLH867e771RItotLT0LjhDwsu1ZzsDn66WBiwkDEfe1TnXmQeMcp7Z18i7FwreHQYzb0djQ7XVFfvJ1GwSsc5tXdbPs1v-vOhz769kDZkc="></web-view> -->
+<button bindtap='aaa'>aaa</button>
+</view>

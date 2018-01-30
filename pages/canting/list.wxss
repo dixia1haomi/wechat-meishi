@@ -67,7 +67,7 @@
 .renjun {
   background-color: tomato;
   border-radius: 10rpx;
-  font-size: 22rpx;
+  font-size: 26rpx;
   margin-left: 20rpx;
   height: 38rpx;
 }
@@ -80,6 +80,10 @@
   content: '/人';
 }
 
+.dianzan{
+  font-size: 26rpx;
+  color: #808080;
+}
 .biaoqian {
   padding: 0 10rpx;
   border-radius: 10rpx;

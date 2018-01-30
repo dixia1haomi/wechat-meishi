@@ -15,9 +15,9 @@
         <view class='base2-1-1-name'>{{Res.name}}</view>
         <view class='base2-1-1-renjun'>{{Res.renjun}}</view>
       </view>
-      <view>
+      <view class='base2-1-2'>
         <text style='color:#808080;font-size:28rpx;margin-right:6rpx;'>{{Res.zan}}</text>
-        <text class="iconfont icon-xin {{zanState && 'liang'}}" catchtap='dianzan'></text>
+        <text class="iconfont icon-xin1 {{zanState ?'xuanzhong':'weixuanzhong'}}" catchtap='dianzan'></text>
       </view>
     </view>
 
@@ -27,12 +27,13 @@
       <text class="iconfont icon-shoucang {{shoucangState && 'desc'}}" catchtap='shoucang'>收藏</text>
       <text> | 说明</text>
     </view> -->
-    <view class='base2-3' catchtap='go_Map'>
-      <view>
+    <view class='base2-3'>
+      <view catchtap='_go_Map'>
         <text style='margin-right:6rpx;'>地址:{{Res.address}}</text>
-        <text class='iconfont icon-daohang'></text>
+        <!-- <text class='iconfont icon-daohang'></text> -->
       </view>
-      <view>{{map.distance}}</view>
+      <view wx:if="{{userLocation}}">{{map.distance}}</view>
+      <view wx:else catchtap='_location'>计算距离</view>
     </view>
 
     <view class='base2-4'>电话:{{Res.phone}}</view>
@@ -44,22 +45,22 @@
         <text class='base2-5-biaoqian'>{{changjingList[Res.changjing-1].name}}</text>
         <text class='base2-5-biaoqian'>{{Res.biaoqian}}</text>
       </view>
-      <view class="iconfont icon-shoucang {{shoucangState && 'liang'}}" catchtap='shoucang'></view>
+      <view class="iconfont icon-shoucang1 {{shoucangState ?'xuanzhong':'weixuanzhong'}}" catchtap='shoucang'></view>
     </view>
 
     <view class='gaode'>
-      <image class='gaodemap' src="{{src}}" catchtap='go_Map'></image>
+      <image class='gaodemap' src="{{src}}" catchtap='_go_Map'></image>
     </view>
   </view>
 
   <view class='base3'>
     <!-- tar栏 -->
-    <view class='base3-tar'>
-      <view class="base3-tar-item" catchtap=''>攻略</view>
-    </view>
+    <!-- <view class='base3-tar'>
+      <view class="base3-tar-item" catchtap=''>------ 攻略 ------</view>
+    </view>  -->
 
     <!-- 文章 -->
-    <view>
+    <view class='base3-1'>
       <template is="wxParse" data="{{wxParseData:wenzhang.nodes}}" />
     </view>
   </view>
@@ -68,7 +69,7 @@
   <view class='base4'>
 
     <view class='base4-1'>
-      <view>------ 精选留言 ------</view>
+      <view>-------- 精选留言 --------</view>
       <view class='createLiuyan' catchtap='go_createLiuyan'>写留言 ></view>
     </view>
 

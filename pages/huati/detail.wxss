@@ -1,5 +1,5 @@
 .base {
-  border-top: 1rpx solid #808080;
+  /* border-top: 1rpx solid #808080; */
   margin-bottom: 45px;
 }
 
@@ -33,6 +33,7 @@
 .base2-1 {
   display: flex;
   padding: 20rpx;
+  color: #808080;
 }
 
 .base2-1-1 {
@@ -52,7 +53,16 @@
 .base2-2 {
   margin-left: 100rpx;
   padding-bottom: 20rpx;
+  padding-right: 20rpx;
   border-bottom: 1rpx solid #e5e5e5;
+  font-size: 30rpx;
+}
+
+.base3 {
+  text-align: center;
+  font-size: 26rpx;
+  padding: 10rpx 0;
+  color: #808080;
 }
 
 .fixed {
@@ -74,7 +84,27 @@
 
 .form1-1 {
   background-color: aliceblue;
-  margin-bottom: 40rpx;
+  margin-top: 40rpx;
+}
+
+.nameInput {
+  position: relative;
+}
+
+.nameCursor {
+  font-size: 26rpx;
+  color: #808080;
+  position: relative;
+  top: -46rpx;
+  right: -540rpx;
+}
+
+.form1-2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #808080;
 }
 
 .form2 {
@@ -89,5 +119,5 @@
   background-color: #fff;
   padding: 15rpx 30rpx;
   border-radius: 10rpx;
-  box-shadow:0 0 20rpx #808080;
+  box-shadow: 0 0 20rpx #808080;
 }

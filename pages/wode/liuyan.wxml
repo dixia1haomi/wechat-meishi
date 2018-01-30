@@ -1,16 +1,22 @@
 <!-- 参与过话题 -->
 <view wx:if="{{!noLiuyanState}}">
   <block wx:for="{{Res}}" wx:key="">
-    <view class='cell'>
+    <view class='base'>
       <!-- 参与时间 -->
-      <view>参与时间：{{item.create_time}}</view>
+      <view class='base1'>参与时间：{{item.create_time}}--{{item.id}}</view>
       <!-- 餐厅名 -->
-      <view>餐厅名：{{item.name}}</view>
+      <view class='base2' catchtap='go_Canting' id='{{item.canting_id}}'>
+        <view>餐厅名：{{item.name}}</view>
+        <view class='youjiantou7'></view>
+      </view>
       <!-- 留言内容 -->
-      <view>留言的内容：{{item.neirong}}</view>
+      <view class='base3'>{{item.neirong}}</view>
+
+      <!-- 删除留言（预留） -->
+      <!-- <view class='base4' catchtap='deleteLiuyan' id='{{item.id}}'>删除</view> -->
     </view>
   </block>
-  <view wx:if="{{noData}}" class='nodata'>没有更多了..</view>
+  <view wx:if="{{noData}}" class='nodata'>----没有更多了----</view>
 </view>
 
 <!-- 没有参与过话题 -->

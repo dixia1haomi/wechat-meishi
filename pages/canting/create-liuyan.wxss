@@ -1,4 +1,5 @@
 .form {
+  /* padding-top: 200rpx; */
 }
 
 .form1 {
@@ -9,6 +10,13 @@
 .form1-1 {
   background-color: aliceblue;
   margin-bottom: 40rpx;
+}
+.form1-2{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #808080;
 }
 
 .form2 {

@@ -1,19 +1,21 @@
 /* 列表 */
 .list-body {
-  margin-bottom: 35px;
+  margin-bottom: 84rpx;
+  background-color: #fff;
+  font-size: 28rpx;
 }
 
 .cell {
   display: flex;
-  padding: 10px;
-  background-color: #fff;
-  border-top: 1px solid #808080;
+  padding: 20rpx;
+  border-top: 1rpx solid #e5e5e5;
 }
 
 .list-img {
-  height: 100px;
-  width: 100px;
-  margin-right: 10px;
+  height: 192rpx;
+  width: 256rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
 }
 
 .list-detail {
@@ -21,4 +23,20 @@
   display: flex;
   flex-flow: column;
   justify-content: space-around;
+}
+
+.list-detail-1 {
+  color: #808080;
+}
+
+.list-detail-renjun {
+  color: tomato;
+}
+
+.list-detail-renjun::before {
+  content: '￥';
+}
+
+.list-detail-renjun::after {
+  content: '/人';
 }

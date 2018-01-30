@@ -23,12 +23,14 @@
 
         <view class='base2-2'>
           <!-- 话题内容 -->
-          <view class='base2-2-1'>内容:{{item.neirong}}</view>
+          <view class='base2-2-1'>{{'「'+item.new_neirong[0]+'」'+item.new_neirong[1]}}</view>
         </view>
 
       </view>
     </block>
   </view>
+
+  <view wx:if="{{nodata}}" class='base3'>---- 没有更多了 ----</view>
 
   <!-- <view>话题ID:{{Res.id}}</view> -->
   <!-- <view>
@@ -41,11 +43,21 @@
 <!-- showForm -->
 <view class='form' wx:else>
   <view class='form1'>
-    <textarea class='form1-1' bindinput="neirongInput" fixed auto-focus maxlength='200' placeholder="我也来说说.."></textarea>
-    <input bindblur='nameInput' placeholder="#此处可填写餐厅名称#"></input>
-    <view>*上传1张图片（*压缩中...）</view>
+    <input class='nameInput' bindinput='nameInput' placeholder="#此处可填写餐厅名称#" maxlength='20'>
+    <text class='nameCursor'>{{nameCursor+'/20'}}</text>
+    </input>
+    <!-- <text class='nameCursor'>{{nameCursor+'/20'}}</text> -->
+    <textarea class='form1-1' bindinput="neirongInput" fixed auto-focus maxlength='200' placeholder="我也来说说..">
+      <text class='form1-2'>{{neirongCursor +'/200'}}</text>
+    </textarea>
+    <!-- <view>*上传1张图片（*压缩中...）</view> -->
   </view>
   <view class='form2'>
     <view class='form2-tijiao' catchtap='tijiao'>确认发送</view>
   </view>
 </view>
+
+
+
+<!-- 错误提示 -->
+<my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips>

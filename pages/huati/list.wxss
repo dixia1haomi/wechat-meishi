@@ -1,5 +1,5 @@
 .base {
-  margin-top: 30rpx;
+  margin-bottom: 30rpx;
   padding: 20rpx;
   background-color: #fff;
   font-size: 32rpx;
@@ -23,13 +23,14 @@
 }
 
 .base2-1 {
-  font-size: 36rpx;
+  font-size: 32rpx;
 }
 
 .base2-2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 28rpx;
 }
 
 .base2-2-1 {
@@ -40,7 +41,7 @@
 }
 
 .base2-2-2 {
-  padding: 20rpx 20rpx;
+  padding: 6rpx 10rpx;
   border-radius: 10rpx;
   color: #fff;
   /* margin-right: 10rpx; *//* background-color: #ea9518; */

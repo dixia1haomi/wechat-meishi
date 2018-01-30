@@ -58,6 +58,17 @@ class Api {
     base.request({ url: 'huati/createhuati', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
+  // 我的话题(接受uid)（我的-我的话题）
+  myHuati(data, callback) {
+    base.request({ url: 'huati/myhuati', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+  // 删除我的一条话题(接受id,服务器获取uid)（我的-我的话题）
+  deleteMyHuati(data, callback) {
+    base.request({ url: 'huati/deletehuati', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
+
   // ------------------------------留言----------------------------------
   // 查询留言列表(接受canting_id,page分页,每页20条)
   listLiuyan(data, callback) {
@@ -74,6 +85,10 @@ class Api {
     base.request({ url: 'liuyan/myliuyan', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
+  // 删除留言
+  deleteLiuyan(data, callback) {
+    base.request({ url: 'liuyan/delete', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
 
 }
 

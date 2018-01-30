@@ -1,6 +1,8 @@
 import { Api } from '../../utils/Api.js'
 import { Config } from '../../utils/Config.js'
+import { Base } from '../../utils/Base.js'
 
+const base = new Base()
 const api = new Api()
 const app = getApp()
 // 高德SDK
@@ -43,6 +45,8 @@ Page({
 
     // loading..
     // loading: true
+    // 地址位置授权标识位(不能直接取，要setData)
+    userLocation: false
   },
 
   // 请求detail数据
@@ -57,20 +61,51 @@ Page({
 
   // 请求detail数据（接受餐厅ID）
   _load(id) {
+    // console.log('detail-data', this.data.userLocation, 'appData', app.appData.userLocation)
 
     api.detailCanting({ id: id }, res => {
       console.log('detail数据', res)
-      this.setData({ Res: res, ResState: true }, () => {
+      this.setData({ Res: res, ResState: true, userLocation: app.appData.userLocation }, () => {
         // 获取静态地图图片(高德)
         this.getStaticmap(res)
         // 获取驾车线路规划(这个接口数据当前页只用到距离,其他数据准备给map页用的;)
         this.getDriving(res)
         // 解析HTML
-        WxParse.wxParse('wenzhang', 'md', res.wenzhang[0].html, this, 0);
+        WxParse.wxParse('wenzhang', 'html', res.wenzhang[0].html, this, 20);
         // 处理留言
         this._liuyan(res.liuyan)
       })
     })
+  },
+
+  // ---------------------------------------- 计算距离,查看地图（授权地理位置） --------------------------------------------
+  // 计算距离
+  _location() {
+    // 授权地理位置(back->true)
+    base.zuobiao(res => {
+      console.log('授权了', res)
+      // 设置userLocation标识位为true显示距离，调用计算距离方法
+      this.setData({ userLocation: true })
+      // 计算距离方法
+      this.getDriving(this.data.Res)
+    })
+  },
+
+  // 查看地图
+  _go_Map() {
+    // 如果授权过
+    if (app.appData.userLocation) {
+      // 使用微信内置地图查看位置
+      wx.openLocation({
+        latitude: parseInt(this.data.Res.latitude),
+        longitude: parseInt(this.data.Res.longitude),
+        scale: 28,
+        name: this.data.Res.name,
+        address: this.data.Res.address
+      })
+    } else {
+      this._location()
+    }
   },
 
 
@@ -100,7 +135,7 @@ Page({
   },
 
   // ---------------------------------------------------地图-----------------------------------------------------
-  // --------高德SDK获取静态地图图片(高德)-(*考虑把获取的图片直接存数据库，还不知道图片可以保存多久，http是高德的)-------
+  // --------高德SDK获取静态地图图片(高德-不需要用户坐标)-(*考虑把获取的图片直接存数据库，还不知道图片可以保存多久，http是高德的)-------
   getStaticmap(res) {
     // 调用高德SDK
     myAmapFun.getStaticmap({
@@ -137,7 +172,7 @@ Page({
         // 线路规划数据给map组件（dottedLine：虚线，还有一个箭头显示，真机才能测试，查map组件）
         this.setData({ 'map.polyline': [{ points: points, color: "#e64340", width: 4, dottedLine: true }] });
         // 距离
-        if (data.paths[0] && data.paths[0].distance) { this.setData({ 'map.distance': (data.paths[0].distance / 1000) + '/km' }); }
+        if (data.paths[0] && data.paths[0].distance) { this.setData({ 'map.distance': (data.paths[0].distance / 1000).toFixed(1) + 'km' }); }
       }
     })
   },
@@ -221,9 +256,8 @@ Page({
 
   // ---------------------------------------------------进入地图详情页-----------------------------------------------------
   go_Map() {
-    wx.navigateTo({
-      url: '/pages/canting/map',
-    })
+
+    wx.navigateTo({ url: '/pages/canting/map' })
   },
 
   // ---------------------------------------------------进入留言详情页-----------------------------------------------------
@@ -235,11 +269,14 @@ Page({
     })
   },
 
-  // 进入新增留言页
+  // 进入新增留言页(需要授权用户信息)
   go_createLiuyan() {
-    let id = this.data.Res.id
-    wx.navigateTo({
-      url: '/pages/canting/create-liuyan?id=' + id,
+    // 登陆过返回true
+    base.login(res => {
+      let id = this.data.Res.id
+      wx.navigateTo({
+        url: '/pages/canting/create-liuyan?id=' + id,
+      })
     })
   },
 

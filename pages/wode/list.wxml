@@ -3,32 +3,33 @@
 <view class='page'>
   <view class='base1'>
     <view style='text-align: center;'>
-      <image class='avatarImg' src='{{userInfo.avatar_url}}'></image>
+      <image class='avatarImg' src='{{userInfo.avatarUrl}}'></image>
     </view>
-    <view style='text-align: center;'>{{userInfo.nick_name}}</view>
-    <view wx:if="{{loginState == false}}" catchtap='login' style='text-align: center;'>登陆</view>
+    <view style='text-align: center;'>{{userInfo.nickName}}</view>
+    <view wx:if="{{loginState == false}}" catchtap='_login' style='text-align: center;'>登陆</view>
 
     <!-- <image class='beijingtu' src='/img/wode-beijing/bolang.gif'></image> -->
   </view>
 
   <view class='base2'>
 
-    <view class='myhuati' catchtap='go_huati'>
-      <view>我的话题</view>
-      <view class='youjiantou7'></view>
-    </view>
-
     <view class='myhuati' catchtap='go_shoucang'>
       <view>我的收藏</view>
       <view class='youjiantou7'></view>
     </view>
 
-    <view class='myhuati' catchtap='go_liuyan'>
-        <view>我的留言(*)</view>
-        <view class='youjiantou7'></view>
+    <view class='myhuati' catchtap='go_huati'>
+      <view>我的话题</view>
+      <view class='youjiantou7'></view>
     </view>
 
-    <view class='myhuati' catchtap=''>
+
+    <view class='myhuati' catchtap='go_liuyan'>
+      <view>我的留言</view>
+      <view class='youjiantou7'></view>
+    </view>
+
+    <view class='myhuati' catchtap='go_guanyuwo'>
       <view>关于我(*)</view>
       <view class='youjiantou7'></view>
     </view>
@@ -36,6 +37,6 @@
   </view>
 
   <view class='base3'>
-    <view class='base3-1'>-----曲靖美食推荐-----</view>
+    <view class='base3-1'>————— 曲靖美食推荐 —————</view>
   </view>
 </view>
