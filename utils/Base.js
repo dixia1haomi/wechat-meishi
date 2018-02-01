@@ -110,6 +110,25 @@ class Base {
     })
   }
 
+  // --------授权保存到相册------
+  authorize_writePhotosAlbum(callBack) {
+    console.log('base-授权保存到相册')
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.writePhotosAlbum']) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() { callBack && callBack(true) },
+            fail() {
+              wx.openSetting({ success: (res) => { if (res.authSetting['scope.writePhotosAlbum']) { callBack && callBack(true) } } })
+            }
+          })
+        } else { callBack && callBack(true) }
+      },
+      fail: (err) => { console.log('base-授权保存到相册进入fail', err) }
+    })
+  }
+
   // ---------------------------------------------------------- 登陆 ------------------------------------------------------------
   // 登陆(根据缓存是否有userInfo来判断是否登陆。tips：问题，官方登陆态？还没有研究，应该使用官方的登陆态)
   login(callback) {

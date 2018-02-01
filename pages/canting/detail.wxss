@@ -134,6 +134,7 @@
 .base4 {
   background-color: #fff;
   margin-top: 20rpx;
+  /* margin-bottom: 80px; */
 }
 
 .base4-1 {
@@ -153,7 +154,7 @@
 }
 
 .base4-2 {
-  border-bottom: 1rpx solid #e5e5e5;
+  /* border-bottom: 1rpx solid #e5e5e5; */
 }
 
 .base4-2-1 {
@@ -183,7 +184,12 @@
   text-align: center;
   font-size: 32rpx;
   padding: 20rpx 0;
-  /* border-top: 1rpx solid #e5e5e5; */
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.base4-liubai {
+  padding: 80rpx;
+  background-color: #efefef;
 }
 
 .gaode {
@@ -210,7 +216,7 @@
 
 .noLiuyan {
   background-color: #efefef;
-  padding: 40rpx 0 80rpx 40rpx;
+  padding: 40rpx 0 160rpx 40rpx;
   font-size: 28rpx;
   color: #8a8a8a;
 }
@@ -223,4 +229,84 @@
 .xuanzhong {
   color: #ea9518;
   font-size: 42rpx;
+}
+
+/* 分享 */
+
+.juzhong {
+  display: flex;
+  justify-content: center;
+}
+
+.fenxiang {
+  position: fixed;
+  width: 300rpx;
+  height: 80rpx;
+  bottom: 40rpx;
+  background-color: #2c2c2c;
+  /* background-color: black;  */
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 0 4rpx 4rpx #2c2c2c; */
+}
+
+/* 分享的蒙层 */
+
+.mask {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.mask-1 {
+  height: auto;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 11;
+  background-color: #fff;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.mask-2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 40rpx 0;
+  font-size: 28rpx;
+}
+
+/* 画布覆盖 */
+
+.cover {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}
+
+/* 情况button样式 */
+
+.mybutton {
+  /* color: red; *//* opacity: 1; *//* display: inline-block; */
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  margin: 0 0;
+  padding: 0 0;
+  line-height: normal;
+  font-size: 28rpx;
+}
+
+button::after {
+  display: none;
 }

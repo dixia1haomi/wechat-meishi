@@ -1,6 +1,28 @@
-<view>
-  <button catchtap='xuanzedizhi'>选择地址</button>
+<view class='base'>
+
+  <view>
+    <button catchtap='xuanzedizhi'>选择地址</button>
+  </view>
+
+  <view class='asd'>asdasd</view>
+
+  <view class='zhong'>
+    <view wx:if="{{fenxiangState}}" class='fenxiang' catchtap='fenxiang'>
+      <view>分享给朋友</view>
+    </view>
+  </view>
+
+  <view wx:if="{{mask}}" class='aaa' catchtap='fenxiang'>
+    <view class='qwe' catchtap='fenxiang'>
+      <view catchtap=''>分享</view>
+      <view class='sss'>
+        <view catchtap='shengcheng'>生成分享海报</view>
+        <view catchtap='zhuanfa'>转发给好友</view>
+      </view>
+    </view>
+  </view>
+
+
+
 </view>
-
-
 

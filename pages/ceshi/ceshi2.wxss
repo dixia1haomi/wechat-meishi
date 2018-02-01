@@ -1,0 +1,16 @@
+/* pages/ceshi/ceshi2.wxss */
+
+
+
+.img {
+  height: 700px;
+  width: 100%;
+}
+
+
+
+.cover {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+}

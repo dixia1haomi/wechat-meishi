@@ -2,8 +2,9 @@
 <import src="/wxParse/wxParse.wxml" />
 
 <!-- 兼容直接进入detail页的情况，需要请求数据，所以有loading -->
-<!-- <view wx:if="{{loading}}"> -->
-<view wx:if="{{ResState}}" class='base'>
+<!-- <view wx:if="{{loading}}">style="{{'height:'+height+'px;'}}" -->
+<view wx:if="{{ResState}}" class='base' style="{{blur && 'filter: blur(2px);'}}">
+  <!-- <scroll-view style="height:736px;" scroll-y enable-back-to-top bindscrolltoupper="asd" bindscroll="qwe"> -->
   <!-- 头图 -->
   <view class='base1'>
     <image src='{{Res.img}}' class='base1-img'></image>
@@ -97,12 +98,50 @@
       </block>
 
       <view wx:if="{{getAllLiuyanState}}" class='base4-3' hover-class='hover' catchtap='go_Liuyan'>查看全部留言-共{{liuyanRes.count}}条</view>
+      <!-- 留白 -->
+      <view class='base4-liubai'></view>
+    </view>
+  </view>
+
+  <!-- -----------分享按钮----------- -->
+  <view class='juzhong' hidden='{{fenxiangState}}'>
+     <view class='fenxiang' catchtap='fenxiang'> 
+      <view class=''>分享给朋友</view>
+     </view> 
+  </view>
+
+</view>
+
+
+<!-- -----------分享点击出现蒙层------------ -->
+<view wx:if="{{mask}}" class='mask' catchtap='fenxiang'>
+  <view class='mask-1' catchtap='fenxiang'>
+    <view>分享</view>
+    <view class='mask-2'>
+      <view catchtap='shengcheng'>
+        <view class="iconfont icon-xiazai" style='font-size:60rpx;text-align: center;'></view>
+        <view>生成分享海报</view>
+      </view>
+
+      <button class='mybutton' open-type="share">
+        <view class="iconfont icon-wechat" style='font-size:60rpx;text-align: center;'></view>
+        <view>转发给好友</view>
+      </button>
+
     </view>
   </view>
 </view>
 
-<!-- </view> -->
+<!-- ---------------------生成海报------------------------- -->
+<view wx:if="{{canvas}}">
+  <!-- 画布 -->
+  <canvas canvas-id="myCanvas" style="{{'width:'+width+'px;'+'height:'+height +'px;'}}">
+    <!-- 蒙层 -->
+    <cover-view class='cover'></cover-view>
+  </canvas>
+</view>
 
+<!-- </view> -->
 <!-- <view wx:else>
   正在加载...
 </view> -->

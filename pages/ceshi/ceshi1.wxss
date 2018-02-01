@@ -1,1 +1,57 @@
 /* pages/ceshi/ceshi1.wxss */
+
+.base {
+  height: 1000px;
+  width: 100%;
+  /* filter: blur(1px); */
+}
+
+.asd {
+}
+
+.aaa {
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.qwe {
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 11;
+  background-color: #fff;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.zhong {
+  display: flex;
+  justify-content: center;
+}
+
+.fenxiang {
+  position: fixed;
+  width: 150px;
+  height: 40px;
+  bottom: 20px;
+  background-color: tomato;
+  border-radius: 10px;
+  font-size: 30rpx;
+  /* text-align: center; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 10rpx #808080;
+}
+
+.sss {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}

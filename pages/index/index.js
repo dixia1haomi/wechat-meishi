@@ -89,7 +89,27 @@ Page({
 
 
 
-  // -----------------------------------------------------------------------------------------
+  // --------------------------------------- 分享转发 --------------------------------------------------
+  onShareAppMessage: function (res) {
+    console.log('asd', res)
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '曲靖美食推荐',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+        console.log('转发成功', res)
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log('转发失败', res)
+      }
+    }
+  },
+
 
 
 

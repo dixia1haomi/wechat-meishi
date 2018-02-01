@@ -1,0 +1,15 @@
+<!-- <view style='height:1000px;'> -->
+  <view class="" wx:if="{{canvas}}">
+    <!-- 画布 -->
+    <canvas canvas-id="myCanvas" style="{{'width:'+width+'px;'+'height:'+height +'px;'}}">
+      <!-- 蒙层 -->
+      <!-- wx:if="{{cover}}" -->
+      <cover-view class='cover'></cover-view>
+    </canvas>
+  </view>
+<!-- </view> -->
+<view class=''>
+  <!-- <button catchtap='saveImg'>保存</button> -->
+  <image class='img' src='/img/timg.jpg'></image>
+  <button catchtap='shengcheng'>生成海报</button>
+</view>

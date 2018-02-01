@@ -12,8 +12,8 @@
 }
 
 .avatarImg {
-  height: 80px;
-  width: 80px;
+  height: 160rpx;
+  width: 160rpx;
   border-radius: 50%;
 }
 

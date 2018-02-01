@@ -1,9 +1,10 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/ceshi/ceshi1",
-    "pages/canting/list",
+    "pages/ceshi/ceshi2",
     "pages/ceshi/ceshi",
+    "pages/canting/list",
     "pages/canting/detail",
     "pages/canting/detail-liuyan",
     "pages/canting/create-liuyan",
@@ -18,11 +19,12 @@
     "pages/wode/guanyuwo",
     "pages/exception/exception"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 0
   },
   "tabBar": {
     "color": "#bfbfbf",
