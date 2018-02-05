@@ -27,7 +27,9 @@ Page({
     toptips_text: '',
 
     // 没有更多了
-    nodata: false
+    nodata: false,
+    // 加载
+    loading:true
   },
 
   onLoad: function (op) {
@@ -44,17 +46,17 @@ Page({
       // 拆解neirong字段
       this._chaijie(res.userhuati)
 
-      this.setData({ Res: res })
+      this.setData({ Res: res, loading:false })
     })
   },
   // 处理日期时间格式(substring截取服务器返回的日期时间字符串)
   _time(res) {
     // 处理话题
-    res.create_time = res.create_time.substring(0, 10)
+    // res.create_time = res.create_time.substring(0, 10)
     // 处理user话题
     let userhuati = res.userhuati
     for (let i in userhuati) {
-      userhuati[i].create_time = userhuati[i].create_time.substring(5, 10)
+      userhuati[i].create_time = userhuati[i].create_time.slice(0, 10)
     }
   },
 
@@ -131,8 +133,13 @@ Page({
       console.log('没有更多了..')
       this.setData({ nodata: true })
     } else {
+      // 显示加载
+      wx.showNavigationBarLoading()
+
       api.detailHuati({ id: id, page: ++page }, res => {
         console.log('上拉触底-查询话题详情', res)
+        // 隐藏加载
+        wx.hideNavigationBarLoading()
         // 处理日期时间
         this._time(res)
         // 拆解neirong字段

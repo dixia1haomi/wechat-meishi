@@ -13,7 +13,9 @@ Page({
     // 没有留言
     noLiuyanState: false,
     // 分页加载没有更多了
-    noData: false
+    noData: false,
+    // jiazai.
+    loading: true
   },
 
 
@@ -27,9 +29,9 @@ Page({
       console.log('我的留言', res)
       // 如果没有留过言,返回errorCode 20000,显示没有留言.
       if (res.errorCode) {
-        this.setData({ noLiuyanState: true })
+        this.setData({ noLiuyanState: true, loading: false })
       } else {
-        this.setData({ Res: res.data, count: res.count })
+        this.setData({ Res: res.data, count: res.count, loading: false })
       }
     })
   },
@@ -44,8 +46,13 @@ Page({
       console.log('没有更多了')
       this.setData({ noData: true })
     } else {
+      // 显示加载
+      wx.showNavigationBarLoading()
+
       api.myLiuyan({ page: ++page }, res => {
         console.log('我的留言', res)
+        // 隐藏加载
+        wx.hideNavigationBarLoading()
         this.setData({ Res: this.data.Res.concat(res.data) })
       })
     }

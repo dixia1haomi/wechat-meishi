@@ -142,6 +142,13 @@
 </view>
 
 <!-- </view> -->
-<!-- <view wx:else>
-  正在加载...
-</view> -->
+<!-- 正在加载,请稍候... -->
+<view class='jiazai' wx:if="{{loading}}">
+  <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
+</view>

@@ -1,4 +1,4 @@
-<view wx:if="{{loading}}">
+<view wx:if="{{!loading}}">
 
   <view class='top' catchtap='topTap'>
     <view class='title'>今日推荐</view>
@@ -32,7 +32,24 @@
   </view>
 </view>
 
-<view wx:else>
-  正在加载,请稍候...
-</view>
+<!-- <view wx:else class='jiazai'>  -->
+<!-- 正在加载,请稍候... -->
+<!-- <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
+ </view>  -->
 
+<!-- 正在加载,请稍候... -->
+<view class='jiazai' wx:if="{{loading}}">
+  <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
+</view>

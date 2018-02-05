@@ -30,7 +30,7 @@
     </view>
 
     <view class='myhuati' catchtap='go_guanyuwo'>
-      <view>关于我(*)</view>
+      <view>关于我</view>
       <view class='youjiantou7'></view>
     </view>
 
@@ -39,4 +39,7 @@
   <view class='base3'>
     <view class='base3-1'>————— 曲靖美食推荐 —————</view>
   </view>
+
+  <!-- <button open-type="contact">客服</button>
+  <contact-button type="default-light" size="20" session-from="weapp"></contact-button> -->
 </view>

@@ -1,6 +1,10 @@
 <!-- **复用列表展示的样式 -->
+<!-- 没有收藏 -->
 <view wx:if="{{is_Shoucang}}">
+  <view>你还没有收藏过餐厅</view>
+</view>
 
+<view wx:else>
   <view class='list-body'>
     <block wx:for="{{Res}}" wx:key="">
       <view class='cell' catchtap='go_Detail' id="{{item.id}}">
@@ -16,10 +20,16 @@
       </view>
     </block>
   </view>
-  
 </view>
 
-<!-- 没有收藏 -->
-<view wx:else>
-  <view>你还没有收藏过餐厅</view>
+
+<!-- 正在加载,请稍候... -->
+<view class='jiazai' wx:if="{{loading}}">
+  <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
 </view>

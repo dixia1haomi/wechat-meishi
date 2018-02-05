@@ -6,6 +6,7 @@ Page({
 
   data: {
     Res: {},
+    loading:true
   },
 
 
@@ -17,7 +18,7 @@ Page({
   _load() {
     api.listHuati({}, res => {
       console.log('话题列表', res)
-      this.setData({ Res: res })
+      this.setData({ Res: res, loading:false })
     })
   },
 

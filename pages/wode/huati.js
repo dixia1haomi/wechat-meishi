@@ -12,7 +12,9 @@ Page({
     // 显示没有留过话题
     noMyHuatiState: false,
     // 分页加载没有更多了
-    noData: false
+    noData: false,
+    // zaijia.
+    loading:true
   },
 
 
@@ -28,13 +30,13 @@ Page({
       console.log('我的话题', res)
       // 如果没有留过话题,返回errorCode 20000,显示没有留过话题.
       if (res.errorCode) {
-        this.setData({ noMyHuatiState: true })
+        this.setData({ noMyHuatiState: true, loading:false })
       } else {
         // 拆解neirong字段成数组新建new_neirong
         let data = res.data
         for (let i in data) { data[i].new_neirong = data[i].neirong.split('||') }
 
-        this.setData({ Res: res.data, count: res.count })
+        this.setData({ Res: res.data, count: res.count, loading:false })
       }
     })
   },
@@ -50,8 +52,12 @@ Page({
       console.log('没有更多了')
       this.setData({ noData: true })
     } else {
+      // 显示加载
+      wx.showNavigationBarLoading()
       api.myHuati({ page: ++page }, res => {
         console.log('我的留言', res)
+        // 隐藏加载
+        wx.hideNavigationBarLoading()
         // 拆解neirong字段成数组新建new_neirong
         let data = res.data
         for (let i in data) { data[i].new_neirong = data[i].neirong.split('||') }

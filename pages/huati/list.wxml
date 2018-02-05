@@ -19,3 +19,15 @@
     </view>
   </block>
 </view>
+
+<view class='jiazai' wx:if="{{loading}}">
+  <!-- 正在加载,请稍候... -->
+  <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
+</view>
+

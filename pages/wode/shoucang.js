@@ -13,6 +13,8 @@ Page({
     // Config
     quyuList: Config.quyu,
     caixiList: Config.caixi,
+    // 正在加载.
+    loading: true
   },
 
 
@@ -30,8 +32,10 @@ Page({
       // 转成字符串 （服务器只接受字符串shoucanglist.toString()）
       api.shoucanglistCanting({ list: shoucanglist.toString() }, res => {
         console.log('aa', res)
-        this.setData({ Res: res, is_Shoucang: true })
+        this.setData({ Res: res, loading: false })
       })
+    } else {
+      this.setData({ is_Shoucang: true, loading: false })
     }
   },
 

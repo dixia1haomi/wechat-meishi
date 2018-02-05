@@ -10,18 +10,23 @@
 }
 
 .base1-1 {
-  font-size: 36rpx;
-  margin-bottom: 10rpx;
+  font-size: 46rpx;
+  /* margin-bottom: 10rpx; */
+  text-align: center;
+  margin: 60rpx 0;
 }
 
 .base1-2 {
-  font-size: 22rpx;
+  /* font-size: 22rpx;
   margin-bottom: 10rpx;
-  color: #808080;
+  color: #808080; */
 }
 
 .base1-3 {
-  color: #808080;
+  /* color: #808080; */
+  padding: 0 40rpx;
+  margin-bottom: 60rpx;
+  font-size: 36rpx;
 }
 
 .base2 {

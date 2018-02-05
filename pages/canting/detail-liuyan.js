@@ -34,6 +34,8 @@ Page({
     // 方案2 - Api请求
     // api.listLiuyan({ canting_id: id, page: 1 }, res => {
     //   console.log('方案2 - Api请求', res)
+    //   // 只保留时间的年/月/日
+    //   for (let i in res.data) { res.data[i].create_time = res.data[i].create_time.slice(0, 10) }
     //   this.setData({ Res: res.data, count: res.count })
     // })
   },
@@ -49,8 +51,16 @@ Page({
       console.log('没有更多了')
       this.setData({ noData: true })
     } else {
+      // 显示加载动画
+      wx.showNavigationBarLoading()
+      // 请求
       api.listLiuyan({ canting_id: id, page: ++page }, res => {
         console.log('liuyan上拉触底', res, page)
+        // 隐藏加载动画
+        wx.hideNavigationBarLoading()
+        // 只保留时间的年/月/日
+        for (let i in res.data) { res.data[i].create_time = res.data[i].create_time.slice(0, 10) }
+        // 设置数据
         this.setData({ Res: this.data.Res.concat(res.data) })
       })
     }

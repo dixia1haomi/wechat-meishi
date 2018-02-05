@@ -54,7 +54,7 @@ Page({
 
   onPageScroll: function (e) {
     // 只有最上最下显示
-    console.log(e.scrollTop)
+    // console.log(e.scrollTop)
 
     // 最上显示
     if (e.scrollTop == 0) {
@@ -99,62 +99,3 @@ Page({
 let scroll = 0;
 
 
-  // data: {
-  //   width: '',
-  //   height: ''
-  // },
-
-  // onLoad: function (options) {
-  //   const ctx = wx.createCanvasContext('myCanvas')
-
-  //   // 获取设备信息
-  //   wx.getSystemInfo({
-  //     success: (res) => {
-  //       console.log(res.windowWidth)
-  //       this.setData({ width: res.windowWidth })
-  //       console.log(res.windowHeight)
-  //       this.setData({ height: res.windowHeight })
-  //     }
-  //   })
-
-
-  //   wx.getImageInfo({
-  //     src: '/img/guo.jpg',
-  //     success: (res) => {
-  //       console.log('0', res)
-  //       console.log('1', res.width)
-  //       console.log('2', res.height)
-  //       console.log('3', res.path)
-
-  //       // 第一张图(前4个参数是图片参数，后4个是画布参数)
-  //       // 按照宽高比算出调整后图片的高度 = (屏幕宽 * 图片高) / 图片宽;
-  //       let canvHeight = (this.data.width * res.height) / res.width
-  //       console.log('1图绘制后高', canvHeight)
-  //       ctx.drawImage('/img/guo.jpg', 0, 0, res.width, res.height, 0, 0, this.data.width, canvHeight)
-  //       ctx.setFontSize(30)
-  //       ctx.fillText('Hello', 0, 30)
-  //       ctx.fillText('阿西', 100, 100)
-
-  //       // 第二张图
-  //       wx.getImageInfo({
-  //         src: '/img/2.png',
-  //         success: (res2) => {
-  //           console.log('res2-w', res2.width)
-  //           console.log('res2-h', res2.height)
-
-  //           // 按照宽高比算出调整后图片的高度 = (屏幕宽 * 图片高) / 图片宽;
-  //           let canvHeight2 = (this.data.width * res2.height) / res2.width
-  //           console.log('2图绘制后高', canvHeight2)
-  //           // 第二张图(根据第一图的高开始绘制)
-  //           ctx.drawImage('/img/2.png', 0, 0, res2.width, res2.height, 0, canvHeight, this.data.width, canvHeight2)
-
-  //           ctx.draw('', (res) => {
-  //             console.log('1111111')
-  //             // wx.canvasToTempFilePath({ })
-  //           })
-
-  //         }
-  //       })
-
-  //     }
-  //   })

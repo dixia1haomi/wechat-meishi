@@ -3,9 +3,9 @@
 
 <view class='base' wx:if="{{showForm == false}}">
 
-  <view class='base1'>
+  <view class='base1' wx:if="{{!loading}}">
     <view class='base1-1'>{{Res.title}}</view>
-    <view class='base1-2'>{{Res.create_time}}</view>
+    <!-- <view class='base1-2'>{{Res.create_time}}</view> -->
     <view class='base1-3'>{{Res.miaoshu}}</view>
   </view>
 
@@ -61,3 +61,14 @@
 
 <!-- 错误提示 -->
 <my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips>
+
+<!-- 正在加载,请稍候... -->
+<view class='jiazai' wx:if="{{loading}}">
+  <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
+</view>

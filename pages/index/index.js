@@ -19,11 +19,13 @@ Page({
     caixiList: Config.caixi,
 
     // 正在请求页
-    loading: false
+    loading: true
   },
 
   onLoad: function () {
     this._load()
+
+
   },
 
   onShow: function () {
@@ -46,8 +48,11 @@ Page({
     api.listCanting({}, res => {
       console.log('a', res)
       this._for_List(res)                            // 遍历餐厅list获取推荐数据并设置Res
-      this.setData({ listRes: res, loading: true })
+      this.setData({ listRes: res, loading: false })
     })
+    
+    // let aaa = "2018/01/31 06:57:59"
+    // console.log(aaa.slice(0,10))
 
   },
 

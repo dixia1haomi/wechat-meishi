@@ -2,6 +2,13 @@
 
   <view>
     <button catchtap='xuanzedizhi'>选择地址</button>
+    <button open-type="contact">客服</button>
+    <contact-button 
+   type="default-light" 
+   size="20" 
+   session-from="weapp" > 
+
+</contact-button>
   </view>
 
   <view class='asd'>asdasd</view>
@@ -22,7 +29,4 @@
     </view>
   </view>
 
-
-
 </view>
-

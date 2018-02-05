@@ -43,8 +43,8 @@ Page({
       distance: ''     // 距离
     },
 
-    // loading..
-    // loading: true
+    // 加载
+    loading: true,
     // 地址位置授权标识位(不能直接取，要setData)
     userLocation: false,
     // 分享按钮状态
@@ -80,13 +80,18 @@ Page({
 
     api.detailCanting({ id: id }, res => {
       console.log('detail数据', res)
-      this.setData({ Res: res, ResState: true, userLocation: app.appData.userLocation }, () => {
+      // 只保留时间的年/月/日
+      for (let i in res.liuyan) { res.liuyan[i].create_time = res.liuyan[i].create_time.slice(0, 10) }
+      // 设置数据
+      this.setData({ Res: res, ResState: true, userLocation: app.appData.userLocation, loading: false }, () => {
+        // 设置导航条
+        wx.setNavigationBarTitle({ title: res.name })
         // 获取静态地图图片(高德)
         this.getStaticmap(res)
         // 获取驾车线路规划(这个接口数据当前页只用到距离,其他数据准备给map页用的;)
         this.getDriving(res)
         // 解析HTML
-        WxParse.wxParse('wenzhang', 'html', res.wenzhang[0].html, this, 20);
+        WxParse.wxParse('wenzhang', 'html', res.wenzhang[0].html, this, 0);
         // 处理留言
         this._liuyan(res.liuyan)
       })
@@ -137,6 +142,9 @@ Page({
         // 如果餐厅detail接口携带的留言数据有5条，调用查看留言Api（{data:每页20条,count:总条数}）
         api.listLiuyan({ canting_id: this.data.Res.id, page: 1 }, res => {
           console.log('全部留言Api', res)
+          // 只保留时间的年/月/日
+          for (let i in res.data) { res.data[i].create_time = res.data[i].create_time.slice(0, 10) }
+          // 设置数据
           this.setData({ liuyanRes: res }, () => {
             // 如果留言Api的数据大于5条，显示查看全部留言
             if (res.count > 5) { this.setData({ getAllLiuyanState: true }) }
@@ -306,6 +314,9 @@ Page({
       // 新增成功后再次调用查询餐厅Api（关联留言）,覆盖留言后再调用处理留言
       api.detailCanting({ id: id }, res => {
         console.log('detail数据', res)
+        // 只保留时间的年/月/日
+        for (let i in res.liuyan) { res.liuyan[i].create_time = res.liuyan[i].create_time.slice(0, 10) }
+        // 设置数据
         this.setData({ 'Res.liuyan': res.liuyan }, () => {
           // 处理留言
           this._liuyan(res.liuyan)
@@ -318,7 +329,7 @@ Page({
   // 监听屏幕滚动事件
   onPageScroll: function (e) {
     // 只有最上最下显示
-    console.log(e.scrollTop)
+    // console.log(e.scrollTop)
     // 最上显示
     if (e.scrollTop == 0) {
       this.setData({ fenxiangState: false })
@@ -356,7 +367,7 @@ Page({
       // 路径携带id (*下个用户进入时要显示一个回到主页的按钮*)
       path: '/pages/canting/detail?id=?',
       // 分享图片自定义？背景被模糊过怎么处理？
-      imageUrl:'',
+      imageUrl: '',
       success: function (res) {
         // 转发成功
         console.log('转发成功', res)
@@ -379,14 +390,15 @@ Page({
     const ctx = wx.createCanvasContext('myCanvas')
     // 绘图(1图 1:1(720*720), 2图 10:6(720*432) ,底边还有一点点)
     wx.getImageInfo({
-      src: '/img/guo.jpg',
+      // src: '/img/guo.jpg',
+      src: this.data.Res.img,
       success: (res) => {
         console.log('获取图片信息1', res)
         // 第一张图(前4个参数是图片参数，后4个是画布参数)
         // 按照宽高比算出调整后图片的高度 = (屏幕宽 * 图片高) / 图片宽;
         let canvHeight = (app.appData.sysWidth * res.height) / res.width
         console.log('1图绘制后高', canvHeight)
-        ctx.drawImage('/img/guo.jpg', 0, 0, res.width, res.height, 0, 0, app.appData.sysWidth, canvHeight)
+        ctx.drawImage(res.path, 0, 0, res.width, res.height, 0, 0, app.appData.sysWidth, canvHeight)
         ctx.setFontSize(30)
         ctx.fillText('Hello', 0, 30)
         ctx.fillText('阿西', 100, 100)
@@ -430,7 +442,7 @@ Page({
       success: (res) => {
         console.log('保存图片返回路径', res.tempFilePath)
         // 影藏蒙层，画布，提示
-        this.setData({ canvas: false, mask: false })
+        this.setData({ canvas: false, mask: false, blur: false })
         wx.hideLoading()
         // 保存到系统相册
         wx.saveImageToPhotosAlbum({

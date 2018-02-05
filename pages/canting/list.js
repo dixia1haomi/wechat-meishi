@@ -25,6 +25,8 @@ Page({
     current: 1,
     // 筛选页选择的参数
     shaixuanParams: {},
+    // 加载中.
+    loading:true
 
   },
 
@@ -48,7 +50,7 @@ Page({
     let Res = []
     for (let i = 0; i < 10 && i < q_Res.length; i++) { Res.push(q_Res[i]) }
     console.log('list_Load', Res)
-    this.setData({ Res: Res, ResLength: q_Res.length })   // 直接显示所有数据的长度
+    this.setData({ Res: Res, ResLength: q_Res.length, loading:false })   // 直接显示所有数据的长度
   },
 
   // swiper滑动条件加载数据
