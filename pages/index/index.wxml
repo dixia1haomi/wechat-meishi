@@ -23,6 +23,8 @@
     <view class='youjiantou7 go-jiantou'></view>
   </view>
 
+  <button catchtap='go_ceshi'>点这个进卡劵测试页</button>
+
   <!-- <view class='youjiantou7'></view>   -->
   <!-- <view class='buttom'> -->
   <!-- <zy-hengxian text="曲靖美食推荐"></zy-hengxian> -->

@@ -1,7 +1,8 @@
 <!-- **复用列表展示的样式 -->
 <!-- 没有收藏 -->
 <view wx:if="{{is_Shoucang}}">
-  <view>你还没有收藏过餐厅</view>
+  <view class='noshoucang'>你还没有收藏过餐厅</view>
+  <button catchtap='back'>返回</button>
 </view>
 
 <view wx:else>

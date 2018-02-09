@@ -10,10 +10,12 @@ App({
     userLocation: false,
     longitude: null,   // 用户经度
     latitude: null,    // 用户纬度
-
   },
 
-  onLaunch: function () {
+  onLaunch: function (op) {
+    console.log('app op', op.path)
+    // 检查来源（可能分享自餐厅详情，要显示一个返回主页按钮）
+    if (op.path == "pages/canting/detail") { this.appData.path = true }
     // 数据请求(餐厅list)
     // this._load()
     // 小程序初始化检查token
@@ -29,6 +31,8 @@ App({
   onError: function (msg) {
     console.log('触发APP——onError', msg)
   },
+
+
 
   // --------------------------------------------------获取设备信息--------------------------------------------
   // 获取设备信息

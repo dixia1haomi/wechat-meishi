@@ -1,0 +1,65 @@
+<!-- <button catchtap='lingqu'>领取</button>
+<button catchtap='dakai'>打开</button> -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<view wx:if="{{!loading}}">
+  <!-- ------------------今日推荐-------------------- -->
+  <view class='top' catchtap='topTap'>
+    <view class='title'>今日推荐</view>
+    <view>
+      <image src='{{Res.img}}' class='img'></image>
+      <view class='body'>
+        <view style='font-size:34rpx;'>{{Res.miaoshu}}</view>
+        <view class='name'>
+          <text class="font28">{{Res.name}}</text>
+          <view class='xin'>
+            <text style='font-size:26rpx;margin-right:6rpx;'>{{Res.zan}}</text>
+            <text class="iconfont icon-xin1" style='color: #ea9518;font-size:36rpx;'></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ------------------优惠列表-------------------- -->
+  <view class='youhui-base'>
+    <block wx:for="{{kajuanRes}}" wx:key="">
+      <view class='youhui-item' catchtap='go_youhui'>
+        <view class='y1'>
+          <image class='y1-img' src='{{item.img}}'></image>
+          <view class='y1-shuliang'>剩余数量:{{item.shengyushuliang}}/张</view>
+        </view>
+
+        <view class='y2'>
+          <view class='y2-name'>{{item.title}}</view>
+          <view class='y2-miaoshu'>{{item.miaoshu}}</view>
+          <view class='y2-tiaojian'>{{item.tiaojian}}</view>
+          <view class='y2-lingqu' catchtap='lingqu' data-id='{{item.id}}' data-card_id="{{item.card_id}}">领取按钮</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+<button catchtap='mykajuan'>我的卡劵</button>
+  <!-- <view class='go' catchtap='go'>
+    <view style='font-size:36rpx;'>查看全部餐厅列表</view>
+    <view class='youjiantou7 go-jiantou'></view>
+  </view> -->
+
+  <!-- <view class='buttom'>
+    <view class='buttom1'>————— 曲靖美食推荐 —————</view>
+  </view> -->
+</view>
+
+
+<!-- 正在加载,请稍候... -->
+<view class='jiazai' wx:if="{{loading}}">
+  <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
+</view>

@@ -12,11 +12,6 @@ var myAmapFun = new amapFile.AMapWX({ key: '1fafc5e0acc166803d566256e8843740' })
 var WxParse = require('../../wxParse/wxParse.js');
 
 
-var data = '<div>我是HTML代码</div>';
-
-
-// let ResSt;  // 缓存
-
 Page({
 
   data: {
@@ -59,7 +54,9 @@ Page({
     // 画布状态
     canvas: false,
     // 背景模糊
-    blur: false
+    blur: false,
+    // 显示返回主页
+    goIndex: false
   },
 
   // 请求detail数据
@@ -70,6 +67,8 @@ Page({
     this._shoucangState(op.id)   // 遍历收藏缓存，设置状态
     // 获取屏幕宽高
     this.setData({ width: app.appData.sysWidth, height: app.appData.sysHeight, screenHeight: app.appData.screenHeight })
+    // 检查是否来自分享（来自分享直接进来显示返回主页按钮）
+    if (app.appData.path) { this.setData({ goIndex: true }) }
   },
 
   // ---------------------------------------- _load --------------------------------------------
@@ -119,7 +118,7 @@ Page({
       wx.openLocation({
         latitude: parseInt(this.data.Res.latitude),
         longitude: parseInt(this.data.Res.longitude),
-        scale: 28,
+        scale: 12,
         name: this.data.Res.name,
         address: this.data.Res.address
       })
@@ -358,16 +357,17 @@ Page({
   // --------------------------------------- 分享转发 --------------------------------------------------
   onShareAppMessage: function (res) {
     console.log('asd', res)
+
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
     return {
-      title: '曲靖美食推荐',
+      title: '曲靖袋鼠美食+',
       // 路径携带id (*下个用户进入时要显示一个回到主页的按钮*)
-      path: '/pages/canting/detail?id=?',
+      path: '/pages/canting/detail?id=' + this.data.Res.id,
       // 分享图片自定义？背景被模糊过怎么处理？
-      imageUrl: '',
+      imageUrl: this.data.Res.img,
       success: function (res) {
         // 转发成功
         console.log('转发成功', res)

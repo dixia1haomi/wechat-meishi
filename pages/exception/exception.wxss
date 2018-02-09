@@ -1,1 +1,4 @@
-/* pages/exception/20000.wxss */
+.msg{
+  text-align: center;
+  margin: 120rpx 0;
+}

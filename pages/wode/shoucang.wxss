@@ -1,4 +1,5 @@
 /* 列表 */
+
 .list-body {
   margin-bottom: 84rpx;
   background-color: #fff;
@@ -39,4 +40,9 @@
 
 .list-detail-renjun::after {
   content: '/人';
+}
+
+.noshoucang {
+  text-align: center;
+  margin: 120rpx 0;
 }

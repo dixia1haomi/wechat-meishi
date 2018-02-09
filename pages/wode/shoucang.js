@@ -70,4 +70,7 @@ Page({
     wx.navigateTo({ url: '/pages/canting/detail?id=' + id })
   },
 
+  // 返回
+  back() { wx.navigateBack({ delta: 1 }) },
+
 })

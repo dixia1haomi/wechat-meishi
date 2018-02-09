@@ -1,0 +1,105 @@
+.top {
+  background-color: #fff;
+  margin: 60rpx 60rpx 0 60rpx;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+}
+
+.title {
+  padding: 20rpx;
+  border-bottom: 1rpx solid #e5e5e5;
+  text-align: center;
+}
+
+.img {
+  height: 480rpx;
+  width: 640rpx;
+  max-width: 100%;
+}
+
+.img {
+  height: 480rpx;
+  width: 640rpx;
+  max-width: 100%;
+}
+
+.body {
+  padding: 20rpx;
+}
+
+.name {
+  color: #8a8a8a;
+  padding-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.xin {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.go {
+  background-color: #fff;
+  color: #ea9518;
+  text-align: center;
+  margin: 30rpx 60rpx 0 60rpx;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.go-jiantou {
+  position: absolute;
+  right: 30rpx;
+  top: 32rpx;
+}
+
+.buttom {
+  /* display: flex;
+  justify-content: center; */
+}
+
+.buttom1 {
+  /* color: #8a8a8a;
+  font-size: 28rpx;
+  position: absolute;
+  bottom: 20rpx; */
+}
+
+/* ----------优惠列表--------- */
+
+.youhui-base {
+  margin: 60rpx;
+}
+
+.youhui-item {
+  display: flex;
+  padding: 20rpx 0; 
+  border-top: 1rpx solid #8a8a8a;
+  border-bottom: 1rpx solid #8a8a8a;
+}
+
+.y1 {
+  margin-right: 20rpx;
+}
+
+.y1-img {
+  height: 168rpx;
+  width: 224rpx;
+}
+
+.y1-shuliang {
+  font-size: 28rpx;
+  background-color: aliceblue;
+}
+
+.y2 {
+  flex: 1;
+}
+
+.y2-lingqu{
+  background-color: tomato;
+}

@@ -17,6 +17,7 @@ class Token {
               callback && callback(res)
             } else {
               console.log('请求Code不等于200,Token类.gettoken', res)
+              wx.navigateTo({ url: '/pages/exception/exception?code='+'token' })
             }
           },
           fail: (err) => {

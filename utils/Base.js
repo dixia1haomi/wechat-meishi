@@ -22,36 +22,41 @@ class Base {
         'token_key': wx.getStorageSync('token_key')
       },
       success(res) {
-        if (res.statusCode === 200) {
+        if (res.statusCode == 200) {
+          // 成功
           params.sCallback && params.sCallback(res.data)
         } else {
-          // 兼容所有错误-跳转到错误页面并提示（*）
-          // 1. token类错误（获取token重试1次）
-          // 2. 查询错误
-          // 3. 新增错误
-          // 4. 更新错误
-          // 5. 删除错误
-          // 6. 未知错误(记录日志)
 
           console.log('Base基类请求失败，statusCode不等于200', res)
-          // 如果code是500,就不是自己定义的错误码,处理待续*
-          // *看服务器返回的code是多少，在处理
-          // *筛选查询没有数据返回code-411
-          if (res.statusCode === 500) {
-            console.log('不是自己定义的错误码, 处理待续,res.statusCode==500', res.statusCode)
-            wx.navigateTo({ url: '/pages/exception/exception?code=' + 500 })
-          } else {
-            // 查询数据失败（数据库操作失败）
-            if (res.data.errorCode === 20000) { params.sCallback && params.sCallback(res.data) }
-            // 请求接口失败重试(40000,Token类错误,Token失效)
-            if (res.data.errorCode === 40000 && !noRefetch) { that._refetch(params) }
+
+          // Token错误 $Code = 10004（获取token重试1次）
+          if (res.data.code == 10004 && !noRefetch) {
+            that._refetch(params)
+          }
+
+          // 数据库错误 $Code = 10002
+          if (res.data.code == 10002) {
+            // wx.navigateTo({ url: '/pages/exception/exception?code=' + 10002 })
+            params.sCallback && params.sCallback(res.data)  // 直接返回再处理
+          }
+
+          // 微信方面错误 $Code = 10003
+          if (res.data.code == 10003) {
+            wx.navigateTo({ url: '/pages/exception/exception?code=' + 10003 })
+          }
+
+          // 服务器未知错误 999
+          if (res.data.code == 999) {
+            wx.navigateTo({ url: '/pages/exception/exception?code=' + 999 })
           }
 
         }
+
       },
       fail(err) {
         // 提示-请检查网络状态-重试(*)
         console.log('Base基类请求失败,进入fail')
+        wx.navigateTo({ url: '/pages/exception/exception?code=' + 'fail' })
       }
     })
   }

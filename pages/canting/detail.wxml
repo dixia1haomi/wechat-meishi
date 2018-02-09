@@ -105,9 +105,18 @@
 
   <!-- -----------分享按钮----------- -->
   <view class='juzhong' hidden='{{fenxiangState}}'>
-     <view class='fenxiang' catchtap='fenxiang'> 
+    <view class='fenxiang' catchtap='fenxiang'>
       <view class=''>分享给朋友</view>
-     </view> 
+    </view>
+  </view>
+
+  <!-- 返回主页 -->
+  <view wx:if="{{goIndex}}">
+    <navigator url="../index/index" open-type='reLaunch'>
+      <view class='goindex'>
+        <view class=''>回主页</view>
+      </view>
+    </navigator>
   </view>
 
 </view>

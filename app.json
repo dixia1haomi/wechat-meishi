@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/ceshi/ceshi3",
     "pages/index/index",
     "pages/ceshi/ceshi1",
     "pages/ceshi/ceshi2",
@@ -8,7 +9,6 @@
     "pages/canting/detail",
     "pages/canting/detail-liuyan",
     "pages/canting/create-liuyan",
-    "pages/canting/map",
     "pages/canting/shaixuan",
     "pages/huati/detail",
     "pages/huati/list",

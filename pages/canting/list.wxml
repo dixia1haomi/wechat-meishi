@@ -29,7 +29,7 @@
                 </view>
 
                 <!-- 描述 -->
-                <view class=''>{{item.miaoshu}}--{{item.id}}</view>
+                <view class=''>{{item.miaoshu}}</view>
 
                 <!-- 地址 -->
                 <view class="">地址:{{item.address}}</view>
@@ -80,7 +80,7 @@
           <!-- 名字 -->
           <view class='font36'>{{item.name}}</view>
           <!-- 区域 | 距离 | 星级 -->
-          <view class='list-detail-1'>{{quyuList[item.quyu].name}} | {{caixiList[item.caixi].name}} | 点赞:{{item.zan}}</view>
+          <view class='list-detail-1'>{{quyuList[item.quyu-1].name}} | {{caixiList[item.caixi-1].name}} | 点赞:{{item.zan}}</view>
           <view class='list-detail-renjun'>{{item.renjun}}</view>
         </view>
       </view>

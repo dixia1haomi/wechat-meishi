@@ -1,22 +1,14 @@
 import { Api } from '../../utils/Api.js'
-import { Base } from '../../utils/Base.js'
-import { Config } from '../../utils/Config.js'
-
 const api = new Api()
-const base = new Base()
-const app = getApp()
+
+// import { Base } from '../../utils/Base.js'
+// import { Config } from '../../utils/Config.js'
+// const base = new Base()
+
 
 Page({
   data: {
-    // 区域组件
-    quyuState: false,
-    quyuId: 0,
-    quyuList: Config.quyu,
 
-    // 菜系组件
-    caixiState: false,
-    caixiId: 0,
-    caixiList: Config.caixi,
 
     // 正在请求页
     loading: true
@@ -33,16 +25,6 @@ Page({
 
   // 获取今日推荐
   _load() {
-    // base.authorize_userLocation(res => {
-    //   console.log('bb', res)
-    //   console.log('appData', app.appData)
-    // })
-
-    // base.zuobiao(res => {
-    //   console.log('index-app', app.appData)
-    // })
-    // console.log('aasd',app.appData.userLocation)
-
 
     // ------ 取所有List数据，餐厅List要用------
     api.listCanting({}, res => {
@@ -50,9 +32,6 @@ Page({
       this._for_List(res)                            // 遍历餐厅list获取推荐数据并设置Res
       this.setData({ listRes: res, loading: false })
     })
-    
-    // let aaa = "2018/01/31 06:57:59"
-    // console.log(aaa.slice(0,10))
 
   },
 
@@ -70,22 +49,17 @@ Page({
 
 
 
-  // // 区域组件sheetDown
-  // quyuSheetTap() { this.setData({ quyuState: true }) },
-  // quyuitemE(e) { this.setData({ quyuId: e.detail.item.id }) },
+  // ----------------------
 
-  // // 菜系组件sheetDown
-  // caixiSheetTap() { this.setData({ caixiState: true }) },
-  // caixiitemE(e) { this.setData({ caixiId: e.detail.item.id }) },
+  go_ceshi() {
+    wx.navigateTo({ url: '/pages/ceshi/ceshi3' })
+  },
+
+  // --------------------
 
 
   // 查看餐厅列表
   go() {
-    // 获取参数
-    // let quyu = this.data.quyuId
-    // let caixi = this.data.caixiId
-    // 携带参数去餐厅列表
-    // wx.navigateTo({ url: '/pages/canting/list?quyu=' + quyu + '&caixi=' + caixi })
     wx.navigateTo({ url: '/pages/canting/list' })
   },
 
@@ -96,13 +70,12 @@ Page({
 
   // --------------------------------------- 分享转发 --------------------------------------------------
   onShareAppMessage: function (res) {
-    console.log('asd', res)
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
     return {
-      title: '曲靖美食推荐',
+      title: '曲靖袋鼠美食+',
       path: '/pages/index/index',
       success: function (res) {
         // 转发成功

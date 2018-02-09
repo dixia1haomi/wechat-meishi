@@ -80,6 +80,11 @@ Page({
   // 筛选页调用where请求(接受筛选页的筛选参数)
   fromShaixuan(shaixuanParams) {
     api.listCanting(shaixuanParams, res => {
+      // 检查错误码
+      if (res.code == 10002){
+        wx.navigateTo({ url: '/pages/exception/exception?code=' + 10002 })
+        return
+      }
       console.log('fromShaixuan', res)
       q_Res = res  // 覆盖全局q_Res
       // --- 取10条数据(因为swiper的渲染效率所以只取10条) ---

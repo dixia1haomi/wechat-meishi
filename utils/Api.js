@@ -4,6 +4,32 @@ const base = new Base()
 class Api {
   constructor() { }
 
+  // ------------------------------卡卷接口测试----------------------------------
+  // jiemi_code(data, callback) {
+  //   base.request({ url: 'kefu/code', data: data, sCallback: (res) => { callback && callback(res) } })
+  // }
+
+  // 查询优惠商家列表
+  selectKajuan(data, callback) {
+    base.request({ url: 'kajuan/select', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+  // 领取卡劵
+  getKajuan(data, callback) {
+    base.request({ url: 'kajuan/get', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+  // 储存卡劵信息到用户名下,需要uid，卡劵ID，加密code
+  create_in_userKajuan(data, callback) {
+    base.request({ url: 'kajuan/create_in_user', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+  // 更新卡劵剩余数量
+  shengyushuliangKajuan(data, callback) {
+    base.request({ url: 'kajuan/shengyushuliang', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+  // 我的卡劵(uid)
+  myKajuan(data, callback) {
+    base.request({ url: 'kajuan/mykajuan', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
+
   // ------------------------------餐厅----------------------------------
 
   // 查询餐厅列表

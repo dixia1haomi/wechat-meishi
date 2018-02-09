@@ -40,3 +40,8 @@
   padding: 10rpx 0;
   color: #808080;
 }
+
+.nohuati {
+  text-align: center;
+  margin: 120rpx 0;
+}

@@ -3,7 +3,7 @@
   <block wx:for="{{Res}}" wx:key="">
     <view class='base'>
       <!-- 参与时间 -->
-      <view class='base1'>{{item.create_time}}--{{item.id}}--{{item.user_id}}</view>
+      <view class='base1'>{{item.create_time}}</view>
       <!-- 话题名 -->
       <view class='base2' catchtap='go_Huati' id='{{item.huati_id}}'>
         <view>{{'#'+item.title+'#'}}</view>
@@ -21,8 +21,8 @@
 
 <!-- 没有参与过话题 -->
 <view wx:else>
-  <view>你还没有参与过话题</view>
-  <view catchtap='back'>返回</view>
+  <view class='nohuati'>你还没有参与过话题</view>
+   <button catchtap='back'>返回</button> 
 </view>
 
 
