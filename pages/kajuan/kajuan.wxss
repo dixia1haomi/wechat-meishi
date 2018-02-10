@@ -1,0 +1,70 @@
+/* 头图 */
+
+.base1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.img {
+  height: 480rpx;
+  width: 750rpx;
+}
+
+.kajuan {
+  background-color: #fff;
+  font-size: 30rpx;
+  padding: 20rpx;
+}
+.kajuan-miaoshu{
+  margin-bottom: 10rpx;
+}
+.kajuan-shengyushuliang{
+  margin-bottom: 10rpx;
+}
+.kajuan-tiaojian{
+  margin-bottom: 10rpx;
+}
+.kajuan-qixian{
+  /* font-size: 28rpx; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.kajuan1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.kajuan1-title {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.kajuan1-lingqu {
+  padding: 10rpx 60rpx;
+  background-color: tomato;
+  border-radius: 10rpx;
+}
+
+.kajuan1-lingwan {
+  padding: 10rpx 60rpx;
+  background-color: #e5e5e5;
+  border-radius: 10rpx;
+  color: #8a8a8a;
+}
+
+.base2 {
+  background-color: #fff;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  padding: 20rpx;
+   margin-bottom: 20rpx; 
+}
+
+.base2-title {
+  margin-bottom: 20rpx;
+  color: tomato;
+  font-weight: 600;
+}
+

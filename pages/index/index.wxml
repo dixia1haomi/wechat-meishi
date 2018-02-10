@@ -1,4 +1,4 @@
-<view wx:if="{{!loading}}">
+<!-- <view wx:if="{{!loading}}">
 
   <view class='top' catchtap='topTap'>
     <view class='title'>今日推荐</view>
@@ -8,7 +8,6 @@
         <view style='font-size:34rpx;'>{{Res.miaoshu}}</view>
         <view class='name'>
           <text class="font28">{{Res.name}}</text>
-          <!-- <text class="iconfont icon-xin1"> {{Res.zan}}</text> -->
           <view class='xin'>
             <text style='font-size:26rpx;margin-right:6rpx;'>{{Res.zan}}</text>
             <text class="iconfont icon-xin1" style='color: #ea9518;font-size:36rpx;'></text>
@@ -16,23 +15,23 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
 
-  <view class='go' catchtap='go'>
+<!-- <view class='go' catchtap='go'>
     <view style='font-size:36rpx;'>查看全部餐厅列表</view>
     <view class='youjiantou7 go-jiantou'></view>
-  </view>
+  </view>  -->
 
-  <button catchtap='go_ceshi'>点这个进卡劵测试页</button>
+<!-- <button catchtap='go_ceshi'>点这个进卡劵测试页</button> -->
 
-  <!-- <view class='youjiantou7'></view>   -->
-  <!-- <view class='buttom'> -->
-  <!-- <zy-hengxian text="曲靖美食推荐"></zy-hengxian> -->
-  <!-- </view> -->
-  <view class='buttom'>
+<!-- <view class='youjiantou7'></view>   -->
+<!-- <view class='buttom'> -->
+<!-- <zy-hengxian text="曲靖美食推荐"></zy-hengxian> -->
+<!-- </view> -->
+<!-- <view class='buttom'>
     <view class='buttom1'>————— 曲靖美食推荐 —————</view>
   </view>
-</view>
+</view> -->
 
 <!-- <view wx:else class='jiazai'>  -->
 <!-- 正在加载,请稍候... -->
@@ -44,6 +43,53 @@
     <view class="rect5"></view>
   </view>
  </view>  -->
+
+<view>
+  <!-- 今日推荐 -->
+  <view class='base1'>
+    <view class='title'>今日推荐</view>
+
+    <view catchtap='_go_canting_detail' id='{{Res.id}}'>
+      <image class='base1-img' src='{{Res.img}}'></image>
+      <view class='name'>{{Res.name}}</view>
+      <view class='miaoshu'># {{Res.miaoshu}} #</view>
+    </view>
+  </view>
+
+  <!-- 今日福利 -->
+  <view class='base2'>
+    <view class='title'>今日福利</view>
+
+    <block wx:for="{{kajuanRes}}" wx:key="">
+
+      <view class='item' catchtap='_go_kajuan_detail' id='{{item.id}}'>
+        <view class='item1'>
+          <image class='img' src='{{item.img}}'></image>
+          <view class='shengyushuliang'>剩余 {{item.shengyushuliang}} 张</view>
+        </view>
+
+        <view class='item2'>
+          <view class='item2-title'>{{item.title}}</view>
+          <view>{{item.miaoshu}}</view>
+          <view class='tiaojian'>{{item.tiaojian}}</view>
+        </view>
+      </view>
+
+    </block>
+  </view>
+
+  <!-- 查看所有餐厅 -->
+  <view class='base3' catchtap='_go_canting_list'>
+    <view class='base3-text'>查看全部餐厅列表</view>
+    <view class='youjiantou7'></view>
+  </view>
+  <!-- 页脚 -->
+  <view class='foot'>————— 袋鼠优生活 —————</view>
+
+</view>
+
+<!-- 查看所有餐厅 -->
+<!-- <view>查看全部餐厅列表</view> -->
 
 <!-- 正在加载,请稍候... -->
 <view class='jiazai' wx:if="{{loading}}">

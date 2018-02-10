@@ -24,13 +24,10 @@ Page({
     zanState: false,
     // 收藏状态 true=已点
     shoucangState: false,
-    // tar
-    // activeE: [{ id: 1, name: '攻略', open: true }, { id: 2, name: '菜品' }, { id: 3, name: '环境' }],  ***
     // Config
     quyuList: Config.quyu,
     caixiList: Config.caixi,
     changjingList: Config.changjing,
-    // xingjiList: Config.xingji,
 
     // 高德map数据
     map: {
@@ -118,7 +115,7 @@ Page({
       wx.openLocation({
         latitude: parseInt(this.data.Res.latitude),
         longitude: parseInt(this.data.Res.longitude),
-        scale: 12,
+        scale: 14,
         name: this.data.Res.name,
         address: this.data.Res.address
       })
@@ -178,21 +175,21 @@ Page({
       destination: res.longitude + ',' + res.latitude,               // 目的地（餐厅坐标）
       success: (data) => {
         console.log('驾车线路规划', data)
-        var points = [];
-        if (data.paths && data.paths[0] && data.paths[0].steps) {
-          var steps = data.paths[0].steps;
-          for (var i = 0; i < steps.length; i++) {
-            var poLen = steps[i].polyline.split(';');
-            for (var j = 0; j < poLen.length; j++) {
-              points.push({
-                longitude: parseFloat(poLen[j].split(',')[0]),
-                latitude: parseFloat(poLen[j].split(',')[1])
-              })
-            }
-          }
-        }
+        // var points = [];
+        // if (data.paths && data.paths[0] && data.paths[0].steps) {
+        //   var steps = data.paths[0].steps;
+        //   for (var i = 0; i < steps.length; i++) {
+        //     var poLen = steps[i].polyline.split(';');
+        //     for (var j = 0; j < poLen.length; j++) {
+        //       points.push({
+        //         longitude: parseFloat(poLen[j].split(',')[0]),
+        //         latitude: parseFloat(poLen[j].split(',')[1])
+        //       })
+        //     }
+        //   }
+        // }
         // 线路规划数据给map组件（dottedLine：虚线，还有一个箭头显示，真机才能测试，查map组件）
-        this.setData({ 'map.polyline': [{ points: points, color: "#e64340", width: 4, dottedLine: true }] });
+        // this.setData({ 'map.polyline': [{ points: points, color: "#e64340", width: 4, dottedLine: true }] });
         // 距离
         if (data.paths[0] && data.paths[0].distance) { this.setData({ 'map.distance': (data.paths[0].distance / 1000).toFixed(1) + 'km' }); }
       }
@@ -277,10 +274,9 @@ Page({
 
 
   // ---------------------------------------------------进入地图详情页-----------------------------------------------------
-  go_Map() {
-
-    wx.navigateTo({ url: '/pages/canting/map' })
-  },
+  // go_Map() {
+  //   wx.navigateTo({ url: '/pages/canting/map' })
+  // },
 
   // ---------------------------------------------------进入留言详情页-----------------------------------------------------
   // 查看全部留言

@@ -29,8 +29,12 @@ Page({
     // ------ 取所有List数据，餐厅List要用------
     api.listCanting({}, res => {
       console.log('a', res)
-      this._for_List(res)                            // 遍历餐厅list获取推荐数据并设置Res
-      this.setData({ listRes: res, loading: false })
+      // 遍历餐厅list获取推荐数据并设置Res
+      this._for_List(res)
+
+      // 获取卡劵列表
+      this._kajuan_List()
+
     })
 
   },
@@ -44,7 +48,15 @@ Page({
         break
       }
     }
-    this.setData({ Res: res })
+    this.setData({ Res: res, listRes: list, loading: false })
+  },
+
+  // 获取卡劵列表
+  _kajuan_List() {
+    api.selectKajuan({}, res => {
+      console.log('卡劵列表', res)
+      this.setData({ kajuanRes: res })
+    })
   },
 
 
@@ -59,12 +71,21 @@ Page({
 
 
   // 查看餐厅列表
-  go() {
+  _go_canting_list() {
     wx.navigateTo({ url: '/pages/canting/list' })
   },
 
-  // 今日推荐
-  topTap() { wx.navigateTo({ url: '/pages/canting/detail?id=' + this.data.Res.id }) },
+  // 查看卡劵详情
+  _go_kajuan_detail(e) {
+    let card_id = e.currentTarget.id
+    wx.navigateTo({ url: '/pages/kajuan/kajuan?id=' + card_id })
+  },
+
+  // 查看餐厅详情
+  _go_canting_detail(e) {
+    let canting_id = e.currentTarget.id
+    wx.navigateTo({ url: '/pages/canting/detail?id=' + canting_id })
+  },
 
 
 

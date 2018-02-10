@@ -1,4 +1,4 @@
-.top {
+/* .top {
   background-color: #fff;
   margin: 60rpx 60rpx 0 60rpx;
   font-size: 32rpx;
@@ -37,7 +37,6 @@
 .xin {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .go {
@@ -67,6 +66,122 @@
   font-size: 28rpx;
   position: absolute;
   bottom: 20rpx;
+}  */
+
+.base1 {
+  background-color: #fff;
+  position: relative;
 }
 
+.title {
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 40rpx;
+  font-weight: 600;
+}
 
+.base1-img {
+  height: 480rpx;
+  width: 750rpx;
+}
+
+.base1-text {
+  position: absolute;
+  bottom: 160rpx;
+  width: 100%;
+}
+
+.base1 .name {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 600;
+  padding: 40rpx 0;
+}
+
+.base1 .miaoshu {
+  text-align: center;
+  padding-bottom: 40rpx;
+  font-size: 32rpx;
+}
+
+.base2 {
+  background-color: #fff;
+  margin-top: 20rpx;
+  /* margin-bottom: 60rpx; */
+}
+
+.base2 .title {
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 40rpx;
+  font-weight: 600;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.base2 .item {
+  display: flex;
+  padding: 20rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.item1 {
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.item1 .img {
+  height: 210rpx;
+  width: 280rpx;
+}
+
+.item1 .shengyushuliang {
+  background-color: tomato;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.item2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 32rpx;
+}
+
+.item2-title {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.item .tiaojian {
+  color: red;
+}
+
+.base3 {
+  padding: 20rpx;
+  border-top: 1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
+  background-color: #fff;
+  margin-top: 20rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.base3-text {
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-left: 180rpx;
+}
+
+.foot {
+  margin-bottom: 40rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #8a8a8a;
+}

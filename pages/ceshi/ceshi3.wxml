@@ -25,7 +25,7 @@
   <!-- ------------------优惠列表-------------------- -->
   <view class='youhui-base'>
     <block wx:for="{{kajuanRes}}" wx:key="">
-      <view class='youhui-item' catchtap='go_youhui'>
+      <view class='youhui-item' catchtap='go_Kajuan' id='{{item.id}}'>
         <view class='y1'>
           <image class='y1-img' src='{{item.img}}'></image>
           <view class='y1-shuliang'>剩余数量:{{item.shengyushuliang}}/张</view>
@@ -35,13 +35,17 @@
           <view class='y2-name'>{{item.title}}</view>
           <view class='y2-miaoshu'>{{item.miaoshu}}</view>
           <view class='y2-tiaojian'>{{item.tiaojian}}</view>
-          <view class='y2-lingqu' catchtap='lingqu' data-id='{{item.id}}' data-card_id="{{item.card_id}}">领取按钮</view>
+
+          <!-- 卡劵剩余0换样式 -->
+           <!-- <view wx:if="{{item.shengyushuliang != 0}}" disabled class='y2-lingqu' catchtap='lingqu' data-id='{{item.id}}' data-card_id="{{item.card_id}}">领取按钮</view>
+          <view wx:else>领完了</view>  -->
+
         </view>
       </view>
     </block>
   </view>
 
-<button catchtap='mykajuan'>我的卡劵</button>
+
   <!-- <view class='go' catchtap='go'>
     <view style='font-size:36rpx;'>查看全部餐厅列表</view>
     <view class='youjiantou7 go-jiantou'></view>

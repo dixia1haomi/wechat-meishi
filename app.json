@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/ceshi/ceshi3",
     "pages/index/index",
+    "pages/ceshi/ceshi3",
+    "pages/kajuan/kajuan",
     "pages/ceshi/ceshi1",
     "pages/ceshi/ceshi2",
     "pages/ceshi/ceshi",

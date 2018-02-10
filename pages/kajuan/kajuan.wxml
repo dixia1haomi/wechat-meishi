@@ -1,0 +1,49 @@
+<view>
+
+  <!-- 卡劵信息 -->
+  <view class='base1'>
+    <!-- 头图 -->
+    <image src='{{kajuanRes.img}}' class='img' catchtap='go_Canting_Detail' id='{{kajuanRes.canting_id}}'></image>
+    <!-- 信息 -->
+    <view class='kajuan'>
+
+      <view class='kajuan1'>
+        <view class='kajuan1-title'>{{kajuanRes.title}}</view>
+        <view wx:if="{{kajuanRes.shengyushuliang != 0}}" class='kajuan1-lingqu' catchtap='lingqu' data-card_id='{{kajuanRes.card_id}}' data-id='{{kajuanRes.id}}'>领取</view>
+        <view wx:else class='kajuan1-lingwan'>已领完</view>
+      </view>
+
+      <!-- 描述 -->
+      <view class='kajuan-miaoshu'>{{kajuanRes.miaoshu}}</view>
+      <!-- 条件 -->
+      <view class='kajuan-tiaojian'>{{kajuanRes.tiaojian}}</view>
+
+      <view class='kajuan-qixian'>
+        <!-- 使用期限 -->
+        <view class=''>有效期 {{kajuanRes.qixian}}</view>
+        <!-- 剩余数量 -->
+        <view class='kajuan-shengyushuliang'>剩余 {{kajuanRes.shengyushuliang}} 件</view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 说明 -->
+  <view class='base2'>
+    <view class='base2-title'>使用说明</view>
+    <view style='margin-bottom: 20rpx;'>
+      <text>1. 本劵为微信卡劵,领取后可回到微信卡包中查看</text>
+      <view>我 -> 卡包 -> 我的票劵</view>
+    </view>
+    <view style='margin-bottom: 20rpx;'>
+      <text>2. 点击头图可查看餐厅详情</text>
+    </view>
+    <view style='margin-bottom: 20rpx;'>
+      <text>3. 票劵解释权归餐厅所有</text>
+    </view>
+  </view>
+
+
+
+
+</view>
