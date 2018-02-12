@@ -137,40 +137,36 @@ class Base {
   // ---------------------------------------------------------- 登陆 ------------------------------------------------------------
   // 登陆(根据缓存是否有userInfo来判断是否登陆。tips：问题，官方登陆态？还没有研究，应该使用官方的登陆态)
   login(callback) {
-    let userInfo = wx.getStorageSync('userInfo')
-    console.log(userInfo)
-    if (!userInfo) {
-      console.log('缓存中没有userInfo')
-      this.authorize_userinfo(res => {
-        console.log('auth', res)
-        if (res) {
-
-          wx.getUserInfo({
-            withCredentials: false,
-            success: (res) => {
-              console.log('base-login()授权并获取用户信息成功', res)
-              this.request({
-                url: 'user/login', data: res.userInfo, sCallback: (data) => {
-                  console.log('请求user/login写入数据库并返回成功', data)
-                  // 登陆成功 -》 设置缓存
-                  wx.setStorageSync('userInfo', res.userInfo)
-                  // 提示
-                  wx.showToast({ title: '登陆成功' })
-                  // 返回 true
-                  callback && callback()
-                }
-              })
+    this.authorize_userinfo(back => {
+      this.getUserInfo(info => {
+        // 写入用户信息(login)
+        this.request({
+          url: 'user/login', data: info, sCallback: (res) => {
+            console.log('写入用户信息', res)
+            if (res.errorCode == 0) {
+              // 登陆成功改变登陆状态，再次调用自己
+              getApp().appData.LoginState = true
+              wx.setStorageSync('userinfo', info)
+              callback && callback(true)
             }
-          })
-
-        }
+          }
+        })
       })
-    } else {
-      console.log('缓存中有userInfo,以前登陆过')
-      callback && callback()
-    }
+    })
   }
-
+  // -------------------------------------------------- getUserInfo -----------------------------------------------------
+  getUserInfo(callback) {
+    wx.getUserInfo({
+      withCredentials: false,
+      success: res => {
+        console.log('base-getUserInfo-succsee', res)
+        callback && callback(res.userInfo)
+      },
+      fail: err => {
+        console.log('base-getUserInfo-fail', err)
+      }
+    })
+  }
 
   // -------------------------------------------------- 储存用户坐标 -----------------------------------------------------
 

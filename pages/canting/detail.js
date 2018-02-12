@@ -87,7 +87,7 @@ Page({
         // 获取驾车线路规划(这个接口数据当前页只用到距离,其他数据准备给map页用的;)
         this.getDriving(res)
         // 解析HTML
-        WxParse.wxParse('wenzhang', 'html', res.wenzhang[0].html, this, 0);
+        WxParse.wxParse('wenzhang', 'html', res.wenzhang.html, this, 0);
         // 处理留言
         this._liuyan(res.liuyan)
       })
@@ -290,12 +290,13 @@ Page({
   // 进入新增留言页(需要授权用户信息)
   go_createLiuyan() {
     // 登陆过返回true
-    base.login(res => {
+    if (app.appData.LoginState) {
       let id = this.data.Res.id
-      wx.navigateTo({
-        url: '/pages/canting/create-liuyan?id=' + id,
-      })
-    })
+      wx.navigateTo({ url: '/pages/canting/create-liuyan?id=' + id })
+    } else {
+      // 调用base用户授权
+      base.login(back => { this.go_createLiuyan() })
+    }
   },
 
   // 新增留言（create-liuyan页调用）

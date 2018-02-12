@@ -9,15 +9,12 @@ const api = new Api()
 Page({
   data: {
 
-
     // 正在请求页
     loading: true
   },
 
   onLoad: function () {
     this._load()
-
-
   },
 
   onShow: function () {
@@ -34,7 +31,6 @@ Page({
 
       // 获取卡劵列表
       this._kajuan_List()
-
     })
 
   },
@@ -63,9 +59,9 @@ Page({
 
   // ----------------------
 
-  go_ceshi() {
-    wx.navigateTo({ url: '/pages/ceshi/ceshi3' })
-  },
+  // go_ceshi() {
+  //   wx.navigateTo({ url: '/pages/ceshi/ceshi3' })
+  // },
 
   // --------------------
 

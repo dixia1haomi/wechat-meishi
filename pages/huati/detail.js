@@ -5,6 +5,8 @@ import WxValidate from '../../validate/WxValidate.js'
 const api = new Api()
 const base = new Base()
 
+const app = getApp()
+
 let page = 1
 
 Page({
@@ -29,7 +31,7 @@ Page({
     // 没有更多了
     nodata: false,
     // 加载
-    loading:true
+    loading: true
   },
 
   onLoad: function (op) {
@@ -46,9 +48,10 @@ Page({
       // 拆解neirong字段
       this._chaijie(res.userhuati)
 
-      this.setData({ Res: res, loading:false })
+      this.setData({ Res: res, loading: false })
     })
   },
+
   // 处理日期时间格式(substring截取服务器返回的日期时间字符串)
   _time(res) {
     // 处理话题
@@ -69,7 +72,14 @@ Page({
 
   // 参与话题showForm(--需要登陆--)
   createHuati() {
-    base.login(res => { this.setData({ showForm: true }) })
+    // base.login(res => { this.setData({ showForm: true }) })
+    if (app.appData.LoginState) {
+      this.setData({ showForm: true })
+    } else {
+      // 调用base用户授权
+      base.login(back => { this.createHuati() })
+    }
+
   },
 
   // 提交

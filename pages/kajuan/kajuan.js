@@ -1,5 +1,7 @@
 import { Api } from '../../utils/Api.js'
 import { Card } from '../../utils/Card.js'
+import { Base } from '../../utils/Base.js'
+const base = new Base()
 const api = new Api()
 const card = new Card()
 
@@ -35,14 +37,19 @@ Page({
   // ---------------------- 领取卡劵 ------------------------
   // 接受卡劵ID=字符串，卡劵在数据库中表ID=用于更新库存,callback更新后的数据库数据(服务器update返回的)
   lingqu(e) {
-    let card_id = e.currentTarget.dataset.card_id
-    let id = e.currentTarget.dataset.id
-
-    // 查看utils/Card类
-    card.lingquKajuan(card_id, id, res => {
-      // 更新Data的库存数据
-      this.setData({ 'kajuanRes.shengyushuliang': res.shengyushuliang })
-    })
+    if (getApp().appData.LoginState) {
+      // 已有用户信息
+      let card_id = e.currentTarget.dataset.card_id
+      let id = e.currentTarget.dataset.id
+      // 查看utils/Card类
+      card.lingquKajuan(card_id, id, res => {
+        // 更新Data的库存数据
+        this.setData({ 'kajuanRes.shengyushuliang': res.shengyushuliang })
+      })
+    } else {
+      // 调用base用户授权
+      base.login(back => { this.lingqu(e) })
+    }
   },
 
 })

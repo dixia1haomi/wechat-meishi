@@ -14,7 +14,6 @@ class Card {
     // 换卡劵signature
     this.signature(card_id, res => {
 
-
       // wx.addCard,添加卡劵
       this.addCard(res, addCard_back => {
 
@@ -27,6 +26,9 @@ class Card {
 
         // 更新库存(获取库存信息更新库存)（接受卡劵ID，当前领取的卡劵在数据库里的ID）
         this.updateKucun(card_id, id, back => { callback && callback(back) })
+
+        // 卡劵领取记录（卡劵ID，内部获取uid）
+        this.api.logKajuan({ card_id: card_id }, back => { console.log('卡劵领取记录', back) })
 
       })
     })

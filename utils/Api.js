@@ -32,21 +32,47 @@ class Api extends Base {
   // myKajuan(data, callback) {
   //   this.request({ url: 'kajuan/mykajuan', data: data, sCallback: (res) => { callback && callback(res) } })
   // }
+  // 卡劵领取记录(接受卡劵ID==card_id)
+  logKajuan(data, callback) {
+    this.request({ url: 'kajuan/log', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
 
   // ------------------------------餐厅----------------------------------
 
   // 查询餐厅列表
   listCanting(data, callback) {
-    this.request({ url: 'canting/list', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'canting/list', data: data, sCallback: (res) => {
+        console.log('ttt',res)
+        if (res.errorCode == 0) {
+          callback && callback(res.data)
+        } else {
+          // 记录日志
+          wx.navigateTo({ url: '/pages/exception/exception' })
+        }
+      }
+    })
   }
+
   // 查询收藏的餐厅列表（我的-我的收藏使用，接受缓存的收藏数组）
   shoucanglistCanting(data, callback) {
     this.request({ url: 'canting/shoucanglist', data: data, sCallback: (res) => { callback && callback(res) } })
   }
+
   // 查询餐厅详细信息,接受餐厅表ID
   detailCanting(data, callback) {
-    this.request({ url: 'canting/detail', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'canting/detail', data: data, sCallback: (res) => {
+        if (res.errorCode == 0) {
+          callback && callback(res.data)
+        } else {
+          // 记录日志
+          wx.navigateTo({ url: '/pages/exception/exception' })
+        }
+      }
+    })
   }
+
   // 餐厅点赞
   dianzanCanting(data, callback) {
     this.request({ url: 'canting/zan', data: data, sCallback: (res) => { callback && callback(res) } })
@@ -69,6 +95,10 @@ class Api extends Base {
     this.request({ url: 'user/huati', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
+  // -----uidCheckInfo-----
+  uidCheckInfo(data, callback) {
+    this.request({ url: 'user/check', data: data, sCallback: (res) => { callback && callback(res) } })
+  }
 
   // ------------------------------话题----------------------------------
 
@@ -119,6 +149,11 @@ class Api extends Base {
     this.request({ url: 'liuyan/delete', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
+
+  // ------------------------------ 登陆 ----------------------------------
+  // login(data, callback) {
+  //   this.request({ url: 'user/login', data: data, sCallback: (res) => { callback && callback(res) } })
+  // }
 }
 
 export { Api }

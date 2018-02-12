@@ -4,6 +4,8 @@ import { Api } from '../../utils/Api.js'
 const api = new Api()
 const base = new Base()
 
+const app = getApp()
+
 Page({
 
   data: {
@@ -15,31 +17,31 @@ Page({
 
 
   onLoad: function (op) {
-    this._login()
-    // 进入我的页
+    // 取缓存
+    let info = wx.getStorageSync('userinfo')
+    if (info) {
+      this.setData({ userInfo: info, loginState: true })
+    }
   },
 
-  // 判断是否有登陆状态
-  // _loginState() {
-  //   let userInfo = wx.getStorageSync('userInfo')
-  //   console.log('Info', userInfo)
-  //   if (userInfo) { this.setData({ loginState: true, userInfo: userInfo }) }
-  // },
 
   // 登陆
   _login() {
-    base.login(back => {
-      this.setData({ loginState: true, userInfo: wx.getStorageSync('userInfo') })
-    })
+    if (app.appData.LoginState) {
+      this.setData({ loginState: true, userInfo: wx.getStorageSync('userinfo') })
+    } else {
+      // 调用base用户授权
+      base.login(back => { this._login() })
+    }
   },
 
   // 我的话题
   go_huati() {
-    let loginState = this.data.loginState
-    if (loginState) {
+    if (app.appData.LoginState) {
       wx.navigateTo({ url: '/pages/wode/huati' })
     } else {
-      this._login()
+      // 调用base用户授权
+      base.login(back => { this.go_huati() })
     }
   },
 
@@ -51,12 +53,11 @@ Page({
 
   // 我的留言
   go_liuyan() {
-    let loginState = this.data.loginState
-    if (loginState) {
-      // 跳转到留言页 ->  查询数据库
+    if (app.appData.LoginState) {
       wx.navigateTo({ url: '/pages/wode/liuyan' })
     } else {
-      this._login()
+      // 调用base用户授权
+      base.login(back => { this.go_liuyan() })
     }
   },
 
