@@ -10,11 +10,19 @@ class Api extends Base {
 
   // 查询优惠商家列表
   selectKajuan(data, callback) {
-    this.request({ url: 'kajuan/select', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'kajuan/select', data: data, sCallback: (res) => {
+        callback && callback(res.data)
+      }
+    })
   }
   // 查询指定卡劵(客户端卡劵页用，接受卡劵ID)
   findKajuan(data, callback) {
-    this.request({ url: 'kajuan/find', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'kajuan/find', data: data, sCallback: (res) => {
+        callback && callback(res.data)
+      }
+    })
   }
   // 去服务器换signature，接受card_id（用于调用wx.addCard）
   signatureKajuan(data, callback) {
@@ -26,7 +34,11 @@ class Api extends Base {
   }
   // 更新卡劵剩余数量(接受card_id，表id)
   shengyushuliangKajuan(data, callback) {
-    this.request({ url: 'kajuan/shengyushuliang', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'kajuan/shengyushuliang', data: data, sCallback: (res) => {
+        callback && callback(res.data)
+      }
+    })
   }
   // 我的卡劵(uid)
   // myKajuan(data, callback) {
@@ -43,7 +55,7 @@ class Api extends Base {
   listCanting(data, callback) {
     this.request({
       url: 'canting/list', data: data, sCallback: (res) => {
-        console.log('ttt',res)
+        console.log('ttt', res)
         if (res.errorCode == 0) {
           callback && callback(res.data)
         } else {
@@ -104,12 +116,20 @@ class Api extends Base {
 
   // 查询话题列表
   listHuati(data, callback) {
-    this.request({ url: 'huati/list', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'huati/list', data: data, sCallback: (res) => {
+        callback && callback(res.data)
+      }
+    })
   }
 
   // 查询话题内容(接受id)
   detailHuati(data, callback) {
-    this.request({ url: 'huati/detail', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'huati/detail', data: data, sCallback: (res) => {
+        callback && callback(res.data)
+      }
+    })
   }
 
   // 用户参与话题(接受话题id，内容，服务器内部取uid)
