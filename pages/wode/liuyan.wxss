@@ -27,7 +27,7 @@
   /* color: #808080; */
 }
 
-.base4{
+.base4 {
   font-size: 26rpx;
   padding-top: 20rpx;
   color: #0091ff;
@@ -36,11 +36,12 @@
 
 .nodata {
   text-align: center;
-  font-size: 26rpx;
-  padding: 10rpx 0;
+  font-size: 28rpx;
+  padding: 40rpx 0;
   color: #808080;
 }
-.noliuyan{
-    text-align: center;
+
+.noliuyan {
+  text-align: center;
   margin: 120rpx 0;
 }

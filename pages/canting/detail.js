@@ -10,16 +10,17 @@ var amapFile = require('../../gaodemap/amap-wx.js');
 var myAmapFun = new amapFile.AMapWX({ key: '1fafc5e0acc166803d566256e8843740' });
 // HTML解析 (* 点击tar再解析还是全部解析?)
 var WxParse = require('../../wxParse/wxParse.js');
-
+// 留言分页
+let page = 1
 
 Page({
 
   data: {
     Res: {},
     ResState: false,            // Res标识
-    liuyanRes: [],             // 留言(20条，查看全部留言页面使用)
-    noLiuyanState: false,      // 是否有留言（true:没有留言，false:有） 
-    getAllLiuyanState: false,  // 查看全部留言按钮开关
+    // liuyanRes: [],             // 留言(20条，查看全部留言页面使用)
+    // noLiuyanState: false,      // 是否有留言（true:没有留言，false:有） 
+    // getAllLiuyanState: false,  // 查看全部留言按钮开关
     // 点赞状态 true=已点
     zanState: false,
     // 收藏状态 true=已点
@@ -70,7 +71,7 @@ Page({
 
   // ---------------------------------------- _load --------------------------------------------
 
-  // 请求detail数据（接受餐厅ID）
+  // 请求detail数据（接受餐厅ID,留言服务器限制limit-5条）
   _load(id) {
     // console.log('detail-data', this.data.userLocation, 'appData', app.appData.userLocation)
 
@@ -88,8 +89,8 @@ Page({
         this.getDriving(res)
         // 解析HTML
         WxParse.wxParse('wenzhang', 'html', res.wenzhang.html, this, 0);
-        // 处理留言
-        this._liuyan(res.liuyan)
+        // 处理留言(接受留言总数,显示加载更多留言or没有更多了)
+        // this._liuyan(res.liuyan_count_count)
       })
     })
   },
@@ -125,32 +126,17 @@ Page({
   },
 
 
-  // ------ 处理留言(接受liuyan数据，这个liuyan数据是餐厅detail接口关联的服务器限制limit(5)条) --------
-  _liuyan(liuyan) {
-
-    /* 两种情况：1.有liuyan -> 大于等于5条 -> 显示查看全部留言按钮，请求留言数据Api
-                2.没有liuyan -> 设置留言标识noLiuyan（不显示留言）*/
-
-    if (liuyan.length != 0) {
-      this.data.noLiuyanState && this.setData({ noLiuyanState: false })  // 第一次没有，用户新留后导致不会显示出来
-      // 1.有liuyan
-      if (liuyan.length >= 5) {
-        // 如果餐厅detail接口携带的留言数据有5条，调用查看留言Api（{data:每页20条,count:总条数}）
-        api.listLiuyan({ canting_id: this.data.Res.id, page: 1 }, res => {
-          console.log('全部留言Api', res)
-          // 只保留时间的年/月/日
-          for (let i in res.data) { res.data[i].create_time = res.data[i].create_time.slice(0, 10) }
-          // 设置数据
-          this.setData({ liuyanRes: res }, () => {
-            // 如果留言Api的数据大于5条，显示查看全部留言
-            if (res.count > 5) { this.setData({ getAllLiuyanState: true }) }
-          })   // 20条留言（包含所有留言统计数量）
-        })
-      }
-    } else {
-      // 2.留言的长度==0，没有留言
-      this.setData({ noLiuyanState: true })
-    }
+  // ------ 加载更多留言 --------
+  _zaijiagengduo() {
+    api.listLiuyan({ canting_id: this.data.Res.id, page: page }, res => {
+      console.log('加载更多留言-' + page, res)
+      // 只保留时间的年/月/日
+      for (let i in res) { res[i].create_time = res[i].create_time.slice(0, 10) }
+      // 设置数据,如果是第一页就覆盖原来的limit5条,否则往后面添加
+      page == 1 ? this.setData({ 'Res.liuyan': res }) : this.setData({ 'Res.liuyan': this.data.Res.liuyan.concat(res) })
+      // page自增
+      page++
+    })
   },
 
   // ---------------------------------------------------地图-----------------------------------------------------
@@ -299,24 +285,20 @@ Page({
     }
   },
 
-  // 新增留言（create-liuyan页调用）
+  // ---------------------------- 新增留言（create-liuyan页调用） --------------------------------
   create_liuyan(neirong, callback) {
-    let id = this.data.Res.id
-    console.log('asd')
-    api.createLiuyan({ canting_id: id, neirong: neirong }, res => {
+    console.log('新增留言')
+    api.createLiuyan({ canting_id: this.data.Res.id, neirong: neirong }, res => {
       console.log('新增留言chenggong', res)
       // callback出去给create-liuyan页（接受后会返回上一页）
-      callback && callback(res)
-      // 新增成功后再次调用查询餐厅Api（关联留言）,覆盖留言后再调用处理留言
-      api.detailCanting({ id: id }, res => {
-        console.log('detail数据', res)
+      callback && callback()
+      // 再查留言数据,把新增的插入Res.liuyan的第一条
+      api.listLiuyan({ canting_id: this.data.Res.id, page: 1 }, res => {
+        console.log('新增留言方法内再次查留言数据', res)
         // 只保留时间的年/月/日
-        for (let i in res.liuyan) { res.liuyan[i].create_time = res.liuyan[i].create_time.slice(0, 10) }
-        // 设置数据
-        this.setData({ 'Res.liuyan': res.liuyan }, () => {
-          // 处理留言
-          this._liuyan(res.liuyan)
-        })
+        res[0].create_time = res[0].create_time.slice(0, 10)
+        // 向数组的开头插入一个元素
+        this.setData({ 'Res.liuyan': [res[0]].concat(this.data.Res.liuyan) })
       })
     })
   },
@@ -484,6 +466,10 @@ Page({
     })
   },
 
-
+  // 页面卸载
+  onUnload: function () {
+    page = 1
+    console.log('xiezai', page)
+  },
 
 })

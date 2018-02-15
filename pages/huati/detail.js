@@ -9,6 +9,20 @@ const app = getApp()
 
 let page = 1
 
+//---------------------------------------------- 验证 ----------------------------------------------------
+// 验证字段的规则
+const rules = {
+  name: { required: true, rangelength: [5, 20] },
+  neirong: { required: true, rangelength: [10, 200] }
+}
+// 验证字段的提示信息，若不传则调用默认的信息
+const messages = {
+  name: { required: '请输入餐厅名称', rangelength: '餐厅名称长度在 5 到 20 之间的字符' },
+  neirong: { required: '请输入内容', rangelength: '内容长度在 10 到 200 之间的字符' }
+}
+
+const wxValidate = new WxValidate(rules, messages)
+
 Page({
 
   data: {
@@ -16,7 +30,7 @@ Page({
     // 显示参与话题的Form页
     showForm: false,
     // userhuati的长度（判断没有更多了.服务器限制20条，如果小于20条，后面就没有了）
-    userhuatiLength: 20,
+    // userhuatiLength: 20,
 
     // 参与话题名称计数
     nameCursor: 0,
@@ -29,14 +43,13 @@ Page({
     toptips_text: '',
 
     // 没有更多了
-    nodata: false,
+    // noData: false,
     // 加载
     loading: true
   },
 
   onLoad: function (op) {
     this._load(op.id)
-
   },
 
   // 查询话题详情
@@ -44,42 +57,29 @@ Page({
     api.detailHuati({ id: id, page: 1 }, res => {
       console.log('查询话题详情', res)
       // 处理日期时间
-      this._time(res)
+      this._time(res.userhuati)
       // 拆解neirong字段
       this._chaijie(res.userhuati)
-
+      // 设置数据
       this.setData({ Res: res, loading: false })
     })
   },
 
   // 处理日期时间格式(substring截取服务器返回的日期时间字符串)
-  _time(res) {
-    // 处理话题
-    // res.create_time = res.create_time.substring(0, 10)
+  _time(userhuati) {
     // 处理user话题
-    let userhuati = res.userhuati
-    for (let i in userhuati) {
-      userhuati[i].create_time = userhuati[i].create_time.slice(0, 10)
-    }
+    for (let i in userhuati) { userhuati[i].create_time = userhuati[i].create_time.slice(0, 10) }
   },
 
   // 拆解neirong字段
   _chaijie(userhuati) {
-    for (let i in userhuati) {
-      userhuati[i].new_neirong = userhuati[i].neirong.split('||')
-    }
+    for (let i in userhuati) { userhuati[i].new_neirong = userhuati[i].neirong.split('||') }
   },
 
   // 参与话题showForm(--需要登陆--)
   createHuati() {
-    // base.login(res => { this.setData({ showForm: true }) })
-    if (app.appData.LoginState) {
-      this.setData({ showForm: true })
-    } else {
-      // 调用base用户授权
-      base.login(back => { this.createHuati() })
-    }
-
+    // 登录状态 ? 显示参与话题表单 : 调用base用户授权
+    app.appData.LoginState ? this.setData({ showForm: true }) : base.login(back => { this.createHuati() })
   },
 
   // 提交
@@ -88,7 +88,6 @@ Page({
     let name = this.data.name
     let neirong = this.data.neirong
     console.log('//可以正常使用,还差拼接餐厅明和上传图片', name, neirong)
-
 
     // 传入表单数据，调用验证方法
     if (!wxValidate.checkForm({ name: name, neirong: neirong })) {
@@ -99,8 +98,6 @@ Page({
     }
 
     console.log('提交成功')
-
-
 
     // 拼接name和neirong存在一个字段里
     let data = name + '||' + neirong
@@ -134,28 +131,25 @@ Page({
 
 
   // --------------------------------------------------------------------------------------------------
-  // 上拉触底
+  // 上拉触底,服务器分页取20条
   onReachBottom: function () {
-    console.log('上拉触底', this.data.userhuatiLength)
-    let id = this.data.Res.id
+    console.log('上拉触底')
 
-    if (this.data.userhuatiLength < 20) {
-      console.log('没有更多了..')
-      this.setData({ nodata: true })
-    } else {
+    // 当前长度小于总长才允许请求
+    if (this.data.Res.userhuati.length < this.data.Res.userhuati_count) {
       // 显示加载
       wx.showNavigationBarLoading()
-
-      api.detailHuati({ id: id, page: ++page }, res => {
+      // 从第二页开始请求
+      api.detailHuati({ id: this.data.Res.id, page: ++page }, res => {
         console.log('上拉触底-查询话题详情', res)
         // 隐藏加载
         wx.hideNavigationBarLoading()
         // 处理日期时间
-        this._time(res)
+        this._time(res.userhuati)
         // 拆解neirong字段
         this._chaijie(res.userhuati)
-
-        this.setData({ 'Res.userhuati': this.data.Res.userhuati.concat(res.userhuati), userhuatiLength: res.userhuati.length })
+        // 设置数据
+        this.setData({ 'Res.userhuati': this.data.Res.userhuati.concat(res.userhuati) })
       })
     }
   },
@@ -169,16 +163,3 @@ Page({
 })
 
 
-//---------------------------------------------- 验证 ----------------------------------------------------
-// 验证字段的规则
-const rules = {
-  name: { required: true, rangelength: [5, 20] },
-  neirong: { required: true, rangelength: [10, 200] }
-}
-// 验证字段的提示信息，若不传则调用默认的信息
-const messages = {
-  name: { required: '请输入餐厅名称', rangelength: '餐厅名称长度在 5 到 20 之间的字符' },
-  neirong: { required: '请输入内容', rangelength: '内容长度在 10 到 200 之间的字符' }
-}
-
-const wxValidate = new WxValidate(rules, messages)

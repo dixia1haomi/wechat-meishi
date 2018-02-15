@@ -11,51 +11,70 @@ Page({
     // 总条数
     count: 0,
     // 没有留言
-    noLiuyanState: false,
+    // noLiuyanState: false,
     // 分页加载没有更多了
-    noData: false,
+    // noData: false,
     // jiazai.
     loading: true
   },
 
 
   onLoad: function (op) {
+    // console.log('liuyan', JSON.parse(op.op))
     this._load()
   },
 
-  // 我的留言
+  // 我的留言（分页20条）
   _load() {
     api.myLiuyan({ page: 1 }, res => {
       console.log('我的留言', res)
+
+      this.setData({ Res: res.data, count: res.count, loading: false })
+      // 如果总长度小于20条,不允许上拉加载请求数据
+      // res.count < 20 && this.setData({ noData: true })
+
       // 如果没有留过言,返回errorCode 20000,显示没有留言.
-      if (res.errorCode) {
-        this.setData({ noLiuyanState: true, loading: false })
-      } else {
-        this.setData({ Res: res.data, count: res.count, loading: false })
-      }
+      // if (res.errorCode) {
+      //   this.setData({ noLiuyanState: true, loading: false })
+      // } else {
+      //   this.setData({ Res: res.data, count: res.count, loading: false })
+      // }
     })
   },
 
   // 上拉触底
   onReachBottom: function () {
     console.log('上拉触底')
-    let count = this.data.count
-    let length = this.data.Res.length
+    // let count = this.data.count
+    // let length = this.data.Res.length
 
-    if (length >= count) {
-      console.log('没有更多了')
-      this.setData({ noData: true })
-    } else {
+    // 如果还有数据
+    if (this.data.Res.length < this.data.count) {
       // 显示加载
       wx.showNavigationBarLoading()
-
+      // 请求
       api.myLiuyan({ page: ++page }, res => {
-        console.log('我的留言', res)
         // 隐藏加载
         wx.hideNavigationBarLoading()
+
         this.setData({ Res: this.data.Res.concat(res.data) })
       })
     }
+
+    // if (length >= count) {
+    //   console.log('没有更多了')
+    //   this.setData({ noData: true })
+    // } else {
+    // 显示加载
+    // wx.showNavigationBarLoading()
+
+    // api.myLiuyan({ page: ++page }, res => {
+    //   console.log('我的留言', res)
+    //   // 隐藏加载
+    //   wx.hideNavigationBarLoading()
+    //   this.setData({ Res: this.data.Res.concat(res.data) })
+    // })
+    // }
   },
 
   // 页面卸载
@@ -65,7 +84,7 @@ Page({
   },
 
   // 返回
-  back() { wx.navigateBack({ delta: 1 }) },
+  // back() { wx.navigateBack({ delta: 1 }) },
 
 
 

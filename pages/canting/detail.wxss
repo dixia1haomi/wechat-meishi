@@ -187,10 +187,10 @@
   border-bottom: 1rpx solid #e5e5e5;
 }
 
-.base4-liubai {
+/* .base4-liubai {
   padding: 80rpx;
   background-color: #efefef;
-}
+} */
 
 .gaode {
   text-align: center;
@@ -216,9 +216,10 @@
 
 .noLiuyan {
   background-color: #efefef;
-  padding: 40rpx 0 160rpx 40rpx;
+  padding: 40rpx 0 160rpx 0;
   font-size: 28rpx;
   color: #8a8a8a;
+  text-align: center;
 }
 
 .weixuanzhong {

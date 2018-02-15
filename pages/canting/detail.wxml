@@ -74,17 +74,10 @@
       <view class='createLiuyan' catchtap='go_createLiuyan'>写留言 ></view>
     </view>
 
-    <!-- 没有留言 -->
-    <view wx:if="{{noLiuyanState}}" class='noLiuyan'>
-      <view class=''>还没有留言,赶快留下你的足迹..</view>
-    </view>
-
-    <!-- 有留言 -->
-    <view wx:else>
-
+    <!-- 遍历limit 5条留言数据 -->
+    <view>
       <block wx:for="{{Res.liuyan}}" wx:key="">
         <view class='base4-2'>
-
           <view class='base4-2-1'>
             <image class='base4-2-1-1' src='{{item.avatar_url}}'></image>
             <view class='base4-2-1-2'>
@@ -93,14 +86,25 @@
             </view>
           </view>
           <view class='base4-2-2'>{{item.neirong}}</view>
-
         </view>
       </block>
-
-      <view wx:if="{{getAllLiuyanState}}" class='base4-3' hover-class='hover' catchtap='go_Liuyan'>查看全部留言-共{{liuyanRes.count}}条</view>
-      <!-- 留白 -->
-      <view class='base4-liubai'></view>
     </view>
+
+    <!-- 没有留言 -->
+    <view wx:if="{{Res.liuyan_count_count == 0}}" class='noLiuyan'>
+      <view>这里空荡荡的,快留下你的足迹..</view>
+    </view>
+
+    <!-- 留言总数大于5条显示-加载更多 -->
+    <view wx:elif="{{Res.liuyan_count_count > 5 && Res.liuyan.length < Res.liuyan_count_count}}" class='noLiuyan'>
+      <view catchtap='_zaijiagengduo' style='color: steelblue;'>加载更多,还有{{Res.liuyan_count_count - Res.liuyan.length}}条</view>
+    </view>
+
+    <!-- 否则显示-没有更多了 -->
+    <view wx:else class='noLiuyan'>
+      <view>没有喽..</view>
+    </view>
+
   </view>
 
   <!-- -----------分享按钮----------- -->

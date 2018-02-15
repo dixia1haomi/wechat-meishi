@@ -30,12 +30,7 @@
     </block>
   </view>
 
-  <view wx:if="{{nodata}}" class='base3'>---- 没有更多了 ----</view>
-
-  <!-- <view>话题ID:{{Res.id}}</view> -->
-  <!-- <view>
-    话题下的参与数据-----------------
-  </view> -->
+  <view wx:if="{{Res.userhuati.length == Res.userhuati_count}}" class='nodata'>---- 没有更多了 ----</view>
 
   <view class='fixed' catchtap='createHuati'>参与话题</view>
 </view>

@@ -6,19 +6,20 @@ let page = 1
 Page({
 
   data: {
-    Res: {},
+    Res: [],
     //总条数
     count: 0,
     // 显示没有留过话题
-    noMyHuatiState: false,
+    // noMyHuatiState: false,
     // 分页加载没有更多了
-    noData: false,
+    // noData: false,
     // zaijia.
-    loading:true
+    loading: true
   },
 
 
   onLoad: function (op) {
+    // console.log('huati',JSON.parse(op.op))
     this._load()
   },
 
@@ -26,18 +27,12 @@ Page({
   _load() {
     console.log('huati')
     api.myHuati({ page: 1 }, res => {
-      console.log('api-myHuati')
       console.log('我的话题', res)
-      // 如果没有留过话题,返回errorCode 20000,显示没有留过话题.
-      if (res.errorCode) {
-        this.setData({ noMyHuatiState: true, loading:false })
-      } else {
-        // 拆解neirong字段成数组新建new_neirong
-        let data = res.data
-        for (let i in data) { data[i].new_neirong = data[i].neirong.split('||') }
 
-        this.setData({ Res: res.data, count: res.count, loading:false })
-      }
+      // 拆解neirong字段成数组新建new_neirong
+      for (let i in res.data) { res.data[i].new_neirong = res.data[i].neirong.split('||') }
+
+      this.setData({ Res: res.data, count: res.count, loading: false })
     })
   },
 
@@ -45,26 +40,40 @@ Page({
   // 上拉触底
   onReachBottom: function () {
     console.log('上拉触底')
-    let count = this.data.count
-    let length = this.data.Res.length
 
-    if (length >= count) {
-      console.log('没有更多了')
-      this.setData({ noData: true })
-    } else {
+    // 如果还有数据
+    if (this.data.Res.length < this.data.count) {
       // 显示加载
       wx.showNavigationBarLoading()
+      // 请求
       api.myHuati({ page: ++page }, res => {
-        console.log('我的留言', res)
         // 隐藏加载
         wx.hideNavigationBarLoading()
-        // 拆解neirong字段成数组新建new_neirong
-        let data = res.data
-        for (let i in data) { data[i].new_neirong = data[i].neirong.split('||') }
 
         this.setData({ Res: this.data.Res.concat(res.data) })
       })
     }
+
+    // let count = this.data.count
+    // let length = this.data.Res.length
+
+    // if (length >= count) {
+    //   console.log('没有更多了')
+    //   this.setData({ noData: true })
+    // } else {
+    //   // 显示加载
+    //   wx.showNavigationBarLoading()
+    //   api.myHuati({ page: ++page }, res => {
+    //     console.log('我的留言', res)
+    //     // 隐藏加载
+    //     wx.hideNavigationBarLoading()
+    //     // 拆解neirong字段成数组新建new_neirong
+    //     let data = res.data
+    //     for (let i in data) { data[i].new_neirong = data[i].neirong.split('||') }
+
+    //     this.setData({ Res: this.data.Res.concat(res.data) })
+    //   })
+    // }
   },
 
   // 页面卸载
@@ -74,7 +83,7 @@ Page({
   },
 
   // 返回
-  back() { wx.navigateBack({ delta: 1 }) },
+  // back() { wx.navigateBack({ delta: 1 }) },
 
 
   // 删除一条我的话题

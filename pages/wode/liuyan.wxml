@@ -1,29 +1,45 @@
 <!-- 参与过话题 -->
-<view wx:if="{{!noLiuyanState}}">
-  <block wx:for="{{Res}}" wx:key="">
-    <view class='base'>
-      <!-- 参与时间 -->
-      <view class='base1'>参与时间：{{item.create_time}}</view>
-      <!-- 餐厅名 -->
-      <view class='base2' catchtap='go_Canting' id='{{item.canting_id}}'>
-        <view>餐厅名：{{item.name}}</view>
-        <view class='youjiantou7'></view>
-      </view>
-      <!-- 留言内容 -->
-      <view class='base3'>{{item.neirong}}</view>
-
-      <!-- 删除留言（预留） -->
-      <!-- <view class='base4' catchtap='deleteLiuyan' id='{{item.id}}'>删除</view> -->
+<!-- <view wx:if="{{!noLiuyanState}}"> -->
+<block wx:for="{{Res}}" wx:key="">
+  <view class='base'>
+    <!-- 参与时间 -->
+    <view class='base1'>参与时间：{{item.create_time}}</view>
+    <!-- 餐厅名 -->
+    <view class='base2' catchtap='go_Canting' id='{{item.canting_id}}'>
+      <view>餐厅名：{{item.name}}</view>
+      <view class='youjiantou7'></view>
     </view>
-  </block>
-  <view wx:if="{{noData}}" class='nodata'>----没有更多了----</view>
+    <!-- 留言内容 -->
+    <view class='base3'>{{item.neirong}}</view>
+
+    <!-- 删除留言（预留） -->
+    <!-- <view class='base4' catchtap='deleteLiuyan' id='{{item.id}}'>删除</view> -->
+  </view>
+</block>
+
+<!-- 总长度小于20并且当前数据长度小于总长度：显示加载更多 -->
+<!-- <view class='nodata' wx:if="{{count > 20 && Res.length < count}}"> -->
+<view class='nodata' wx:if="{{Res.length < count}}">
+  <view>----上拉加载更多----</view>
 </view>
+
+<!-- 否则：没有更多了 -->
+<view class='nodata' wx:else>
+  <view>----没有了----</view>
+</view>
+
+<!-- 完全没有数据的情况会在请求时返回errorCode不等于0时跳转到错误页 -->
+
+
+
+<!-- <view wx:if="{{noData}}" class='nodata'>----没有更多了----</view> -->
+<!-- </view> -->
 
 <!-- 没有参与过话题 -->
-<view wx:else>
-  <view class='noliuyan'>你还没有参与过留言..</view>
-  <button catchtap='back'>返回</button>
-</view>
+<!-- <view wx:else> -->
+<!-- <view class='noliuyan'>你还没有参与过留言..</view> -->
+<!-- <button catchtap='back'>返回</button> -->
+<!-- </view> -->
 
 <!-- 正在加载,请稍候... -->
 <view class='jiazai' wx:if="{{loading}}">

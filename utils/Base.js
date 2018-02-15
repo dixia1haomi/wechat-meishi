@@ -144,9 +144,8 @@ class Base {
           url: 'user/login', data: info, sCallback: (res) => {
             console.log('写入用户信息', res)
             if (res.errorCode == 0) {
-              // 登陆成功改变登陆状态，再次调用自己
-              getApp().appData.LoginState = true
-              wx.setStorageSync('userinfo', info)
+              // 再次调用app.js的检查登陆(查userinfo表如果有则返回信息并设置全局，没有不会返回)
+              getApp().setLoginState()
               callback && callback(true)
             }
           }

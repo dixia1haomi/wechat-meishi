@@ -3,10 +3,10 @@
 <view class='page'>
   <view class='base1'>
     <view style='text-align: center;'>
-      <image class='avatarImg' src='{{userInfo.avatarUrl}}'></image>
+      <image class='avatarImg' src='{{userinfo.avatar_url}}'></image>
     </view>
-    <view style='text-align: center;'>{{userInfo.nickName}}</view>
-    <view wx:if="{{loginState == false}}" catchtap='_login' style='text-align: center;'>登陆</view>
+    <view style='text-align: center;'>{{userinfo.nick_name}}</view>
+    <view wx:if="{{loginState == false}}" catchtap='_load' style='text-align: center;'>登陆</view>
 
     <!-- <image class='beijingtu' src='/img/wode-beijing/bolang.gif'></image> -->
   </view>

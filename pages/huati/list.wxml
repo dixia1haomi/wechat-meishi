@@ -13,7 +13,7 @@
           <text class='base2-2-1'>{{item.miaoshu}}</text>
           <text class='base2-2-2'>去参与</text>
         </view>
-        <view class='base2-3'>{{item.userhuati.length}}</view>
+        <view class='base2-3'>{{item.userhuati_count}}</view>
       </view>
 
     </view>

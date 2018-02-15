@@ -3,6 +3,16 @@ import WxValidate from '../../validate/WxValidate.js'
 const api = new Api()
 
 let canting_id;
+
+//---------------------------------------------- 验证 ----------------------------------------------------
+// 验证字段的规则
+const rules = { neirong: { required: true, rangelength: [10, 200] } }
+// 验证字段的提示信息，若不传则调用默认的信息
+const messages = { neirong: { required: '请输入内容', rangelength: '请输入长度在 10 到 200 之间的字符' } }
+
+const wxValidate = new WxValidate(rules, messages)
+
+
 Page({
 
   data: {
@@ -42,38 +52,19 @@ Page({
       // console.log(error.msg)
       return false
     }
-    console.log('提交成功')
+    console.log('验证通过')
 
-    // 获取留言内容，餐厅ID，（uid服务器内部获取）
-    // api.createLiuyan({ canting_id: canting_id, neirong: neirong }, res => {
-    //   console.log('create', res)
-    // if(xxx){
-    // 留言成功
-    // }else{
-    // 留言失败
-    // }
-
-    // ----- 测试返回上一页更新留言数据 ----
+    //   // ----- 测试返回上一页更新留言数据 ----
     let Pages = getCurrentPages()
     let detailPage = Pages[Pages.length - 2]    // 上一页
-    detailPage.create_liuyan(neirong, res => {
-      console.log('liuyan-ye', res)
+    detailPage.create_liuyan(neirong, () => {
+      console.log('新增留言页调用餐厅详情页的-新增留言方法回调')
       // 提示
       wx.showModal({
         content: '留言成功', showCancel: false,
         success: (res) => { res.confirm && wx.navigateBack({ delta: 1 }) }
       })
     })
- 
   },
 
-
 })
-
-//---------------------------------------------- 验证 ----------------------------------------------------
-// 验证字段的规则
-const rules = { neirong: { required: true, rangelength: [10, 200] } }
-// 验证字段的提示信息，若不传则调用默认的信息
-const messages = { neirong: { required: '请输入内容', rangelength: '请输入长度在 10 到 200 之间的字符' } }
-
-const wxValidate = new WxValidate(rules, messages)

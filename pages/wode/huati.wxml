@@ -1,29 +1,30 @@
 <!-- 参与过话题 -->
-<view wx:if="{{!noMyHuatiState}}">
-  <block wx:for="{{Res}}" wx:key="">
-    <view class='base'>
-      <!-- 参与时间 -->
-      <view class='base1'>{{item.create_time}}</view>
-      <!-- 话题名 -->
-      <view class='base2' catchtap='go_Huati' id='{{item.huati_id}}'>
-        <view>{{'#'+item.title+'#'}}</view>
-        <view class='youjiantou7'></view>
-      </view>
-      <!-- 话题内容 -->
-      <view class='base3'>{{'「'+item.new_neirong[0]+'」'+item.new_neirong[1]}}</view>
-
-      <!-- 删除我的话题（待开放） -->
-      <!-- <view class='base4' catchtap='deleteMyHuati' id='{{item.id}}'>删除</view> -->
+<block wx:for="{{Res}}" wx:key="">
+  <view class='base'>
+    <!-- 参与时间 -->
+    <view class='base1'>{{item.create_time}}</view>
+    <!-- 话题名 -->
+    <view class='base2' catchtap='go_Huati' id='{{item.huati_id}}'>
+      <view>{{'#'+item.title+'#'}}</view>
+      <view class='youjiantou7'></view>
     </view>
-  </block>
-  <view wx:if="{{noData}}" class='nodata'>没有更多了..</view>
+    <!-- 话题内容 -->
+    <view class='base3'>{{'「'+item.new_neirong[0]+'」'+item.new_neirong[1]}}</view>
+
+    <!-- 删除我的话题（待开放） -->
+    <!-- <view class='base4' catchtap='deleteMyHuati' id='{{item.id}}'>删除</view> -->
+  </view>
+</block>
+
+<view class='nodata' wx:if="{{Res.length < count}}">
+  <view>----上拉加载更多----</view>
 </view>
 
-<!-- 没有参与过话题 -->
-<view wx:else>
-  <view class='nohuati'>你还没有参与过话题</view>
-   <button catchtap='back'>返回</button> 
+<!-- 否则：没有更多了 -->
+<view class='nodata' wx:else>
+  <view>----没有了----</view>
 </view>
+
 
 
 <!-- 正在加载,请稍候... -->

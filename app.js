@@ -11,7 +11,8 @@ App({
     longitude: null,     // 用户经度
     latitude: null,      // 用户纬度
     LoginState: false,   // 登陆状态
-    path: false          // 是否来自餐厅详情页
+    userinfo:null,       // 用户信息
+    path: false,          // 是否来自餐厅详情页
   },
 
   onLaunch: function (op) {
@@ -24,7 +25,7 @@ App({
       // 设置用户登陆状态
       this.setLoginState()
     })
-    
+
     // 获取地理位置
     this._check_userLocation()
 
@@ -139,22 +140,34 @@ App({
   },
 
 
-  // ----------------------------- 设置用户登陆状态 -------------------------------------
+  // ----------------------------- 检查并设置用户登陆状态（如果有用户信息则返回用户信息，没有不会返回） -------------------------------------
   setLoginState() {
     // 检查数据库
-    api.uidCheckInfo({}, res => {
-      console.log('uidCheckInfo', res)
-      if (res.errorCode == 0) {
-        // 检查userinfo授权
-        wx.getSetting({
-          success: (res) => {
-            if (res.authSetting['scope.userInfo']) { this.appData.LoginState = true }
-          },
-          fail: (err) => {
-            console.log('检查userinfo授权进入fail', err)
+    api.uidCheckInfo({}, data => {
+      console.log('uidCheckInfo', data)
+      wx.getSetting({
+        success: (res) => {
+          if (res.authSetting['scope.userInfo']) {
+            this.appData.LoginState = true
+            this.appData.userinfo = data
           }
-        })
-      }
+        },
+        fail: (err) => {
+          console.log('检查userinfo授权进入fail', err)
+        }
+      })
+
+      // if (res.errorCode == 0) {
+      //   // 检查userinfo授权
+      //   wx.getSetting({
+      //     success: (res) => {
+      //       if (res.authSetting['scope.userInfo']) { this.appData.LoginState = true }
+      //     },
+      //     fail: (err) => {
+      //       console.log('检查userinfo授权进入fail', err)
+      //     }
+      //   })
+      // }
     })
   }
 

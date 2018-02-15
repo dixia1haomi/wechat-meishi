@@ -107,9 +107,55 @@ class Api extends Base {
     this.request({ url: 'user/huati', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
-  // -----uidCheckInfo-----
+  // -----检查用户是否登陆过(查数据库userinfo)有返回用户数据，没有返回errorCode==1 -----
   uidCheckInfo(data, callback) {
-    this.request({ url: 'user/check', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'user/check', data: data, sCallback: (res) => {
+        if (res.errorCode == 0) { callback && callback(res.data) }
+      }
+    })
+  }
+
+  // 获取user名下所有关联数据,包含参与的话题,留言（内部获取uid）
+  userAll(data, callback) {
+    this.request({
+      url: 'user/all', data: data, sCallback: (res) => {
+        if (res.errorCode == 0) {
+          callback && callback(res.data)
+        } else {
+          // 记录日志
+          wx.navigateTo({ url: '/pages/exception/exception' })
+        }
+      }
+    })
+  }
+
+  // 查询我的留言（根据uid-服务器内部获取，page分页,每页20条）
+  myLiuyan(data, callback) {
+    this.request({
+      url: 'user/myliuyan', data: data, sCallback: (res) => {
+        if (res.errorCode == 0) {
+          callback && callback(res.data)
+        } else {
+          // 记录日志
+          wx.navigateTo({ url: '/pages/exception/exception' })
+        }
+      }
+    })
+  }
+
+  // 查询我的话题(接受uid)（我的-我的话题）
+  myHuati(data, callback) {
+    this.request({
+      url: 'user/myhuati', data: data, sCallback: (res) => {
+        if (res.errorCode == 0) {
+          callback && callback(res.data)
+        } else {
+          // 记录日志
+          wx.navigateTo({ url: '/pages/exception/exception' })
+        }
+      }
+    })
   }
 
   // ------------------------------话题----------------------------------
@@ -127,6 +173,7 @@ class Api extends Base {
   detailHuati(data, callback) {
     this.request({
       url: 'huati/detail', data: data, sCallback: (res) => {
+        console.log('detailHuati', res)
         callback && callback(res.data)
       }
     })
@@ -137,10 +184,6 @@ class Api extends Base {
     this.request({ url: 'huati/createhuati', data: data, sCallback: (res) => { callback && callback(res) } })
   }
 
-  // 我的话题(接受uid)（我的-我的话题）
-  myHuati(data, callback) {
-    this.request({ url: 'huati/myhuati', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
 
   // 删除我的一条话题(接受id,服务器获取uid)（我的-我的话题）
   deleteMyHuati(data, callback) {
@@ -151,18 +194,22 @@ class Api extends Base {
   // ------------------------------留言----------------------------------
   // 查询留言列表(接受canting_id,page分页,每页20条)
   listLiuyan(data, callback) {
-    this.request({ url: 'liuyan/list', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'liuyan/list', data: data, sCallback: (res) => {
+        callback && callback(res.data)
+      }
+    })
   }
 
   // 新增留言
   createLiuyan(data, callback) {
-    this.request({ url: 'liuyan/create', data: data, sCallback: (res) => { callback && callback(res) } })
+    this.request({
+      url: 'liuyan/create', data: data, sCallback: (res) => {
+        callback && callback(res.data)
+      }
+    })
   }
 
-  // 查询我的留言（根据uid-服务器内部获取，page分页,每页20条）
-  myLiuyan(data, callback) {
-    this.request({ url: 'liuyan/myliuyan', data: data, sCallback: (res) => { callback && callback(res) } })
-  }
 
   // 删除留言
   deleteLiuyan(data, callback) {
