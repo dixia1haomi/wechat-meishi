@@ -42,7 +42,9 @@
   content: '/人';
 }
 
-.noshoucang {
+.nodata {
   text-align: center;
-  margin: 120rpx 0;
+  font-size: 28rpx;
+  padding: 40rpx 0;
+  color: #808080;
 }

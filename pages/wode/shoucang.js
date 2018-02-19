@@ -1,18 +1,18 @@
 import { Api } from '../../utils/Api.js'
-import { Config } from '../../utils/Config.js'
+// import { Config } from '../../utils/Config.js'
 
 const api = new Api()
 
 Page({
 
   data: {
-    Res: {},
+    Res: [],
     // 是否有收藏,默认没有显示默认页
-    is_Shoucang: false,
+    // is_Shoucang: false,
 
     // Config
-    quyuList: Config.quyu,
-    caixiList: Config.caixi,
+    // quyuList: Config.quyu,
+    // caixiList: Config.caixi,
     // 正在加载.
     loading: true
   },
@@ -31,11 +31,11 @@ Page({
     if (shoucanglist.length != 0) {
       // 转成字符串 （服务器只接受字符串shoucanglist.toString()）
       api.shoucanglistCanting({ list: shoucanglist.toString() }, res => {
-        console.log('aa', res)
+        console.log('aa', shoucanglist.toString())
         this.setData({ Res: res, loading: false })
       })
     } else {
-      this.setData({ is_Shoucang: true, loading: false })
+      this.setData({ loading: false })
     }
   },
 
@@ -70,7 +70,5 @@ Page({
     wx.navigateTo({ url: '/pages/canting/detail?id=' + id })
   },
 
-  // 返回
-  back() { wx.navigateBack({ delta: 1 }) },
 
 })

@@ -1,4 +1,4 @@
-<view>
+<view style="{{blur && 'filter: blur(1px);'}}">
 
   <!-- 卡劵信息 -->
   <view class='base1'>
@@ -22,7 +22,7 @@
         <!-- 使用期限 -->
         <view class=''>有效期 {{kajuanRes.qixian}}</view>
         <!-- 剩余数量 -->
-        <view class='kajuan-shengyushuliang'>剩余 {{kajuanRes.shengyushuliang}} 件</view>
+        <view class='kajuan-shengyushuliang'>剩余 {{kajuanRes.shengyushuliang}} 张</view>
       </view>
     </view>
   </view>
@@ -43,7 +43,50 @@
     </view>
   </view>
 
+</view>
 
+<!-- -----------分享按钮----------- -->
+<view class='juzhong'>
+  <view class='fenxiang' catchtap='fenxiang'>
+    <view class=''>分享给朋友</view>
+  </view>
+</view>
 
+<!-- -----------分享点击出现蒙层------------ -->
+<view wx:if="{{mask}}" class='mask' catchtap='fenxiang'>
+  <view class='mask-1' catchtap='fenxiang'>
+    <view>分享</view>
+    <view class='mask-2'>
+      <view catchtap='shengcheng'>
+        <view class="iconfont icon-xiazai" style='font-size:60rpx;text-align: center;'></view>
+        <view>生成分享海报</view>
+      </view>
 
+      <button class='mybutton' open-type="share">
+        <view class="iconfont icon-wechat" style='font-size:60rpx;text-align: center;'></view>
+        <view>转发给好友</view>
+      </button>
+
+    </view>
+  </view>
+</view>
+
+<!-- ---------------------生成海报------------------------- -->
+<view wx:if="{{canvas}}" class='canvas'>
+  <!-- 画布 -->
+  <canvas canvas-id="myCanvas" style="{{'width:'+width+'px;'+'height:'+screenHeight +'px;'}}">
+    <!-- 蒙层 -->
+    <cover-view class='cover'></cover-view>
+  </canvas>
+</view>
+
+<!-- 正在加载,请稍候... -->
+<view class='jiazai' wx:if="{{loading}}">
+  <view class="spinner">
+    <view class="rect1"></view>
+    <view class="rect2"></view>
+    <view class="rect3"></view>
+    <view class="rect4"></view>
+    <view class="rect5"></view>
+  </view>
 </view>

@@ -1,29 +1,22 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/ceshi/ceshi3",
     "pages/kajuan/kajuan",
-    "pages/ceshi/ceshi1",
-    "pages/ceshi/ceshi2",
-    "pages/ceshi/ceshi",
     "pages/canting/list",
     "pages/canting/detail",
     "pages/canting/create-liuyan",
     "pages/canting/shaixuan",
-    "pages/huati/detail",
-    "pages/huati/list",
     "pages/wode/list",
-    "pages/wode/huati",
     "pages/wode/shoucang",
     "pages/wode/liuyan",
     "pages/wode/guanyuwo",
     "pages/exception/exception"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#2c2c2c",
+    "navigationBarTextStyle": "white",
+    "backgroundTextStyle": "dark",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black",
     "onReachBottomDistance": 0
   },
   "tabBar": {
@@ -35,20 +28,20 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "/img/zhuye1.png",
-        "selectedIconPath": "/img/zhuye2.png"
+        "iconPath": "/img/zhuye0.png",
+        "selectedIconPath": "/img/zhuye1.png"
       },
       {
-        "pagePath": "pages/huati/list",
-        "text": "话题",
-        "iconPath": "/img/huati1.png",
-        "selectedIconPath": "/img/huati2.png"
+        "pagePath": "pages/canting/list",
+        "text": "列表",
+        "iconPath": "/img/liebiao0.png",
+        "selectedIconPath": "/img/liebiao1.png"
       },
       {
         "pagePath": "pages/wode/list",
         "text": "我的",
-        "iconPath": "/img/wode1.png",
-        "selectedIconPath": "/img/wode2.png"
+        "iconPath": "/img/wode0.png",
+        "selectedIconPath": "/img/wode1.png"
       }
     ]
   }

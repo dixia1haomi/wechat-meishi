@@ -72,6 +72,13 @@ class Base {
 
   // ----------------------------------------------------------授权------------------------------------------------------------
 
+
+
+
+  // -------------------------------------------------------------------------------------------------------------------------
+
+
+
   // --------授权用户信息-userinfo------
   authorize_userinfo(callBack) {
     console.log('base-授权用户信息')
@@ -92,28 +99,56 @@ class Base {
   }
 
   // -------- 授权地理位置 ---------
-  authorize_userLocation(callBack) {
-    console.log('base-授权地理位置')
-    wx.getSetting({
-      success: (res) => {
-        console.log('base-授权地理位置success', res)
-        if (!res.authSetting['scope.userLocation']) {
-          console.log('base-授权地理位置success-if', res)
-          wx.authorize({
-            scope: 'scope.userLocation',
-            success() { callBack && callBack(true) },
-            fail() {
-              wx.openSetting({ success: (res) => { if (res.authSetting['scope.userLocation']) { callBack && callBack(true) } } })
-            }
-          })
-        } else {
-          console.log('base-授权地理位置success-else', res)
-          callBack && callBack(true)
-        }
+  authorize_userLocation(callback) {
+    wx.authorize({
+      scope: 'scope.userLocation',
+      success(res) {
+        console.log('base-提前授权地理位置-success', res)
+        getApp().authSetting['scope.userLocation'] = true
+        callback && callback()
+        console.log(getApp().authSetting)
       },
-      fail: (err) => { console.log('base-授权地理位置进入fail', err) }
+      fail(err) {
+        console.log('base-authorize-userLocation-fail', err)
+        wx.openSetting({
+          success: (res) => {
+            console.log('base-openSetting授权地理位置-success', res)
+            if (res.authSetting['scope.userLocation']) {
+              getApp().authSetting['scope.userLocation'] = true
+              callback && callback()
+              console.log(getApp().authSetting)
+            }
+          }
+        })
+      }
     })
   }
+  // authorize_userLocation(callBack) {
+  //   console.log('base-授权地理位置')
+  //   wx.getSetting({
+  //     success: (res) => {
+  //       console.log('base-检查授权进入success', res)
+  //       if (!res.authSetting['scope.userLocation']) {
+  //         console.log('base-检查地理位置-未授权', res)
+  //         wx.authorize({
+  //           scope: 'scope.userLocation',
+  //           success(res) {
+  //             console.log('base-authorize-userLocation-success', res)
+  //             callBack && callBack(true)
+  //           },
+  //           fail(err) {
+  //             console.log('base-authorize-userLocation-fail', err)
+  //             wx.openSetting({ success: (res) => { if (res.authSetting['scope.userLocation']) { callBack && callBack(true) } } })
+  //           }
+  //         })
+  //       } else {
+  //         console.log('base-检查地理位置-已授权', res)
+  //         callBack && callBack(true)
+  //       }
+  //     },
+  //     fail: (err) => { console.log('base-授权地理位置进入fail', err) }
+  //   })
+  // }
 
   // --------授权保存到相册------
   authorize_writePhotosAlbum(callBack) {
@@ -135,7 +170,7 @@ class Base {
   }
 
   // ---------------------------------------------------------- 登陆 ------------------------------------------------------------
-  // 登陆(根据缓存是否有userInfo来判断是否登陆。tips：问题，官方登陆态？还没有研究，应该使用官方的登陆态)
+  // 登陆
   login(callback) {
     this.authorize_userinfo(back => {
       this.getUserInfo(info => {
@@ -153,6 +188,7 @@ class Base {
       })
     })
   }
+
   // -------------------------------------------------- getUserInfo -----------------------------------------------------
   getUserInfo(callback) {
     wx.getUserInfo({
@@ -177,25 +213,25 @@ class Base {
    */
 
   // 获取地理位置 -> 授权 -> 成功后存入全局（app.js-data）
-  zuobiao(callback) {
-    this.authorize_userLocation(res => {
-      if (res) {
-        wx.getLocation({
-          type: 'gcj02',
-          success: (res) => {
-            console.log('base-zuobiao-获取用户坐标', res)
-            const app = getApp()
-            console.log('app', app)
-            app.appData.longitude = res.longitude
-            app.appData.latitude = res.latitude
-            app.appData.userLocation = true
-            callback && callback()
-          },
-          fail: (err) => { console.log('base-zuobiao-获取用户坐标进入fail', err) }
-        })
-      }
-    })
-  }
+  // zuobiao(callback) {
+  //   this.authorize_userLocation(res => {
+  //     if (res) {
+  //       wx.getLocation({
+  //         type: 'gcj02',
+  //         success: (res) => {
+  //           console.log('base-zuobiao-获取用户坐标', res)
+  //           const app = getApp()
+  //           console.log('app', app)
+  //           app.appData.userLocation = true
+  //           app.appData.longitude = res.longitude
+  //           app.appData.latitude = res.latitude
+  //           callback && callback()
+  //         },
+  //         fail: (err) => { console.log('base-zuobiao-获取用户坐标进入fail', err) }
+  //       })
+  //     }
+  //   })
+  // }
 
 
 

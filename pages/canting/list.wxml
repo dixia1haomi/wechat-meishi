@@ -1,8 +1,9 @@
 <!-- -------------------------卡片展示----------------------------- -->
-<block wx:if="{{showList}}">
+<block>
   <view class='body'>
 
-    <swiper class="body-1" duration="150" bindchange="swiperChange" current="{{current - 1}}" circular>
+    <!-- skip-hidden-item-layout,是否跳过未显示的滑块布局，设为 true 可优化复杂情况下的滑动性能，但会丢失隐藏状态滑块的布局信息 -->
+    <swiper display-multiple-items='1' skip-hidden-item-layout class="body-1" duration="300" bindchange="swiperChange" current="{{current - 1}}" circular>
       <block wx:for="{{Res}}" wx:key="">
         <swiper-item class="swiper-item">
           <view class="swiper-item-view" catchtap="go_Detail" id="{{item.id}}">
@@ -37,9 +38,9 @@
 
               <!-- 标签 -->
               <view class="item-view-2">
-                <text class="biaoqian">{{quyuList[item.quyu-1].name}}</text>
-                <text class="biaoqian">{{caixiList[item.caixi-1].name}}</text>
-                <text class="biaoqian">{{changjingList[item.changjing-1].name}}</text>
+                <text class="biaoqian">{{item.quyu}}</text>
+                <!-- <text class="biaoqian">{{item.caixi-1].name}}</text> -->
+                <!-- <text class="biaoqian">{{changjingList[item.changjing-1].name}}</text> -->
                 <text class="biaoqian">{{item.biaoqian}}</text>
               </view>
             </view>
@@ -52,41 +53,16 @@
     <view class='body-2'>
       <!-- 当前页/总数 -->
       <view class="view-f">
-        <text class='current'>{{current}}</text> / {{ResLength}}
+        <text class='current'>{{current}}</text> / {{Res.length}}
       </view>
       <!-- 筛选更多/列表展示 -->
       <view class="foot">
-        <text class="iconfont icon-chazhao foot-item1" catchtap='go_Shaixuan'>筛选更多</text>
-        <text class="iconfont icon-liebiao foot-item2" catchtap='showListTap'>列表展示</text>
+        <!-- <text class="iconfont icon-chazhao foot-item1" catchtap='go_Shaixuan'>筛选</text> -->
       </view>
     </view>
   </view>
 </block>
 
-<!-- -------------------------------列表展示------------------------------- -->
-<block wx:else>
-
-  <view class='list-title'>
-    <text class="iconfont icon-chazhao list-title1" catchtap='go_Shaixuan'>筛选更多</text>
-    <text class="iconfont icon-liebiao list-title2" catchtap='showListTap'>卡片展示</text>
-  </view>
-
-  <view class='list-body'>
-    <block wx:for="{{Res}}" wx:key="">
-      <view class='cell' catchtap='go_Detail' id="{{item.id}}">
-        <image class='list-img' src='{{item.img}}' lazy-load='true'></image>
-
-        <view class='list-detail'>
-          <!-- 名字 -->
-          <view class='font36'>{{item.name}}</view>
-          <!-- 区域 | 距离 | 星级 -->
-          <view class='list-detail-1'>{{quyuList[item.quyu-1].name}} | {{caixiList[item.caixi-1].name}} | 点赞:{{item.zan}}</view>
-          <view class='list-detail-renjun'>{{item.renjun}}</view>
-        </view>
-      </view>
-    </block>
-  </view>
-</block>
 
 
 <!-- 正在加载,请稍候... -->

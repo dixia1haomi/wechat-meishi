@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "餐厅列表"
+  "navigationBarTitleText": "餐厅列表",
+  "enablePullDownRefresh": true
 }

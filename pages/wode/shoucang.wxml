@@ -1,29 +1,3 @@
-<!-- **复用列表展示的样式 -->
-<!-- 没有收藏 -->
-<view wx:if="{{is_Shoucang}}">
-  <view class='noshoucang'>你还没有收藏过餐厅</view>
-  <button catchtap='back'>返回</button>
-</view>
-
-<view wx:else>
-  <view class='list-body'>
-    <block wx:for="{{Res}}" wx:key="">
-      <view class='cell' catchtap='go_Detail' id="{{item.id}}">
-        <image class='list-img' src='{{item.img}}' lazy-load='true'></image>
-
-        <view class='list-detail'>
-          <!-- 名字 -->
-          <view class='font36'>{{item.name}}</view>
-          <!-- 区域 | 距离 | 星级 -->
-          <view class='list-detail-1'>{{quyuList[item.quyu].name}} | {{caixiList[item.caixi].name}} | 点赞:{{item.zan}}</view>
-          <view class='list-detail-renjun'>{{item.renjun}}</view>
-        </view>
-      </view>
-    </block>
-  </view>
-</view>
-
-
 <!-- 正在加载,请稍候... -->
 <view class='jiazai' wx:if="{{loading}}">
   <view class="spinner">
@@ -33,4 +7,28 @@
     <view class="rect4"></view>
     <view class="rect5"></view>
   </view>
+</view>
+
+<view wx:else>
+
+  <view class='nodata' wx:if="{{Res.length == 0}}">
+    <view>----还没收藏过餐厅----</view>
+  </view>
+
+  <view class='list-body'>
+    <block wx:for="{{Res}}" wx:key="">
+      <view class='cell' catchtap='go_Detail' id="{{item.id}}">
+        <image class='list-img' src='{{item.img}}' lazy-load='true'></image>
+
+        <view class='list-detail'>
+          <!-- 名字 -->
+          <view class='font36'>{{item.name}}</view>
+          <!-- 区域 | 距离 | 星级 -->
+          <view class='list-detail-1'>{{item.quyu}} | {{item.biaoqian}} | 点赞:{{item.zan}}</view>
+          <view class='list-detail-renjun'>{{item.renjun}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
 </view>

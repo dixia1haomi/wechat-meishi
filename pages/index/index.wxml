@@ -44,21 +44,23 @@
   </view>
  </view>  -->
 
+
 <view>
   <!-- 今日推荐 -->
   <view class='base1'>
-    <view class='title'>今日推荐</view>
+    <view class='fuli'># 推荐 </view>
 
     <view catchtap='_go_canting_detail' id='{{Res.id}}'>
       <image class='base1-img' src='{{Res.img}}'></image>
-      <view class='name'>{{Res.name}}</view>
+      <!-- <image class='base1-img' src='/img/3.jpg'></image> -->
       <view class='miaoshu'># {{Res.miaoshu}} #</view>
+      <view class='name'>{{Res.name}}</view>
     </view>
   </view>
 
   <!-- 今日福利 -->
   <view class='base2'>
-    <view class='title'>今日福利</view>
+    <view class='fuli'># 福利 </view>
 
     <block wx:for="{{kajuanRes}}" wx:key="">
 
@@ -79,10 +81,14 @@
   </view>
 
   <!-- 查看所有餐厅 -->
-  <view class='base3' catchtap='_go_canting_list'>
+  <!-- <view class='base3' catchtap='_go_canting_list'>
     <view class='base3-text'>查看全部餐厅列表</view>
     <view class='youjiantou7'></view>
+  </view> -->
+  <view class='liebiao'>
+    <text catchtap='_go_canting_list'># 列表 ></text>
   </view>
+
   <!-- 页脚 -->
   <view class='foot'>————— 袋鼠优生活 —————</view>
 

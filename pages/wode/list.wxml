@@ -18,10 +18,10 @@
       <view class='youjiantou7'></view>
     </view>
 
-    <view class='myhuati' catchtap='go_huati'>
+    <!-- <view class='myhuati' catchtap='go_huati'>
       <view>我的话题</view>
       <view class='youjiantou7'></view>
-    </view>
+    </view> -->
 
 
     <view class='myhuati' catchtap='go_liuyan'>
