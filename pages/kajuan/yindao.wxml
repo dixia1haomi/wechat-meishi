@@ -1,0 +1,14 @@
+<view>
+  <view class='tip'>回到微信-我的页面</view>
+
+  <view class='tip'>进入卡包</view>
+
+  <image class='img' src='/img/yindao0.png'></image>
+
+  <view class='tip'>进入我的票劵查看已领取的优惠券</view>
+
+  <view class='tip'>到店出示店员核销</view>
+
+  <image class='img' src='/img/yindao1.png'></image>
+
+</view>

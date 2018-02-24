@@ -45,11 +45,6 @@ Page({
 
 
 
-  // 我的话题
-  // go_huati() {
-  //   // 是否登陆过 ？ 跳转到我的话题页 ： 调用登陆
-  //   app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/huati' }) : this._load()
-  // },
 
   // 我的收藏
   go_shoucang() {

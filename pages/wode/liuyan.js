@@ -20,10 +20,7 @@ Page({
 
 
   onLoad: function (op) {
-    // console.log('liuyan', JSON.parse(op.op))
-    // setTimeout(() => {
       this._load()
-    // }, 3000)
   },
 
   // 我的留言（分页20条）

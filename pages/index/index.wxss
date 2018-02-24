@@ -72,14 +72,18 @@
   background-color: #fff;
   position: relative;
   /* 加载固定高度 */
-  max-height: 500rpx;
+  max-height: 422rpx;
   overflow-y: hidden;
+}
+.swiper{
+  height: 422rpx;
+  width: 750rpx;
 }
 
 .base1-img {
   /* 这里没有按比例,凭感觉 */
-  height: 500rpx;
-  width: 750rpx;
+  height: 100%;
+  width: 100%;
 }
 
 .base1-text {
@@ -90,8 +94,8 @@
 
 .base1 .name {
   text-align: center;
-  font-size: 36rpx;
-  font-weight: 700;
+   font-size: 34rpx; 
+  /* font-weight: 700; */
   color: white;
   position: absolute;
   bottom: 50rpx;
@@ -100,26 +104,25 @@
 
 .base1 .miaoshu {
   text-align: center;
-  font-size: 40rpx;
-  font-weight: 600;
+  /* font-size: 40rpx; */
+  font-weight: 700;
   color: white;
   position: absolute;
-  bottom: 160rpx;
+  bottom: 110rpx;
   width: 100%;
 }
 
 .base2 {
   background-color: #fff;
-  /* margin-top: 40rpx; */
-  /* 加载固定高度最小一条数据的高度 */
+  /* margin-top: 40rpx; *//* 加载固定高度最小一条数据的高度 */
   min-height: 470rpx;
 }
 
 .fuli {
-  /* text-align: center; */
+  text-align: center;
   padding: 20rpx 0 20rpx 20rpx;
-  font-size: 40rpx;
-  font-weight: 600;
+   font-size: 34rpx; 
+  font-weight: 700;
   border-bottom: 1rpx solid #e5e5e5;
 }
 
@@ -143,8 +146,8 @@
 }
 
 .item1 .shengyushuliang {
-  background-color: tomato;
-  /* background-color: yellow; */
+  background-color: #f2cd20;
+  /* background-color: red;  *//* color: white; */
   text-align: center;
   font-size: 30rpx;
 }
@@ -159,11 +162,12 @@
 
 .item2-title {
   font-size: 36rpx;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .item .tiaojian {
-  color: red;
+  /* color: red; */
+  /* font-weight: 700; */
 }
 
 .base3 {
@@ -195,7 +199,37 @@
 .liebiao {
   text-align: center;
   /* padding-left: 20rpx; */
-  font-size: 40rpx;
-  font-weight: 800;
+   font-size: 34rpx; 
+  font-weight: 700;
   margin: 80rpx 0;
+}
+
+/* 客服会话 */
+
+.contact {
+  background-color: red;
+  /* background-color: #2c2c2c;  */
+  color: white;
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  padding: 16rpx 20rpx;
+}
+
+.contact-item1 {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 10rpx;
+}
+
+.contact-item2 {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 74rpx;
 }

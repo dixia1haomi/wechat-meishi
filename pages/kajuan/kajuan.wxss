@@ -13,51 +13,52 @@
 
 .kajuan {
   background-color: #fff;
-  font-size: 30rpx;
+  /* font-size: 30rpx; */
   padding: 20rpx;
   /* 加载固定高度 */
-  min-height: 250rpx;
+  min-height: 260rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
+.kajuan1 {
+  display: flex;
+  justify-content: space-between;
+  height: 62rpx;
+}
+
 .kajuan-miaoshu {
-  /* margin-bottom: 10rpx; */
-  height: 40rpx;
+  height: 42rpx;
 }
 
 .kajuan-shengyushuliang {
-  /* margin-bottom: 10rpx; */
 }
 
 .kajuan-tiaojian {
-  /* margin-bottom: 10rpx; */
-  height: 40rpx;
+  height: 42rpx;
 }
 
 .kajuan-qixian {
   /* font-size: 28rpx; */
   display: flex;
   justify-content: space-between;
-  height: 40rpx;
-}
-
-.kajuan1 {
-  display: flex;
-  justify-content: space-between;
-  height: 60rpx;
+  height: 42rpx;
 }
 
 .kajuan1-title {
   font-size: 36rpx;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .kajuan1-lingqu {
   padding: 10rpx 60rpx;
   background-color: tomato;
   border-radius: 10rpx;
+   font-weight: 700; 
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .kajuan1-lingwan {
@@ -70,7 +71,7 @@
 .base2 {
   background-color: #fff;
   margin-top: 20rpx;
-  font-size: 30rpx;
+  /* font-size: 30rpx; */
   padding: 20rpx;
   margin-bottom: 20rpx;
 }
@@ -78,7 +79,15 @@
 .base2-title {
   margin-bottom: 20rpx;
   color: tomato;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+.base2-one {
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10rpx;
 }
 
 /* 分享 */

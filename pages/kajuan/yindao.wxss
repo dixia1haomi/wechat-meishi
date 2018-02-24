@@ -1,0 +1,12 @@
+.tip{
+  text-align: center;
+  margin: 50rpx;
+  font-weight: 700;
+}
+
+.img {
+  /* height: 642rpx; *//* width: 375rpx; */
+  width: 100%;
+  height: 1300rpx;
+  /* color: yellow */
+}

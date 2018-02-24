@@ -29,7 +29,7 @@
         <view catchtap='_go_Map'>地址:{{Res.address}}</view>
 
         <view wx:if="{{map.distance}}">{{map.distance}}</view>
-        <view wx:else catchtap='_location'>计算距离</view>
+        <!-- <view wx:else catchtap='_location'>计算距离</view> -->
       </view>
 
       <view class='base2-4'>电话:{{Res.phone}}</view>
@@ -116,25 +116,6 @@
 
 </view>
 
-
-<!-- -----------分享点击出现蒙层------------ -->
-<!-- <view wx:if="{{mask}}" class='mask' catchtap='fenxiang'>
-  <view class='mask-1' catchtap='fenxiang'>
-    <view>分享</view>
-    <view class='mask-2'>
-      <view catchtap='shengcheng'>
-        <view class="iconfont icon-xiazai" style='font-size:60rpx;text-align: center;'></view>
-        <view>生成分享海报</view>
-      </view>
-
-      <button class='mybutton' open-type="share">
-        <view class="iconfont icon-wechat" style='font-size:60rpx;text-align: center;'></view>
-        <view>转发给好友</view>
-      </button>
-
-    </view>
-  </view>
-</view> -->
 
 
 

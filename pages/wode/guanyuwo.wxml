@@ -1,8 +1,15 @@
 <view class='base'>
   <!-- <view>袋鼠美食</view> -->
-  <view>曲靖美食精选</view>
+  <view class='img-view'>
+    <image class='img' src='https://mmbiz.qpic.cn/mmbiz_png/7nqejTwzfIeIF1uI2J3Fj6rTpGJmvzS6auUZJJEGd6Kt8D2vUhFDESpERfrenQgjhQX2qxEhBhHiabiaFcKBXvTQ/0?wx_fmt=png'></image>
+  </view>
 
-  <!-- 客服 -->
-  <contact-button type="default-dark" size="30" session-from="weapp"></contact-button>
+  <view class='text'>
+  为分享美食而生
+    <contact-button type="default-dark" size="25"></contact-button>
+  </view>
+
+  <view class='food'>by 袋鼠优生活</view>
+
 
 </view>

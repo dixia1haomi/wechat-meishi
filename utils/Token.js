@@ -12,12 +12,12 @@ class Token {
           method: 'POST',
           data: { code: res.code },
           success(res) {
-            if (res.statusCode === 200) {
-              wx.setStorageSync('token_key', res.data.token_key)
+            if (res.statusCode === 200 && res.data.errorCode == 0) {
+              wx.setStorageSync('token_key', res.data.data)
               callback && callback(res)
             } else {
               console.log('请求Code不等于200,Token类.gettoken', res)
-              wx.navigateTo({ url: '/pages/exception/exception?code='+'token' })
+              wx.navigateTo({ url: '/pages/exception/exception' })
             }
           },
           fail: (err) => {

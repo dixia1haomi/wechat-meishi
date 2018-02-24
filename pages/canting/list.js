@@ -9,18 +9,10 @@ const api = new Api()
 Page({
 
   data: {
-    // Config
-    // quyuList: Config.quyu,
-    // caixiList: Config.caixi,
-    // changjingList: Config.changjing,
-    // xingjiList: Config.xingji,
+
 
     // Res
     Res: [],
-    // Res的长度
-    // ResLength: 1,
-    // 展示方式：卡片，列表(默认卡片)
-    // showList: true,
     // 当前页
     current: 1,
     // 筛选页选择的参数

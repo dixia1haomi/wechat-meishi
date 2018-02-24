@@ -55,6 +55,7 @@
 
 .base2-1-1-name {
   font-size: 36rpx;
+  font-weight: 700;
 }
 
 .base2-1-1-renjun {
@@ -101,8 +102,8 @@
 .base2-5-biaoqian {
   border-radius: 6rpx;
   margin-right: 20rpx;
-  background-color: #8a8a8a;
-  color: #fff;
+  background-color: #f2cd20;
+  /* color: #fff; */
   min-height: 42rpx;
   min-width: 84rpx;
   /* text-align: center; */
@@ -234,7 +235,7 @@
 }
 
 .xuanzhong {
-  color: #ea9518;
+  color: #f2cd20;
   font-size: 42rpx;
 }
 

@@ -44,16 +44,4 @@
   </view>
 </view>
 
-<!-- 完全没有数据的情况会在请求时返回errorCode不等于0时跳转到错误页 -->
-
-
-
-<!-- <view wx:if="{{noData}}" class='nodata'>----没有更多了----</view> -->
-<!-- </view> -->
-
-<!-- 没有参与过话题 -->
-<!-- <view wx:else> -->
-<!-- <view class='noliuyan'>你还没有参与过留言..</view> -->
-<!-- <button catchtap='back'>返回</button> -->
-<!-- </view> -->
 

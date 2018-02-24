@@ -20,7 +20,9 @@ Page({
 
   _load() {
     // 获取推荐餐厅
+
     this._getCanting_Top()
+
     // 获取卡劵列表
     this._kajuan_List()
   },
@@ -30,7 +32,7 @@ Page({
   _getCanting_Top() {
     api.listCanting({ top: 1 }, res => {
       console.log('获取推荐餐厅', res)
-      this.setData({ Res: res[0], loading: false })
+      this.setData({ Res: res, loading: false })
     })
   },
 
@@ -41,16 +43,6 @@ Page({
       this.setData({ kajuanRes: res, loading: false })
     })
   },
-
-
-
-  // ----------------------
-
-  // go_ceshi() {
-  //   wx.navigateTo({ url: '/pages/ceshi/ceshi3' })
-  // },
-
-  // --------------------
 
 
   // 查看餐厅列表

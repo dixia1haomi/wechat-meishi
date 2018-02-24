@@ -31,9 +31,10 @@
   <!-- 说明 -->
   <view class='base2'>
     <view class='base2-title'>使用说明</view>
-    <view style='margin-bottom: 20rpx;'>
-      <text>1. 本劵为微信卡劵,领取后可回到微信卡包中查看</text>
-      <view>我 -> 卡包 -> 我的票劵</view>
+    <view class='base2-one' catchtap='_go_kajuanyindao'>
+      <text style=''>1. 本劵为微信卡劵,领取后可回微信卡包中查看</text>
+      <view class='youjiantou7'></view>
+      <!-- <view>我 -> 卡包 -> 我的票劵</view> -->
     </view>
     <view style='margin-bottom: 20rpx;'>
       <text>2. 点击头图可查看餐厅详情</text>

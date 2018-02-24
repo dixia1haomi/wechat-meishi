@@ -156,7 +156,7 @@ App({
   getToken(callback) {
     token.getToken(back => {
       console.log('获取token成功并缓存', back)
-      wx.setStorageSync('token_key', back.data.token_key)
+      wx.setStorageSync('token_key', back.data.data)
       callback && callback(true)
     })
   },

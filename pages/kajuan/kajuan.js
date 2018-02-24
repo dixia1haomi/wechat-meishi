@@ -78,6 +78,10 @@ Page({
     this.setData({ mask: !this.data.mask, blur: !this.data.blur })
   },
 
+  // 去引导页
+  _go_kajuanyindao() {
+    wx.navigateTo({ url: '/pages/kajuan/yindao' })
+  },
 
 
   // ----------------------------------------------- 生成海报 -------------------------------------------------------
@@ -115,7 +119,7 @@ Page({
             ctx.setFillStyle('Black') // 黑色
             // XXXX 邀请你领取
             // ctx.setFillStyle('tomato') 
-            ctx.fillText('# '+app.appData.userinfo.nick_name + ' 邀您领取', 10, canvHeight + 30)
+            ctx.fillText('# ' + app.appData.userinfo.nick_name + ' 邀您领取', 10, canvHeight + 30)
             // XXXX餐厅XX劵
             ctx.setFontSize(25)
             ctx.setFillStyle('red') // 红色
@@ -170,24 +174,24 @@ Page({
             console.log('保存失败', err)
             // 可能有没授权（*引导授权）
             if (err.errMsg != 'saveImageToPhotosAlbum:fail cancel') {
-            console.log('未授权保存到系统相册')
-            base.authorize_writePhotosAlbum(back => {
-              console.log('c', back)
-              // 已授权，重新调用保存到系统相册
-              wx.saveImageToPhotosAlbum({
-                filePath: res.tempFilePath,
-                success: (res) => {
-                  console.log('保存成功', res)
-                  wx.showModal({
-                    title: '海报已保存到系统相册',
-                    content: '快去分享给朋友,叫伙伴们来围观吧',
-                    showCancel: false,       // 不显示取消按钮
-                    confirmText: '我知道了'   // 确定按钮文字（4个）
-                  })
-                }
-              })
+              console.log('未授权保存到系统相册')
+              base.authorize_writePhotosAlbum(back => {
+                console.log('c', back)
+                // 已授权，重新调用保存到系统相册
+                wx.saveImageToPhotosAlbum({
+                  filePath: res.tempFilePath,
+                  success: (res) => {
+                    console.log('保存成功', res)
+                    wx.showModal({
+                      title: '海报已保存到系统相册',
+                      content: '快去分享给朋友,叫伙伴们来围观吧',
+                      showCancel: false,       // 不显示取消按钮
+                      confirmText: '我知道了'   // 确定按钮文字（4个）
+                    })
+                  }
+                })
 
-            })
+              })
             }
           }
         })

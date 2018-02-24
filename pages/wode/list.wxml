@@ -8,7 +8,6 @@
     <view style='text-align: center;'>{{userinfo.nick_name}}</view>
     <view wx:if="{{loginState == false}}" catchtap='_load' style='text-align: center;'>登陆</view>
 
-    <!-- <image class='beijingtu' src='/img/wode-beijing/bolang.gif'></image> -->
   </view>
 
   <view class='base2'>
@@ -18,10 +17,7 @@
       <view class='youjiantou7'></view>
     </view>
 
-    <!-- <view class='myhuati' catchtap='go_huati'>
-      <view>我的话题</view>
-      <view class='youjiantou7'></view>
-    </view> -->
+ 
 
 
     <view class='myhuati' catchtap='go_liuyan'>
@@ -34,12 +30,11 @@
       <view class='youjiantou7'></view>
     </view>
 
+
   </view>
 
   <view class='base3'>
-    <view class='base3-1'>————— 曲靖美食推荐 —————</view>
+    <view class='base3-1'>————— 袋鼠优生活 —————</view>
   </view>
 
-  <!-- <button open-type="contact">客服</button>
-  <contact-button type="default-light" size="20" session-from="weapp"></contact-button> -->
 </view>

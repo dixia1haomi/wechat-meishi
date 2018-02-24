@@ -1,66 +1,28 @@
-<!-- <view wx:if="{{!loading}}">
-
-  <view class='top' catchtap='topTap'>
-    <view class='title'>今日推荐</view>
-    <view>
-      <image src='{{Res.img}}' class='img'></image>
-      <view class='body'>
-        <view style='font-size:34rpx;'>{{Res.miaoshu}}</view>
-        <view class='name'>
-          <text class="font28">{{Res.name}}</text>
-          <view class='xin'>
-            <text style='font-size:26rpx;margin-right:6rpx;'>{{Res.zan}}</text>
-            <text class="iconfont icon-xin1" style='color: #ea9518;font-size:36rpx;'></text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view> -->
-
-<!-- <view class='go' catchtap='go'>
-    <view style='font-size:36rpx;'>查看全部餐厅列表</view>
-    <view class='youjiantou7 go-jiantou'></view>
-  </view>  -->
-
-<!-- <button catchtap='go_ceshi'>点这个进卡劵测试页</button> -->
-
-<!-- <view class='youjiantou7'></view>   -->
-<!-- <view class='buttom'> -->
-<!-- <zy-hengxian text="曲靖美食推荐"></zy-hengxian> -->
-<!-- </view> -->
-<!-- <view class='buttom'>
-    <view class='buttom1'>————— 曲靖美食推荐 —————</view>
-  </view>
-</view> -->
-
-<!-- <view wx:else class='jiazai'>  -->
-<!-- 正在加载,请稍候... -->
-<!-- <view class="spinner">
-    <view class="rect1"></view>
-    <view class="rect2"></view>
-    <view class="rect3"></view>
-    <view class="rect4"></view>
-    <view class="rect5"></view>
-  </view>
- </view>  -->
 
 
 <view>
   <!-- 今日推荐 -->
   <view class='base1'>
-    <view class='fuli'># 推荐 </view>
+    <!-- <view class='fuli'># 推荐 </view> -->
 
-    <view catchtap='_go_canting_detail' id='{{Res.id}}'>
-      <image class='base1-img' src='{{Res.img}}'></image>
-      <!-- <image class='base1-img' src='/img/3.jpg'></image> -->
-      <view class='miaoshu'># {{Res.miaoshu}} #</view>
-      <view class='name'>{{Res.name}}</view>
+    <view >
+
+      <swiper class='swiper' indicator-dots duration="1000" circular>
+        <block wx:for="{{Res}}" wx:key="">
+          <swiper-item catchtap='_go_canting_detail' id='{{item.id}}'>
+            <image class='base1-img' src='{{item.img}}'></image>
+            <view class='miaoshu'># {{item.miaoshu}} #</view>
+            <view class='name'>{{item.name}}</view>
+          </swiper-item>
+        </block>
+      </swiper>
+
     </view>
   </view>
 
   <!-- 今日福利 -->
   <view class='base2'>
-    <view class='fuli'># 福利 </view>
+    <view class='fuli'>福利</view>
 
     <block wx:for="{{kajuanRes}}" wx:key="">
 
@@ -87,6 +49,11 @@
   </view> -->
   <view class='liebiao'>
     <text catchtap='_go_canting_list'># 列表 ></text>
+  </view>
+
+  <view class='contact'>更多福利
+    <contact-button class='contact-item1' size='27'></contact-button>
+    <contact-button class='contact-item2' size='27'></contact-button>
   </view>
 
   <!-- 页脚 -->
