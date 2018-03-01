@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/ceshi/1",
     "pages/kajuan/kajuan",
     "pages/kajuan/yindao",
     "pages/canting/list",

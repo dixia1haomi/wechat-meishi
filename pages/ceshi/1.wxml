@@ -1,0 +1,4 @@
+<!--pages/ceshi/1.wxml-->
+<text>pages/ceshi/1.wxml</text>
+
+<button catchtap='denglu'>登陆</button>

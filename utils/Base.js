@@ -81,20 +81,19 @@ class Base {
 
   // --------授权用户信息-userinfo------
   authorize_userinfo(callBack) {
-    console.log('base-授权用户信息')
     wx.getSetting({
       success: (res) => {
         if (!res.authSetting['scope.userInfo']) {
-          wx.authorize({
-            scope: 'scope.userInfo',
-            success() { callBack && callBack(true) },
-            fail() {
-              wx.openSetting({ success: (res) => { if (res.authSetting['scope.userInfo']) { callBack && callBack(true) } } })
-            }
-          })
-        } else { callBack && callBack(true) }
+          console.log('base-没有授权用户信息')
+          wx.openSetting({ success: (res) => { if (res.authSetting['scope.userInfo']) { callBack && callBack(true) } } })
+        } else {
+          callBack && callBack(true)
+        }
       },
-      fail: (err) => { console.log('base-授权用户信息进入fail', err) }
+      fail: (err) => {
+        console.log('base-授权用户信息进入fail', err)
+        wx.showToast({ title: '微信授权失败' })
+      }
     })
   }
 

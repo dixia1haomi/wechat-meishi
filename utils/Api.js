@@ -5,6 +5,37 @@ class Api extends Base {
     super()
   }
 
+
+  // *临时测试------ token ------------
+  // 查询优惠商家列表 || 失败返回1,成功返回0
+  newLogin(data, callback) {
+    this.request({
+      url: 'token/gettoken', data: data, sCallback: (res) => {
+        if (res.errorCode == 0) {
+          callback && callback(res.data)
+        } else {
+          // *登陆失败，重新登陆
+          wx.navigateTo({ url: '/pages/exception/exception' })
+        }
+      }
+    })
+  }
+
+  // 检查token是否失效 
+  checkToken(data, callback) {
+    this.request({
+      url: 'token/verify', data: data, sCallback: (res) => {
+        console.log('api.checkToken',res)
+        if (res.errorCode == 0) {
+          callback && callback(res.data)
+        } else {
+          wx.navigateTo({ url: '/pages/exception/exception' })
+        }
+      }
+    })
+  }
+
+
   // ------------------------------------------------- 卡卷接口测试 ---------------------------------------------------
 
 
@@ -171,7 +202,7 @@ class Api extends Base {
   myLiuyan(data, callback) {
     this.request({
       url: 'user/myliuyan', data: data, sCallback: (res) => {
-        console.log('myLiuyan',res)
+        console.log('myLiuyan', res)
         if (res.errorCode == 0) {
           callback && callback(res.data)
         } else {
