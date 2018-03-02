@@ -15,7 +15,7 @@
     "pages/exception/exception"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#f2cd20",
+    "navigationBarBackgroundColor": "white",
     "navigationBarTextStyle": "black",
     "backgroundTextStyle": "dark",
     "navigationBarTitleText": "WeChat",

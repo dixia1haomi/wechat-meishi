@@ -98,30 +98,23 @@ class Base {
   }
 
   // -------- 授权地理位置 ---------
-  authorize_userLocation(callback) {
-    wx.authorize({
-      scope: 'scope.userLocation',
-      success(res) {
-        console.log('base-提前授权地理位置-success', res)
-        getApp().authSetting['scope.userLocation'] = true
-        callback && callback()
-        console.log(getApp().authSetting)
+  authorize_userLocation(callBack) {
+    wx.getSetting({
+      success: (res) => {
+        if (!res.authSetting['scope.userLocation']) {
+          console.log('base-没有授权地理位置')
+          wx.openSetting({ success: (res) => { if (res.authSetting['scope.userLocation']) { callBack && callBack(true) } } })
+        } else {
+          callBack && callBack(true)
+        }
       },
-      fail(err) {
-        console.log('base-authorize-userLocation-fail', err)
-        wx.openSetting({
-          success: (res) => {
-            console.log('base-openSetting授权地理位置-success', res)
-            if (res.authSetting['scope.userLocation']) {
-              getApp().authSetting['scope.userLocation'] = true
-              callback && callback()
-              console.log(getApp().authSetting)
-            }
-          }
-        })
+      fail: (err) => {
+        console.log('base-授权地理位置进入fail', err)
+        wx.showToast({ title: '微信授权失败' })
       }
     })
   }
+
   // authorize_userLocation(callBack) {
   //   console.log('base-授权地理位置')
   //   wx.getSetting({
@@ -170,23 +163,23 @@ class Base {
 
   // ---------------------------------------------------------- 登陆 ------------------------------------------------------------
   // 登陆
-  login(callback) {
-    this.authorize_userinfo(back => {
-      this.getUserInfo(info => {
-        // 写入用户信息(login)
-        this.request({
-          url: 'user/login', data: info, sCallback: (res) => {
-            console.log('写入用户信息', res)
-            if (res.errorCode == 0) {
-              // 再次调用app.js的检查登陆(查userinfo表如果有则返回信息并设置全局，没有不会返回)
-              getApp().setLoginState()
-              callback && callback(true)
-            }
-          }
-        })
-      })
-    })
-  }
+  // login(callback) {
+  //   this.authorize_userinfo(back => {
+  //     this.getUserInfo(info => {
+  //       // 写入用户信息(login)
+  //       this.request({
+  //         url: 'user/login', data: info, sCallback: (res) => {
+  //           console.log('写入用户信息', res)
+  //           if (res.errorCode == 0) {
+  //             // 再次调用app.js的检查登陆(查userinfo表如果有则返回信息并设置全局，没有不会返回)
+  //             getApp().setLoginState()
+  //             callback && callback(true)
+  //           }
+  //         }
+  //       })
+  //     })
+  //   })
+  // }
 
   // -------------------------------------------------- getUserInfo -----------------------------------------------------
   getUserInfo(callback) {
@@ -237,3 +230,15 @@ class Base {
 }
 
 export { Base }
+
+
+
+  // 用户授权
+  // scope.userInfo	wx.getUserInfo	用户信息
+  // scope.userLocation	wx.getLocation, wx.chooseLocation	地理位置
+  // scope.address	wx.chooseAddress	通讯地址
+  // scope.invoiceTitle	wx.chooseInvoiceTitle	发票抬头
+  // scope.werun	wx.getWeRunData	微信运动步数
+  // scope.record	wx.startRecord	录音功能
+  // scope.writePhotosAlbum	wx.saveImageToPhotosAlbum, wx.saveVideoToPhotosAlbum	保存到相册
+  // scope.camera		摄像头

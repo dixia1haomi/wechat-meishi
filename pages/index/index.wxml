@@ -1,18 +1,22 @@
-
-
 <view>
   <!-- 今日推荐 -->
   <view class='base1'>
     <!-- <view class='fuli'># 推荐 </view> -->
 
-    <view >
+    <view>
 
-      <swiper class='swiper' indicator-dots duration="1000" circular>
+      <swiper class='swiper' indicator-dots indicator-color="#fff" duration="800" circular>
         <block wx:for="{{Res}}" wx:key="">
           <swiper-item catchtap='_go_canting_detail' id='{{item.id}}'>
+            <!-- 头图 -->
             <image class='base1-img' src='{{item.img}}'></image>
-            <view class='miaoshu'># {{item.miaoshu}} #</view>
-            <view class='name'>{{item.name}}</view>
+            <!-- 描述 -->
+            <view class='miaoshu-base'>
+              <view class='miaoshu-block'></view>
+              <view class='miaoshu'># {{item.miaoshu}} #</view>
+            </view>
+            <!-- 餐厅名 -->
+            <!-- <view class='name'>{{item.name}}</view> -->
           </swiper-item>
         </block>
       </swiper>

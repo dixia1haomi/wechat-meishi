@@ -8,12 +8,11 @@ const api = new Api()
 App({
 
   appData: {
-    // 地理位置是否授权标识位
-    // userLocation: false,
+    LoginState: false,   // 登陆状态
+    LocationState: false,// 地理位置是否授权标识位
     longitude: null,     // 用户经度
     latitude: null,      // 用户纬度
-    LoginState: false,   // 登陆状态
-    userinfo: null,      // 用户信息
+    // userinfo: null,      // 用户信息
     path: false,         // 是否来自餐厅详情页
   },
 
@@ -109,18 +108,21 @@ App({
   //     fail: (err) => { console.log('app.js-_check_userLocation-检查地理位置进入fail', err) }
   //   })
   // },
-  // 获取地理位置
-  // getLocation(callback) {
-  //   wx.getLocation({
-  //     type: 'wgs84',
-  //     success: (res) => {
-  //       console.log('app-获取地理位置', res)
-  //       this.appData.longitude = res.longitude
-  //       this.appData.latitude = res.latitude
-  //       callback && callback()
-  //     }
-  //   })
-  // },
+
+
+  // 获取地理位置（餐厅详情页调用）
+  getLocation(callback) {
+    wx.getLocation({
+      type: 'wgs84',
+      success: (res) => {
+        console.log('app-获取地理位置', res)
+        this.appData.longitude = res.longitude
+        this.appData.latitude = res.latitude
+        this.appData.LocationState = true
+        callback && callback()
+      }
+    })
+  },
 
   // ---------------------------------------------------Token-----------------------------------------------------
   // 小程序初始化检查token
@@ -154,44 +156,9 @@ App({
   },
 
 
-  // ----------------------------- 检查并设置用户登陆状态（如果有用户信息则返回用户信息，没有不会返回） -------------------------------------
-  // setLoginState() {
-  //   // 检查数据库
-  //   api.uidCheckInfo({}, data => {
-  //     console.log('uidCheckInfo', data)
-  //     this.appData.LoginState = true
-  //     this.appData.userinfo = data
-
-  // wx.getSetting({
-  //   success: (res) => {
-  //     if (res.authSetting['scope.userInfo']) {
-  //       this.appData.LoginState = true
-  //       this.appData.userinfo = data
-  //     }
-  //   },
-  //   fail: (err) => {
-  //     console.log('检查userinfo授权进入fail', err)
-  //   }
-  // })
-
-  // if (res.errorCode == 0) {
-  //   // 检查userinfo授权
-  //   wx.getSetting({
-  //     success: (res) => {
-  //       if (res.authSetting['scope.userInfo']) { this.appData.LoginState = true }
-  //     },
-  //     fail: (err) => {
-  //       console.log('检查userinfo授权进入fail', err)
-  //     }
-  //   })
-  // }
-  //   })
-  // },
-
-
 
   // 修改后的登陆
-  newGetToken() {
+  newGetToken(callback) {
     // 调用授权
     base.authorize_userinfo(back => {
       // 正在登陆
@@ -208,15 +175,20 @@ App({
                 // 登陆
                 console.log('info', info)
                 info.code = res.code
+                // 请求服务器
                 api.newLogin(info, (back) => {
                   console.log('backinfo', back)
-                  // 缓存token
-                  wx.setStorageSync('token_key', back.token)
                   // 登录态
                   this.appData.LoginState = true
+                  // 缓存token
+                  wx.setStorageSync('token_key', back.token)
+                  // 缓存返回的info
+                  wx.setStorageSync('userinfo', back.userinfo)
+                  // callback
+                  callback && callback()
                   // 隐藏loding
                   wx.hideLoading()
-                  // 登陆成功
+                  // 提示成功
                   wx.showToast({ title: '登陆成功', icon: 'success' })
                 })
               },

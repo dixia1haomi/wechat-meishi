@@ -6,7 +6,7 @@
       <image class='avatarImg' src='{{userinfo.avatar_url}}'></image>
     </view>
     <view style='text-align: center;'>{{userinfo.nick_name}}</view>
-    <view wx:if="{{loginState == false}}" catchtap='_load' style='text-align: center;'>登陆</view>
+    <view wx:if="{{loginState == false}}" catchtap='_login' style='text-align: center;'>登陆</view>
 
   </view>
 

@@ -6,8 +6,7 @@ class Api extends Base {
   }
 
 
-  // *临时测试------ token ------------
-  // 查询优惠商家列表 || 失败返回1,成功返回0
+ // ------------------------------------------------- Token ---------------------------------------------------
   newLogin(data, callback) {
     this.request({
       url: 'token/gettoken', data: data, sCallback: (res) => {
@@ -175,28 +174,6 @@ class Api extends Base {
 
   // --------------------------------------------------- User ---------------------------------------------------
 
-  // 用户登陆接口(新增/更新userinfo表)
-  userLogin(data, callback) {
-    this.request({
-      url: 'user/login', data: data, sCallback: (res) => {
-        if (res.errorCode == 0) {
-          callback && callback(res)
-        } else {
-          wx.navigateTo({ url: '/pages/exception/exception' })
-        }
-      }
-    })
-  }
-
-  // -----检查用户是否登陆过(查数据库userinfo)有返回用户数据，没有返回errorCode==1 -----
-  uidCheckInfo(data, callback) {
-    this.request({
-      url: 'user/check', data: data, sCallback: (res) => {
-        if (res.errorCode == 0) { callback && callback(res.data) }
-      }
-    })
-  }
-
 
   // 查询我的留言（根据uid-服务器内部获取，page分页,每页20条）
   myLiuyan(data, callback) {
@@ -220,6 +197,7 @@ class Api extends Base {
   listLiuyan(data, callback) {
     this.request({
       url: 'liuyan/list', data: data, sCallback: (res) => {
+        console.log('liuyan-list',res)
         if (res.errorCode == 0) {
           callback && callback(res.data)
         } else {

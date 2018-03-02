@@ -46,16 +46,11 @@
     </view>
 
     <view class='base2-gaode'>
-      <image class='gaodemap' src="{{src}}" catchtap='_go_Map'></image>
+      <image class='gaodemap' src="{{Res.map_img}}" catchtap='_go_Map'></image>
     </view>
   </view>
 
   <view class='base3'>
-    <!-- tar栏 -->
-    <!-- <view class='base3-tar'>
-      <view class="base3-tar-item" catchtap=''>------ 攻略 ------</view>
-    </view>  -->
-
     <!-- 文章 -->
     <view class='base3-1'>
       <template is="wxParse" data="{{wxParseData:wenzhang.nodes}}" />

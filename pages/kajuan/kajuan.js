@@ -55,7 +55,7 @@ Page({
   // ---------------------- 领取卡劵 ------------------------
   // 接受卡劵ID=字符串，卡劵在数据库中表ID=用于更新库存,callback更新后的数据库数据(服务器update返回的)
   lingqu(e) {
-    if (getApp().appData.LoginState) {
+    if (app.appData.LoginState) {
       // 已有用户信息
       let card_id = e.currentTarget.dataset.card_id
       let id = e.currentTarget.dataset.id
@@ -65,8 +65,8 @@ Page({
         this.setData({ 'kajuanRes.shengyushuliang': res.shengyushuliang })
       })
     } else {
-      // 调用base用户授权
-      base.login(back => { this.lingqu(e) })
+      // 调用app用户授权
+      app.newGetToken(back => { this.lingqu(e) })
     }
   },
 

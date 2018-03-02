@@ -20,7 +20,6 @@ Page({
 
   _load() {
     // 获取推荐餐厅
-
     this._getCanting_Top()
 
     // 获取卡劵列表

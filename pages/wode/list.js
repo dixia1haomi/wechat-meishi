@@ -12,39 +12,24 @@ Page({
     // 登陆按钮状态
     loginState: false,
     // 用户信息
-    // userInfo: null,
+    // userinfo: null,
   },
 
 
   onLoad: function (op) {
-    // 取缓存
-    // let info = wx.getStorageSync('userinfo')
-    // if (info) {
-    //   this.setData({ userInfo: info, loginState: true })
-    // }
-
-    // 进入时判断用户是否登陆过，没有则提示登陆
+    // 进入时判断用户是否有info缓存，没有则显示登陆按钮
     this._load()
   },
 
   // 登陆
   _load() {
-    // 获取user名下所有关联数据,包含参与的话题,留言（内部获取uid）
-    if (app.appData.LoginState) {
-      this.setData({ userinfo: app.appData.userinfo, loginState: true })
-      // api.userAll({}, res => {
-      //   console.log('userAll', res)
-      //   this.setData({ Res: res, loginState: true })
-      // })
-    } else {
-      // 调用base用户授权
-      base.login(back => { this._load() })
-    }
-
+    // 取缓存
+    let info = wx.getStorageSync('userinfo')
+    if (info) { this.setData({ userinfo: info, loginState: true }) }
   },
 
-
-
+  // 登陆按钮
+  _login() { app.newGetToken(back => { this._load() }) },
 
   // 我的收藏
   go_shoucang() {
@@ -55,7 +40,7 @@ Page({
   // 我的留言
   go_liuyan(e) {
     // 是否登陆过 ？ 跳转到我的留言页 ： 调用登陆
-    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/liuyan' }) : this._load()
+    app.appData.LoginState ? wx.navigateTo({ url: '/pages/wode/liuyan' }) : app.newGetToken(back => { this.go_liuyan() })
   },
 
   // 关于我

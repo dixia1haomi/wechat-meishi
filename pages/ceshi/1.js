@@ -14,9 +14,9 @@ Page({
 
   },
 
-  denglu() {
-    app.newGetToken()
-  },
+  // denglu() {
+  //   app.newGetToken()
+  // },
 
 
 
