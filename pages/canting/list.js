@@ -18,7 +18,9 @@ Page({
     // 筛选页选择的参数
     shaixuanParams: {},
     // 加载中.
-    loading: true
+    loading: true,
+    // 所有数据
+    ResAll: []
 
   },
 
@@ -37,71 +39,37 @@ Page({
   _load() {
     api.listCanting({}, res => {
       console.log('餐厅列表', res)
-      this.setData({ Res: res, loading: false })
+      let Res = []
+
+      // 根据swiper滑动current加载数据以渲染效率,每次push5条
+      for (let i = 0; i < 2 && i < res.length; i++) { Res.push(res[i]) }
+      this.setData({ Res: Res, loading: false }, () => {
+          this.setData({ Res: res })
+      })
     })
   },
 
-  // 获取首页参数并请求数据 *（*餐厅list数据不应该关联文章，速度更快）
-  // _load() {
-
-  //   //-------------去上一页的list数据---------------
-  //   let Pages = getCurrentPages()
-  //   let page = Pages[Pages.length - 2]  // 上一页
-  //   q_Res = page.data.listRes           // 赋到全局变量
-
-  //   // --- 取10条数据(因为swiper的渲染效率所以只取10条) ---
-  //   let Res = []
-  //   for (let i = 0; i < 10 && i < q_Res.length; i++) { Res.push(q_Res[i]) }
-  //   console.log('list_Load', Res)
-  //   this.setData({ Res: Res, ResLength: q_Res.length, loading:false })   // 直接显示所有数据的长度
-  // },
-
-  // // swiper滑动条件加载数据
-  // swiperLoading() {
-  //   let Res = this.data.Res           // Res
-  //   let length = Res.length           // Res长度
-  //   let q_Reslength = q_Res.length    // 总长度
-  //   let current = this.data.current   // 卡片当前量
-  //   // console.log('current', current, 'length', length, 'q_Reslength', q_Reslength, 'Res', Res)
-  //   // res长度小于总长度,才push数据
-  //   if (length < q_Reslength) {
-  //     // 卡片翻到res的倒数第3张，push数据进res
-  //     if (current == length - 2) {
-  //       for (let i = length; i < length + 10 && i < q_Reslength; i++) {
-  //         Res.push(q_Res[i])
-  //       }
-  //       console.log('swiperLoading', Res)
-  //       // setTimeout(() => {
-  //       this.setData({ Res: Res })
-  //       // }, 100)
-  //     }
-  //   }
-  // },
-
+  // swiper滑动事件
+  swiperChange(e) {
+    console.log('swiperChange', e.detail.current)
+    // current从0开始，改成从1开始
+    let current = e.detail.current + 1
+    this.setData({ current: current })
+  },
 
 
   // 筛选页调用where请求(接受筛选页的筛选参数)
   fromShaixuan(shaixuanParams) {
     api.listCanting(shaixuanParams, res => {
       console.log('fromShaixuan', res)
-      // q_Res = res  // 覆盖全局q_Res
-      // --- 取10条数据(因为swiper的渲染效率所以只取10条) ---
-      // let Res = []
-      // for (let i = 0; i < 10 && i < q_Res.length; i++) { Res.push(q_Res[i]) }
-      // console.log('fromShaixuan_push', Res)
+      // --- 后期添加筛选应考虑swiper的渲染效率 ---
       this.setData({ Res: res, current: 1 })   // 直接显示所有数据的长度
     })
   },
 
 
 
-  // swiper滑动事件
-  swiperChange(e) {
-    console.log('swiperChange', e.detail.current)
-    this.setData({ current: e.detail.current + 1 }, () => {
-      //   // this.swiperLoading()    // swiper滑动条件加载数据
-    })
-  },
+
 
   // GO餐厅详情
   go_Detail(e) {
@@ -139,16 +107,27 @@ Page({
   //   }
   // },
 
-  // 下拉刷新
-  onPullDownRefresh: function () {
-    console.log('下拉刷新')
-    api.listCanting({}, res => {
-      console.log('下拉刷新获取餐厅列表', res)
-      this.setData({ Res: res })
-      // 成功后停止刷新
-      wx.stopPullDownRefresh()
-    })
-  }
+
+
+  // --------------------------------------- 分享转发 --------------------------------------------------
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '曲靖袋鼠美食+',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+        console.log('转发成功', res)
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log('转发失败', res)
+      }
+    }
+  },
 
 })
 

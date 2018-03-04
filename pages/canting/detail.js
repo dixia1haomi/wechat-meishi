@@ -1,5 +1,4 @@
 import { Api } from '../../utils/Api.js'
-// import { Config } from '../../utils/Config.js'
 import { Base } from '../../utils/Base.js'
 
 const base = new Base()
@@ -17,19 +16,15 @@ Page({
 
   data: {
     Res: {},
-
-    zanState: false,
-    // 收藏状态 true=已点
-    shoucangState: false,
+    zanState: false,       // 点赞状态
+    shoucangState: false,  // 收藏状态 true=已点
     // 高德map数据
     map: {
       polyline: [],   // 路径规划数组（map页，map组件使用）
-      distance: ''     // 距离
+      distance: ''    // 距离
     },
-    // 加载
-    loading: true,
-    // 显示返回主页
-    goIndex: false
+    loading: true,    // 加载
+    goIndex: false    // 显示返回主页
   },
 
   // 请求detail数据

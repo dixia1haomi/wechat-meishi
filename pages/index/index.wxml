@@ -5,7 +5,7 @@
 
     <view>
 
-      <swiper class='swiper' indicator-dots indicator-color="#fff" duration="800" circular>
+      <swiper class='swiper' indicator-dots indicator-color="#fff" duration="300" circular>
         <block wx:for="{{Res}}" wx:key="">
           <swiper-item catchtap='_go_canting_detail' id='{{item.id}}'>
             <!-- 头图 -->

@@ -87,6 +87,9 @@ Page({
   // ----------------------------------------------- 生成海报 -------------------------------------------------------
   shengcheng() {
     console.log('生成...')
+    // 取用户名
+    let nick_name = wx.getStorageSync('userinfo').nick_name
+
     // 打开蒙层
     this.setData({ canvas: true })
     wx.showLoading({ title: '生成中...' })
@@ -119,7 +122,7 @@ Page({
             ctx.setFillStyle('Black') // 黑色
             // XXXX 邀请你领取
             // ctx.setFillStyle('tomato') 
-            ctx.fillText('# ' + app.appData.userinfo.nick_name + ' 邀您领取', 10, canvHeight + 30)
+            ctx.fillText('# ' + nick_name + ' 邀您领取', 10, canvHeight + 30)
             // XXXX餐厅XX劵
             ctx.setFontSize(25)
             ctx.setFillStyle('red') // 红色
@@ -197,6 +200,27 @@ Page({
         })
       }
     })
+  },
+
+
+  // --------------------------------------- 分享转发 --------------------------------------------------
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '曲靖袋鼠美食+',
+      path: '/pages/index/index',
+      success: function (res) {
+        // 转发成功
+        console.log('转发成功', res)
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log('转发失败', res)
+      }
+    }
   },
 
 })

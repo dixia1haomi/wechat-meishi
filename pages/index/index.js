@@ -21,7 +21,6 @@ Page({
   _load() {
     // 获取推荐餐厅
     this._getCanting_Top()
-
     // 获取卡劵列表
     this._kajuan_List()
   },
@@ -83,6 +82,12 @@ Page({
     }
   },
 
-
+  // -------------------------------------- 下拉刷新 ------------------------------------
+  onPullDownRefresh: function () {
+    console.log('下拉刷新')
+    this._load()
+    // 停止刷新
+    wx.stopPullDownRefresh()
+  }
 
 })
