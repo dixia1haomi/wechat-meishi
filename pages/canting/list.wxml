@@ -1,54 +1,55 @@
 <!-- -------------------------卡片展示----------------------------- -->
 <block>
-  <view class='body'>
 
-    <!-- skip-hidden-item-layout,是否跳过未显示的滑块布局，设为 true 可优化复杂情况下的滑动性能，但会丢失隐藏状态滑块的布局信息 -->
-    <swiper display-multiple-items='1' skip-hidden-item-layout class="body-1" duration="300" bindchange="swiperChange" current="{{current - 1}}" circular>
-      <block wx:for="{{Res}}" wx:key="">
-        <swiper-item class="swiper-item">
-          <view class="swiper-item-view" catchtap="go_Detail" id="{{item.id}}">
+    <!-- <view class='body-1'> -->
+      <!-- skip-hidden-item-layout,是否跳过未显示的滑块布局，设为 true 可优化复杂情况下的滑动性能，但会丢失隐藏状态滑块的布局信息 -->
+      <swiper display-multiple-items='1' skip-hidden-item-layout class="swiper" duration="300" bindchange="swiperChange" current="{{current - 1}}" circular>
+        <block wx:for="{{Res}}" wx:key="">
+          <swiper-item class="swiper-item">
+            <view class="swiper-item-view" catchtap="go_Detail" id="{{item.id}}">
 
-            <image class='img' src="{{item.img}}" lazy-load='true' />
-            <!-- 详情 -->
-            <view class="item-view">
+              <image class='img' src="{{item.img}}" lazy-load='true' />
+              <!-- 详情 -->
+              <view class="item-view">
 
-              <view class='item-view-1'>
-                <!-- 名字 | 人均 -->
-                <view class='view-1'>
-                  <view class='flex'>
-                    <view class="name">{{item.name}}</view>
-                    <view class="renjun">{{item.renjun}}</view>
+                <view class='item-view-1'>
+                  <!-- 名字 | 人均 -->
+                  <view class='view-1'>
+                    <view class='flex'>
+                      <view class="name">{{item.name}}</view>
+                      <view class="renjun">{{item.renjun}}</view>
+                    </view>
+                    <!-- 爱心-赞（改：点赞） -->
+                    <!-- <view class="iconfont icon-xin"> {{item.zan}}</view> -->
+
+                    <!-- <view class='dianzan'>{{'点赞 '+item.zan}}</view> -->
+                    <view>
+                      <text style='color:#808080;font-size:28rpx;margin-right:6rpx;'>{{item.zan}}</text>
+                      <text class="iconfont icon-xin1" style='color: #f2cd20;font-size:36rpx;'></text>
+                    </view>
                   </view>
-                  <!-- 爱心-赞（改：点赞） -->
-                  <!-- <view class="iconfont icon-xin"> {{item.zan}}</view> -->
 
-                  <!-- <view class='dianzan'>{{'点赞 '+item.zan}}</view> -->
-                  <view>
-                    <text style='color:#808080;font-size:28rpx;margin-right:6rpx;'>{{item.zan}}</text>
-                    <text class="iconfont icon-xin1" style='color: #f2cd20;font-size:36rpx;'></text>
-                  </view>
+                  <!-- 描述 -->
+                  <view class=''>{{item.miaoshu}}</view>
+
+                  <!-- 地址 -->
+                  <view class="">地址:{{item.address}}</view>
                 </view>
 
-                <!-- 描述 -->
-                <view class=''>{{item.miaoshu}}</view>
-
-                <!-- 地址 -->
-                <view class="">地址:{{item.address}}</view>
+                <!-- 标签 -->
+                <view class="item-view-2">
+                  <text class="biaoqian">{{item.quyu}}</text>
+                  <!-- <text class="biaoqian">{{item.caixi-1].name}}</text> -->
+                  <!-- <text class="biaoqian">{{changjingList[item.changjing-1].name}}</text> -->
+                  <text class="biaoqian">{{item.biaoqian}}</text>
+                </view>
               </view>
 
-              <!-- 标签 -->
-              <view class="item-view-2">
-                <text class="biaoqian">{{item.quyu}}</text>
-                <!-- <text class="biaoqian">{{item.caixi-1].name}}</text> -->
-                <!-- <text class="biaoqian">{{changjingList[item.changjing-1].name}}</text> -->
-                <text class="biaoqian">{{item.biaoqian}}</text>
-              </view>
             </view>
-
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
+          </swiper-item>
+        </block>
+      </swiper>
+    <!-- </view> -->
 
     <view class='body-2'>
       <!-- 当前页/总数 -->
@@ -56,11 +57,10 @@
         <text class='current'>{{current}}</text> / {{Res.length}}
       </view>
       <!-- 筛选更多/列表展示 -->
-      <view class="foot">
+      <!-- <view class="foot"> -->
         <!-- <text class="iconfont icon-chazhao foot-item1" catchtap='go_Shaixuan'>筛选</text> -->
-      </view>
+      <!-- </view> -->
     </view>
-  </view>
 </block>
 
 

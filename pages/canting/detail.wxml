@@ -35,10 +35,8 @@
       <view class='base2-4'>电话:{{Res.phone}}</view>
 
       <view class='base2-5'>
-        <view class='base2-5-item1'>
+        <view class='base2-5-item1' wx:if="{{!loading}}">
           <view class='base2-5-biaoqian'>{{Res.quyu}}</view>
-          <!-- <view class='base2-5-biaoqian'>{{caixiList[Res.caixi-1].name}}</view> -->
-          <!-- <view class='base2-5-biaoqian'>{{changjingList[Res.changjing-1].name}}</view> -->
           <view class='base2-5-biaoqian'>{{Res.biaoqian}}</view>
         </view>
         <view class="iconfont icon-shoucang1 {{shoucangState ?'xuanzhong':'weixuanzhong'}}" catchtap='shoucang'></view>

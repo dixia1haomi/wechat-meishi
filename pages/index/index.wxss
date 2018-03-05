@@ -50,9 +50,11 @@
   padding: 50rpx 0;
 }
 
-.base1 .miaoshu {
-  color: #fff;
-  position: absolute;
+.miaoshu {
+   color: #fff;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0;  */
 }
 
 .base2 {

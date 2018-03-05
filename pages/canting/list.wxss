@@ -1,19 +1,22 @@
 /* --------------------------卡片------------------------- */
 
-.body {
-  height: 100%;
-  /* font-size: 28rpx; */
-  display: flex;
-  flex-flow: column;
+page {
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 
-.body-1 {
-  flex: 1;
-  margin-top: 70rpx;
-}
+
+/* .body-1 { */
+  /* flex: 1; */
+/* } */
 
 .body-2 {
-  margin-bottom: 30rpx;  
+  /* margin-bottom: 30rpx; */
+  height: 15%;
+}
+
+.swiper {
+  height: 85%;
 }
 
 .swiper-item {
@@ -27,7 +30,7 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-flow: column;
-  margin: 40rpx 0 60rpx 0;
+  margin: 80rpx 0 80rpx 0;
 }
 
 .img {
@@ -53,8 +56,8 @@
 }
 
 .item-view-2 {
-   padding: 30rpx 0 20rpx 0; 
-   /* font-size: 34rpx; */
+  padding: 30rpx 0 20rpx 0;
+  /* font-size: 34rpx; */
 }
 
 .view-1 {
@@ -63,7 +66,7 @@
 }
 
 .name {
-   font-size: 36rpx; 
+  font-size: 36rpx;
   font-weight: 700;
 }
 
@@ -83,22 +86,23 @@
   content: '/人';
 }
 
-.dianzan{
+.dianzan {
   font-size: 26rpx;
   color: #808080;
 }
+
 .biaoqian {
   padding: 0 10rpx;
   border-radius: 10rpx;
   /* color: #8a8a8a; */
   margin-right: 10rpx;
   /* background-color: #e5e5e5; */
-  background-color:#f2cd20;
+  background-color: #f2cd20;
 }
 
 .view-f {
   text-align: center;
-  margin-bottom:20rpx;
+  /* margin-bottom: 20rpx; */
   font-size: 28rpx;
   color: #8a8a8a;
 }
@@ -109,9 +113,9 @@
 }
 
 .foot {
-  text-align: center;
+   text-align: center; 
    color: #808080; 
-  padding: 30rpx 0;
+    padding: 30rpx 0;  
 }
 
 .foot-item1 {
@@ -129,7 +133,6 @@
   border-radius: 4rpx;
   margin-left: 20rpx;
 }
-
 
 .noLiuyan {
   background-color: #efefef;

@@ -13,6 +13,8 @@
             <!-- 描述 -->
             <view class='miaoshu-base'>
               <view class='miaoshu-block'></view>
+            </view>
+            <view class='miaoshu-base'>
               <view class='miaoshu'># {{item.miaoshu}} #</view>
             </view>
             <!-- 餐厅名 -->

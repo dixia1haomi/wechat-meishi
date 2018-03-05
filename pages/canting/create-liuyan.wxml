@@ -1,5 +1,4 @@
 
-<view class='form'>
   <view class='form1'>
     <textarea class='form1-1' bindinput="liuyanInput" fixed auto-focus maxlength='200' placeholder="我也来说说..">
       <text class='form1-2'>{{cursor+'/200'}}</text>
@@ -7,9 +6,9 @@
   </view>
 
   <view class='form2'>
-    <view class='form2-tijiao' catchtap='tijiao_liuyan'>确认发送</view>
+    <text class='form2-tijiao' catchtap='tijiao_liuyan'>确认发送</text>
   </view>
-</view>
+
 
 <!-- 错误提示 -->
 <my-toptips state="{{toptips_kaiguan}}" tipsText="{{toptips_text}}"></my-toptips>

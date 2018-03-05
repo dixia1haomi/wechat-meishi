@@ -29,7 +29,6 @@ Page({
 
   // 请求detail数据
   onLoad: function (op) {
-    // console.log(getCurrentPages())
     this._load(op.id)
     this._zanState(op.id)        // 遍历点赞缓存，设置状态
     this._shoucangState(op.id)   // 遍历收藏缓存，设置状态

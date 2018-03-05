@@ -1,17 +1,17 @@
-.form {
-  /* padding-top: 200rpx; */
-}
 
 .form1 {
   margin: 70rpx;
   font-size: 32rpx;
+  display: flex;
+  justify-content: center;
 }
 
 .form1-1 {
   background-color: aliceblue;
   margin-bottom: 40rpx;
 }
-.form1-2{
+
+.form1-2 {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -20,10 +20,9 @@
 }
 
 .form2 {
+  padding: 15rpx;
   display: flex;
   justify-content: center;
-  margin-top: 100rpx;
-  padding: 15rpx 30rpx;
 }
 
 .form2-tijiao {
@@ -31,5 +30,5 @@
   background-color: #fff;
   padding: 15rpx 30rpx;
   border-radius: 10rpx;
-  box-shadow:0 0 20rpx #808080;
+  box-shadow: 4rpx 4rpx 10rpx #808080;
 }

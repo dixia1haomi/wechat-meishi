@@ -30,9 +30,6 @@ Page({
     canting_id = op.id
   },
 
-  _load(id) {
-  },
-
 
   // liuyanInput
   liuyanInput(e) {

@@ -153,8 +153,8 @@ Page({
       // y: 0,           // 画布y轴起点（默认0）
       // width: this.data.width,      // 画布宽度（默认为canvas宽度-x）
       // height: this.data.height,     // 画布宽度（默认为canvas宽度-x）
-      destWidth: app.appData.sysWidth * 5, // 输出图片宽度（默认为width）
-      destHeight: app.appData.sysHeight * 5,// 输出图片高度（默认为Height）
+      destWidth: app.appData.sysWidth * 2, // 输出图片宽度（默认为width）
+      destHeight: app.appData.sysHeight * 2,// 输出图片高度（默认为Height）
       canvasId: 'myCanvas', // 标识，组件ID
       success: (res) => {
         console.log('保存图片返回路径', res.tempFilePath)
