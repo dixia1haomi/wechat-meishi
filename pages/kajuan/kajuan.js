@@ -89,60 +89,65 @@ Page({
     console.log('生成...')
     // 取用户名
     let nick_name = wx.getStorageSync('userinfo').nick_name
+    // 如果没有缓存调用登陆
+    if (!nick_name) {
+      // 调用app用户授权
+      app.newGetToken(back => { this.shengcheng() })
+    } else {
+      // 打开蒙层
+      this.setData({ canvas: true })
+      wx.showLoading({ title: '生成中...' })
+      // 创建canvas
+      const ctx = wx.createCanvasContext('myCanvas')
+      // 绘图(1图 1:1(720*720), 2图 10:6(720*432) ,底边还有一点点)
+      wx.getImageInfo({
+        // src: 'https://mmbiz.qpic.cn/mmbiz_jpg/7nqejTwzfIeVwUQcu7ic4FVibfHWUyG5deck6Uyw49ia3PPAUXztWQHyhOMpstm90WUHSWyiacRalpzVwia0mNKiaMsQ/0?wx_fmt=jpeg',
+        src: this.data.kajuanRes.img,
+        success: (res) => {
+          console.log('获取图片信息1', res)
+          // 第一张图(前4个参数是图片参数，后4个是画布参数)
+          // 按照宽高比算出调整后图片的高度 = (屏幕宽 * 图片高) / 图片宽;
+          let canvHeight = (app.appData.sysWidth * res.height) / res.width
+          console.log('1图绘制后高', canvHeight)
+          ctx.drawImage(res.path, 0, 0, res.width, res.height, 0, 0, app.appData.sysWidth, canvHeight)
 
-    // 打开蒙层
-    this.setData({ canvas: true })
-    wx.showLoading({ title: '生成中...' })
-    // 创建canvas
-    const ctx = wx.createCanvasContext('myCanvas')
-    // 绘图(1图 1:1(720*720), 2图 10:6(720*432) ,底边还有一点点)
-    wx.getImageInfo({
-      // src: 'https://mmbiz.qpic.cn/mmbiz_jpg/7nqejTwzfIeVwUQcu7ic4FVibfHWUyG5deck6Uyw49ia3PPAUXztWQHyhOMpstm90WUHSWyiacRalpzVwia0mNKiaMsQ/0?wx_fmt=jpeg',
-      src: this.data.kajuanRes.img,
-      success: (res) => {
-        console.log('获取图片信息1', res)
-        // 第一张图(前4个参数是图片参数，后4个是画布参数)
-        // 按照宽高比算出调整后图片的高度 = (屏幕宽 * 图片高) / 图片宽;
-        let canvHeight = (app.appData.sysWidth * res.height) / res.width
-        console.log('1图绘制后高', canvHeight)
-        ctx.drawImage(res.path, 0, 0, res.width, res.height, 0, 0, app.appData.sysWidth, canvHeight)
-
-        // 第二张图
-        wx.getImageInfo({
-          src: "https://mmbiz.qpic.cn/mmbiz_jpg/7nqejTwzfIeVwUQcu7ic4FVibfHWUyG5deAdPgVeq1XdicHxj9IdxXVaicuCJ4UkgDbFwvs2Vh8Jlfm367t6pxPq7Q/0?wx_fmt=jpeg",
-          success: (res2) => {
-            console.log('获取图片信息2', res2)
-            // 按照宽高比算出调整后图片的高度 = (屏幕宽 * 图片高) / 图片宽;
-            let canvHeight2 = (app.appData.sysWidth * res2.height) / res2.width
-            console.log('2图绘制后高', canvHeight2)
-            // 第二张图(根据第一图的高开始绘制)
-            ctx.drawImage(res2.path, 0, 0, res2.width, res2.height, 0, canvHeight, app.appData.sysWidth, canvHeight2)
-            // 写字
-            ctx.setFontSize(20)
-            ctx.setFillStyle('Black') // 黑色
-            // XXXX 邀请你领取
-            // ctx.setFillStyle('tomato') 
-            ctx.fillText('# ' + nick_name + ' 邀您领取', 10, canvHeight + 30)
-            // XXXX餐厅XX劵
-            ctx.setFontSize(25)
-            ctx.setFillStyle('red') // 红色
-            ctx.fillText(this.data.kajuanRes.title, 10, canvHeight + 70)
-            ctx.setFontSize(20)
-            ctx.setFillStyle('Black') // 黑色
-            ctx.fillText('剩余' + this.data.kajuanRes.shengyushuliang + '张', 10, canvHeight + 110)
-            ctx.fillText('有效期' + this.data.kajuanRes.qixian, 10, canvHeight + 150)
-            // ctx.fillText('阿西', 0, 100)
-            // 执行绘制
-            ctx.draw(false, back => {
-              console.log('绘制完成')
-              // 保存图片
-              console.log('time')
-              this.saveImg()
-            })
-          }
-        })
-      }
-    })
+          // 第二张图
+          wx.getImageInfo({
+            src: "https://mmbiz.qpic.cn/mmbiz_jpg/7nqejTwzfIeVwUQcu7ic4FVibfHWUyG5deAdPgVeq1XdicHxj9IdxXVaicuCJ4UkgDbFwvs2Vh8Jlfm367t6pxPq7Q/0?wx_fmt=jpeg",
+            success: (res2) => {
+              console.log('获取图片信息2', res2)
+              // 按照宽高比算出调整后图片的高度 = (屏幕宽 * 图片高) / 图片宽;
+              let canvHeight2 = (app.appData.sysWidth * res2.height) / res2.width
+              console.log('2图绘制后高', canvHeight2)
+              // 第二张图(根据第一图的高开始绘制)
+              ctx.drawImage(res2.path, 0, 0, res2.width, res2.height, 0, canvHeight, app.appData.sysWidth, canvHeight2)
+              // 写字
+              ctx.setFontSize(20)
+              ctx.setFillStyle('Black') // 黑色
+              // XXXX 邀请你领取
+              // ctx.setFillStyle('tomato') 
+              ctx.fillText('# ' + nick_name + ' 邀您领取', 10, canvHeight + 30)
+              // XXXX餐厅XX劵
+              ctx.setFontSize(25)
+              ctx.setFillStyle('red') // 红色
+              ctx.fillText(this.data.kajuanRes.title, 10, canvHeight + 70)
+              ctx.setFontSize(20)
+              ctx.setFillStyle('Black') // 黑色
+              ctx.fillText('剩余' + this.data.kajuanRes.shengyushuliang + '张', 10, canvHeight + 110)
+              ctx.fillText('有效期' + this.data.kajuanRes.qixian, 10, canvHeight + 150)
+              // ctx.fillText('阿西', 0, 100)
+              // 执行绘制
+              ctx.draw(false, back => {
+                console.log('绘制完成')
+                // 保存图片
+                console.log('time')
+                this.saveImg()
+              })
+            }
+          })
+        }
+      })
+    }
   },
 
   // 保存图片

@@ -113,7 +113,8 @@ App({
   // 获取地理位置（餐厅详情页调用）
   getLocation(callback) {
     wx.getLocation({
-      type: 'wgs84',
+      // type: 'wgs84',
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success: (res) => {
         console.log('app-获取地理位置', res)
         this.appData.longitude = res.longitude

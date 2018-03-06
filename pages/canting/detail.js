@@ -263,10 +263,11 @@ Page({
   _go_Map() {
     // 如果有位置信息
     if (app.appData.LocationState) {
+      // console.log('appData1', parseFloat(this.data.Res.latitude), parseFloat(this.data.Res.longitude))
       // 使用微信内置地图查看位置
       wx.openLocation({
-        latitude: parseInt(this.data.Res.latitude),
-        longitude: parseInt(this.data.Res.longitude),
+        latitude: parseFloat(this.data.Res.latitude),
+        longitude: parseFloat(this.data.Res.longitude),
         scale: 18,
         name: this.data.Res.name,
         address: this.data.Res.address
